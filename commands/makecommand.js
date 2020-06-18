@@ -27,14 +27,15 @@ module.exports.run = async(bot, message, args) => {
 ${scode}
 }
 
-module.exports.name = {
-  name: "${name.trim()}"
+module.exports.help = {
+  name: "${name.trim().toLowerCase()}"
 }
 `,
         function(err) {
           if (err) throw err;
           console.log(`added command ${name.trim()}.js | Code: ${scode.trim()} `);
-          message.channel.send(`added command **${name.trim()}.js** | **Code:** \n\`\`\`${scode.trim()}\`\`\``);
+          message.channel.send(`added command **${name.trim()}.js** | **Code:** \n\`\`\`js
+${scode.trim()}\`\`\``);
         }
       );
     } else return;

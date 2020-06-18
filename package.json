@@ -2,9 +2,9 @@
   "name": "podel",
   "description": "the original podel bot",
   "version": "0.6.2",
-  "main": "index.js",
+  "main": "podel.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node podel.js"
   },
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
