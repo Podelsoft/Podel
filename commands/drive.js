@@ -84,7 +84,11 @@ module.exports.run = async (bot, message, args, tools) => {
       db.set(`dailydrive_${message.author.id}`, Date.now());
       db.add(`balance_${message.author.id}`, rprize);
     }
-  }
+  } else {
+   
+   message.channel.send('you don\'t even have a car, buy one from the `p!shop`.'); 
+ 
+ }
 };
 module.exports.help = {
   name: "drive",

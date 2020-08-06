@@ -3,11 +3,12 @@ const db = require('quick.db');
 const config = require('../config.json'),
       colour = config.colour;
 
-module.exports.run = async (bot, message, args, tools) => {
+module.exports.run = async (bot, message, args, tools) => {  
+
   if (!message.mentions.members.first()) return message.channel.send(`mention someone first`);
     
   let targetMember = message.mentions.members.first(),
-      amount = parseInt(args.join(' ').replace(targetMember, ''));
+      amount = parseInt(args[1]);
   
   if(targetMember.bot) return message.reply(`you can't give money to bots`);
   

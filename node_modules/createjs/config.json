@@ -1,0 +1,7 @@
+{
+	"site_path": "../CreateJS.com/",
+	"easel_path":"../EaselJS/",
+	"preload_path":"../PreloadJS/",
+	"sound_path":"../SoundJS/",
+	"tween_path":"../TweenJS/"
+}

@@ -20,8 +20,8 @@ module.exports.run = async (bot, message, args) => {
     .setDescription(`List of items/perks you can buy and sell using p!buy or p!sell <itemname> <amount>`)
     .setColor(colour)
     .addField(`${astraemoji}`, `£1000 | £450`)
-    .addField(`${lordemoji} (1 Week)`, `£2000 | £1200`, true)
-    .setFooter("Podel, coded by the government of georgia", bot.user.displayAvatarURL);
+    .addField(`${lordemoji} (1 Week)`, `£20000 | £10000`, true)
+    .setFooter("Podel, tesco e-shop discount on 350ml of heinz ketchup", bot.user.displayAvatarURL);
   
   message.channel.send(embed)
   

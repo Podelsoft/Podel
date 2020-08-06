@@ -6,6 +6,8 @@ const bot = new Discord.Client({ disableEveryone: true });
 const fs = require("fs");
 const db = require("quick.db");
 const ytdl = require('ytdl-core');
+let cooldown = new Set();
+let cds = 3;
 bot.commands = new Discord.Collection();
 
 const http = require("http");
@@ -13,7 +15,17 @@ const express = require("express");
 const app = express();
 const serveIndex = require('serve-index');
 
- app.use(express.static(__dirname + "/"))
+bot.on("voiceStateUpdate", function(oldMember, newMember){ 
+    if (!newMember.voiceChannel) {
+    let role = newMember.guild.roles.find("id", "730938567337181266");
+    newMember.removeRole(role);
+    } else {
+    let role = newMember.guild.roles.find("id", "730938567337181266");
+    newMember.addRole(role);
+    }
+});
+
+/* app.use(express.static(__dirname + "/"))
  app.use('/chat', serveIndex(__dirname + '/chat'));
 
 app.get("/", (request, response) => {
@@ -66,6 +78,7 @@ app.listen(process.env.PORT);
 setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 280000);
+*/
 
 fs.readdir("./commands/", (err, files) => {
   if (err) console.log(err);
@@ -102,13 +115,13 @@ bot.on("typingStart", function(channel, user) {
  /* if (user.id === "233786694741000192") {
      channel.send(`${user} still talking :/`);
    } */
-  if (user.id === "325544798964547588") {
+/*  if (user.id === "325544798964547588") {
     if (channel.id === "696525484183519272") {
       channel.send(
         "https://media.discordapp.net/attachments/696525484183519272/709154486328754240/ezgif.com-add-text_9.gif"
       );
     }
-  }
+  } */
 });
 
 bot.on("warn", function(info){
@@ -209,6 +222,8 @@ bot.on("messageDelete", function(message){
     .send(`**Deleted Attachment:** ${message.author.tag} | **In:** ${message.channel.name}`, attachment);
     return;
   } else { */
+ 
+  if (message.content.toLowerCase().includes('NIGGER'.toLowerCase())) return;
   
   if (message.content.length > 1024) return; 
   
@@ -250,7 +265,7 @@ bot.on("guildMemberAdd", member => {
 });
 
 bot.on("message", async message => {
-  
+   
   if (message.author.bot) return;
   
   if (message.channel.id === "708435487525961840" && !message.member.hasPermission('KICK_MEMBERS') && !message.content.startsWith('p!join')) {
@@ -346,6 +361,7 @@ bot.on("message", async message => {
   } */
   
     if (message.isMemberMentioned(bot.user)) {
+      if (args.join(' ').includes('@everyone')) return;
       let j = args.join(' ');
       let q = j.split(bot.user)[0];
       let path = `./chat/${q.trim().toLowerCase()}.js`
@@ -429,9 +445,26 @@ message.channel.send(\`${ansrs[result]}\`)`;
       let q = j.split(bot.user)[0];
       console.log(q.trim());
     } */
+
     if (message.guild.id === "696515024746709003") {
-  curxp++;
-  xp[message.author.id].xp = curxp; fs.writeFile("./xp.json", JSON.stringify(xp), err => {
+ 
+   /* if (cooldown.has(message.author.id)) {
+        xp[message.author.id].xp = curxp;
+    } else {
+        curxp++;
+        cooldown.add(message.author.id);
+    }
+
+  setTimeout(() => {
+    xp[message.author.id].xp = curxp;   
+   }, cds * 1000);*/
+if (message.author.id === 90425297995837440){
+  xp[message.author.id].xp = curxp;
+}
+  
+ // xp[message.author.id].xp = curxp
+  
+ fs.writeFile("./xp.json", JSON.stringify(xp), err => {
     if (err) console.log(err);
   }); 
 
@@ -465,6 +498,15 @@ message.channel.send(\`${ansrs[result]}\`)`;
     }
   }
 
+  if (curlvl >= 99) {
+    if (!message.member.roles.some(role => role.name === "Fused")) {
+      var role = message.guild.roles.find(role => role.name === "Fused");
+      var role2 = message.guild.roles.find(role => role.id === "696707967176802364");
+      message.member.addRole(role);
+      message.member.addRole(role2);
+    }
+  }
+
     if (`${lvlupmsgs}` === null) {
       await message.author.send(lvlup);
     }
@@ -489,7 +531,11 @@ message.channel.send(\`${ansrs[result]}\`)`;
           cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName)
         );
 
-      if (!command2) return;
+// let list = [`help`, `warn`, `clearwarn`, `kick`, `ban`, `check`, `clear`, `mute`, `unmute`, `tempban`, `unban`, `ans`, `bazinga`, `podelvid`, `xp`, `changelog`, `info`, `website`, `yep`, `conspiracy`, `yt`, `suggest`, `boiler`, `server`, `podel`, `brick`, `user`, `simp`, `global`, `leaderboard`, `opts`, `apilist`, `kojima`, `joblist`, `stats`, `store`, `buy`, `sell`, `lord`, `work`, `drive`, `invite`, `car`]
+
+      if (command2 === undefined) return message.channel.send('that command doesn\'t exist');
+
+      if (!command2) return message.channel.send('did you mean: `' + search + '`')
 
       command2.run(bot, message, args);
     } catch (err) {

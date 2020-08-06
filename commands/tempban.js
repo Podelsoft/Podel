@@ -7,40 +7,49 @@ const ms = require("ms");
 
 module.exports.run = async (bot, message, args) => {
   
+  let bantime = args[1];
+  
+  let j = args.join(' ');
+  let reason = j.split(args[1])[1];  
+ 
   if (message.guild.id !== "696515024746709003") return;
   
   if (message.member.hasPermission("BAN_MEMBERS")) {
-    let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+    if (!bantime) return;
+    if (!reason) return message.channel.send('you must provide a valid reason.')
+    let user = bot.users.find(user => user.username.toLowerCase().includes(args[0].toLowerCase())) || message.mentions.users.first();
     if (user) {
-      const member = user;
+      const member = message.guild.member(user);
       if (member) {
-        let bantime = args[1];
-
-        if (!bantime)
-          return message.channel.send(
-            "you didn't specify any indefinite continued progress of existence and events in the past, present, and future regarded as a whole."
-          );
-
-        if (bantime === NaN)
-          return message.channel.send(
-            "for how long?? (like p!tempban @user 1s idk)"
-          );
-
-        if (bantime < 0) return message.channel.send("how is this man.");
-
+        message.channel.send(`Are you sure you want to ban **${user.tag}** for **${bantime}** (yes/no)`);
+        const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 10000 });
+        console.log(collector)
+        collector.on('collect', async message => {
+            if (message.content == "yes") {
+              await db.add(`banCount_${user.id}`, 1);
+                member.ban({ reason: "eliminated by podelbot for " + bantime })
+                .then(async () => {
+                  await user.send("you've been banned from Podel Server for **" + bantime + "** (Reason:" + reason + ")")
+                  await message.reply(
+                    `Successfully banned ${user.tag} for ${bantime} (Reason:${reason})`
+                  );
+                  await db.add(`banCount_${user.id}`, 1);
+                 // await db.set(`bantime_${message.author.id}`, ms(bantime));
+                  if (bantime === NaN) return message.channel.send("for how long?? (like p!tempban @user 1s idk)");
+                  if (bantime < 0) return message.channel.send("how is this man.");
+        
         let embed = new Discord.RichEmbed()
-          .setTitle(`${user.user.tag} | Tempban`)
-          .addField("Time", bantime, true)
-          .addField("Mod/Admin", message.author.tag, true)
-          .setThumbnail(user.user.displayAvatarURL)
+          .setTitle(`${user.tag} | Tempban`)
+          .addField("Time", bantime)
+          .addField("Mod/Admin", message.author.tag)
+          .addField("Reason", reason)
+          .setThumbnail(user.displayAvatarURL)
           .setColor(colour)
           .setTimestamp()
           .setFooter(
             "Podel, coded by the government of georgia",
             bot.user.avatarURL
           );
-
-        await message.delete();
 
         await bot.guilds
           .get("696515024746709003")
@@ -49,10 +58,11 @@ module.exports.run = async (bot, message, args) => {
 
         setTimeout(function() {
           let embed2 = new Discord.RichEmbed()
-            .setTitle(`${user.user.tag} | Unban`)
-            .addField("Time", bantime, true)
-            .addField("Mod/Admin", message.author.tag, true)
-            .setThumbnail(user.user.displayAvatarURL)
+            .setTitle(`${user.tag} | Unban`)
+            .addField("Time", bantime)
+            .addField("Mod/Admin", message.author.tag)
+            .addField("Reason", reason)
+            .setThumbnail(user.displayAvatarURL)
             .setColor("#9e0e24")
             .setTimestamp()
             .setFooter(
@@ -67,28 +77,16 @@ module.exports.run = async (bot, message, args) => {
             .channels.get("704356972606259220")
             .send(embed2);
         }, ms(bantime));
-
-        await user.user
-          .send("you've been banned from Podel Server for **" + bantime + "**")
-          .then(async () => {
-            member
-              .ban({
-                reason: "eliminated by podelbot for " + bantime
-              })
-              .then(async () => {
-                await message.reply(
-                  `Successfully banned ${user.user.tag} for ${bantime}`
-                );
-                await db.add(`banCount_${user.user.id}`, 1);
-              })
-              .catch(err => {
-                message.reply("I was unable to ban the member");
-                console.error(err);
-              });
-          })
-          .catch(err => {
-            console.error(err);
-          });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+            }
+            else if (message.content == "no") {
+                message.channel.send("cancelled.");
+                return;
+            }
+        });
       } else {
         message.reply("That user isn't in this guild!");
       }

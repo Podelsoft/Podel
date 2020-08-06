@@ -31,7 +31,7 @@ module.exports.run = async (bot, message, args) => {
   .addField('Total RAM', `850MB`)
   .addField('Uptime', format(uptime))
   .setColor(colour)
-  .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL);
+  .setFooter('Podel, spaghetti code everywhere', bot.user.avatarURL);
   
   message.channel.send(embed);
   

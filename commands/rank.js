@@ -5,10 +5,11 @@ let config = require('../config.json'),
 
 module.exports.run = async (bot, message, args) => {
     
-  let user = message.mentions.users.first() || message.author;
+  let user = bot.users.find(user => user.username.toLowerCase().includes(args.join(' ').toLowerCase())) || message.mentions.users.first();
   
-  if (!user) return;
-  
+  if (!user) user = message.author;
+  if (user.tag === "Podel#8232") user = message.author;
+
   let podelemoji = bot.emojis.find(emoji => emoji.name === `podel`);
   let sgtemoji = bot.emojis.find(emoji => emoji.name === `sgt`);
   
@@ -42,7 +43,7 @@ module.exports.run = async (bot, message, args) => {
         .setColor(colour)
         .setThumbnail(user.avatarURL)
         .setFooter(
-          "Podel, coded by the government of georgia",
+          "Podel, the kid who types !rank every 15 mins",
           bot.user.avatarURL
         );
 

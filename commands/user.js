@@ -15,9 +15,8 @@ module.exports.run = async (bot, message, args) => {
     false: "❌",
     true: "✅"
   }
-  let user = message.guild.member(
-    message.mentions.users.first() || message.guild.members.get(args[0])
-  );
+  let user = bot.users.find(user => user.username.toLowerCase().includes(args.join(' ').toLowerCase())) || message.mentions.users.first();
+  if (user.tag === "Podel#8232") user = message.author;
   if (!user) {
     let embed = new Discord.RichEmbed()
     .setTitle(message.author.tag + " User Info")
@@ -31,7 +30,10 @@ module.exports.run = async (bot, message, args) => {
         .format("dddd, MMMM Do YYYY, HH:mm:ss")}`,
       true
     )
-    .addField("Server Join Date", message.member.joinedAt)
+    .addField("Server Join Date", 
+    `${moment
+        .utc(message.member.joinedAt)
+        .format("dddd, MMMM Do YYYY, HH:mm:ss")}`)
     .setThumbnail(message.author.displayAvatarURL)
     .setColor(colour)
     .setTimestamp()
@@ -43,19 +45,22 @@ module.exports.run = async (bot, message, args) => {
   
   if (user) {
   let embed = new Discord.RichEmbed()
-    .setTitle(user.user.tag + " User Info")
-    .addField("Bot", `${j[user.user.bot]}`, true)
+    .setTitle(user.tag + " User Info")
+    .addField("Bot", `${j[user.bot]}`, true)
     .addField("Status", `${status[user.presence.status]}`, true)
-    .addField("ID", user.user.id)
+    .addField("ID", user.id)
     .addField(
       "Discord Join Date",
       `${moment
-        .utc(user.user.createdAt)
+        .utc(user.createdAt)
         .format("dddd, MMMM Do YYYY, HH:mm:ss")}`,
       true
     )
-    .addField("Server Join Date", user.joinedAt)
-    .setThumbnail(user.user.displayAvatarURL)
+    .addField("Server Join Date", 
+    `${moment
+       .utc(message.guild.member(user).joinedAt)
+       .format("dddd, MMMM Do YYYY, HH:mm:ss")}`)
+    .setThumbnail(user.displayAvatarURL)
     .setColor(colour)
     .setTimestamp()
     .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL);

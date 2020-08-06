@@ -6,6 +6,9 @@ let config = require('../config.json'),
 
 module.exports.run = async (bot, message, args) => {
   
+  let j = args.join(' ');
+  let reason = j.split(args[1])[1];
+  
   if (message.guild.id !== "696515024746709003") return;
   
   if (message.member.hasPermission('MANAGE_MESSAGES')) {
@@ -18,6 +21,8 @@ module.exports.run = async (bot, message, args) => {
       
       let mutetime = args[1];
       
+      if (!reason) return message.channel.send('you didn\'t provide a valid reason');
+  
       if (!mutetime) return message.channel.send('you didn\'t specify any indefinite continued progress of existence and events in the past, present, and future regarded as a whole.');
       
       if (mutetime === NaN) return message.channel.send('for how long?? (like p!mute @user 1s idk)');
@@ -30,8 +35,9 @@ module.exports.run = async (bot, message, args) => {
       
       let embed = new Discord.RichEmbed()
       .setTitle(`${user.user.tag} | Mute`)
-      .addField('Time', mutetime, true)
-      .addField('Mod/Admin', message.author.tag, true)
+      .addField('Time', mutetime)
+      .addField('Reason', reason)
+      .addField('Mod/Admin', message.author.tag)
       .setThumbnail(user.user.displayAvatarURL)
       .setColor(colour)
       .setTimestamp()
@@ -45,7 +51,7 @@ module.exports.run = async (bot, message, args) => {
       
       await db.push(`muted_${user.user.id}`, 'yes');
       
-      await user.user.send('you\'ve been muted on Podel Server for **' + mutetime + '**');
+      await user.user.send('you\'ve been muted on Podel Server for **' + mutetime + '** (Reason:' + reason + ')');
       
       await bot.guilds.get("696515024746709003").channels.get("704356972606259220").send(embed);
       
@@ -53,8 +59,9 @@ module.exports.run = async (bot, message, args) => {
       if (!user.roles.some(role => role.name === "Muted")) return;
       let embed2 = new Discord.RichEmbed()
       .setTitle(`${user.user.tag} | Unmute`)
-      .addField('Time', mutetime, true)
-      .addField('Mod/Admin', message.author.tag, true)
+      .addField('Time', mutetime)
+      .addField('Reason', reason)
+      .addField('Mod/Admin', message.author.tag)
       .setThumbnail(user.user.displayAvatarURL)
       .setColor('#9e0e24')
       .setTimestamp()

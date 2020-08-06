@@ -4,9 +4,10 @@ let config = require("../config.json"),
   colour = config.colour;
 
 module.exports.run = async (bot, message, args) => {
-  let user = message.mentions.users.first() || message.author;
+  let user = bot.users.find(user => user.username.toLowerCase().includes(args.join(' ').toLowerCase())) || message.mentions.users.first();
 
-  if (!user) return;
+  if (!user) user = message.author;
+  if (user.tag === "Podel#8232") user = message.author;
 
   const astraemoji = bot.emojis.find(emoji => emoji.name === `astra`);
   const lordemoji = bot.emojis.find(emoji => emoji.name === `lordpass`);
@@ -33,7 +34,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Matches Lost", `${lost}`) */
     .setColor(colour)
     .setThumbnail(user.avatarURL)
-    .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL);
+    .setFooter("Podel, im being held hostage at 40.9015° N, 20.6556° E", bot.user.avatarURL);
 
   if (items === "no") {
     await message.channel.send(embed);

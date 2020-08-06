@@ -9,10 +9,12 @@ module.exports.run = async (bot, message, args) => {
   
   if (message.member.hasPermission('KICK_MEMBERS')) {
     
-    let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+    let user = message.guild.member(bot.users.find(user => user.username.toLowerCase().includes(args.join(' ').toLowerCase()))) || message.mentions.members.first();
     
-    if(!user) return message.channel.send("user not found.");
-    
+    if (!user) return message.channel.send("user not found.");
+
+    if (user.tag === "Podel#8232") return;   
+
     let warns = db.fetch(`warnCount_${user.user.id}`);
     
     if (warns === null) return message.channel.send('that user has no warns to clear.');

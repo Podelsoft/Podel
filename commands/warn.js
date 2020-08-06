@@ -16,11 +16,11 @@ module.exports.run = async (bot, message, args) => {
     let warns = db.fetch(`warnCount_${user.id}`);
         
     let p = args.join(" ");
-
+ 
     let reason = p.toString().split(args[0])[1].trim();
         
     if (user) {
-      
+       
       let embed = new Discord.RichEmbed()
       .setTitle(`${user.tag} | Warn`)
       .addField('Reason', reason, true)
@@ -33,7 +33,9 @@ module.exports.run = async (bot, message, args) => {
       await (message.delete());
       
       await db.add(`warnCount_${user.id}`, 1)
-      
+ 
+      await user.send(`you've been warned on Podel Server for **${reason}**`);      
+
       await bot.guilds.get("696515024746709003").channels.get("704356972606259220").send(embed);
       
     }
