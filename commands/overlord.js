@@ -6,7 +6,7 @@ const config = require("../config.json"),
 module.exports.run = async (bot, message, args) => {
   let amount = args[0];
   
-  let lordpass = db.fetch(`lord_${message.author.id}`);
+  let lordpass = db.fetch(`lord2_${message.author.id}`);
 
   const lordemoji = bot.emojis.find(emoji => emoji.name === `lordpass`);
 
@@ -18,18 +18,18 @@ module.exports.run = async (bot, message, args) => {
   if (amount <= 0) return;
   if (amount === NaN) return;
   if (!amount) return;
-  db.subtract(`lord_${message.author.id}`, amount);
-  message.channel.send(`lording activated for ${args[0]} week(s) (${lordcode})`);
+  db.subtract(`lord2_${message.author.id}`, amount);
+  message.channel.send(`lording activated for ${args[0]} month(s) (${lordcode})`);
   await message.member.addRole(role);
   await bot.guilds
     .get("644551231020204062")
     .channels.get("715368997725667398")
     .send(
-      `${message.author.tag} just started lording (${
+      `${message.author.tag} just started overlording (${
         args[0]
-      } week(s) | Lord Code ${lordcode})`
+      } month(s) | Lord Code ${lordcode})`
     );
-  setTimeout(function() {
+/*  setTimeout(function() {
     let role = message.guild.roles.find(
       role => role.name === "House of Lords"
     );
@@ -38,13 +38,13 @@ module.exports.run = async (bot, message, args) => {
       .get("644551231020204062")
       .channels.get("715368997725667398")
       .send(
-        `${message.author.tag} is not lording anymore (lording lasted ${
+        `${message.author.tag} is not overlording anymore (lording lasted ${
           args[0]
-        } week(s) | Lord Code: ${lordcode})`
+        } month(s) | Lord Code: ${lordcode})`
       );
-  }, 1814.4e6 * args[0]);
+  }, 2.628e+9 * args[0]); */
 };
 
 module.exports.help = {
-  name: "lord"
+  name: "overlord"
 }

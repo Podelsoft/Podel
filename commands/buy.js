@@ -7,54 +7,35 @@ module.exports.run = async(bot, message, args) => {
 
 let amount = args[1];
 
-//if (!amount) return message.channel.send('you must mention an item to buy from the `p!shop` first.');
-  
-const astraemoji = bot.emojis.find(emoji => emoji.name === `astra`);
-const lordemoji = bot.emojis.find(emoji => emoji.name === `lordpass`);
+//if (message.author.id !== '604189156490346496') return;
+
+//if (!amount) return message.channel.send('you must mention an item to buy from the `p!shop` first.');  
   
 let balance = db.fetch(`balance_${message.author.id}`);
 
-let items = ['astra', 'lordpass'];
+//let item = ['astra', 'lordpass', 'overlordpass'];
 
-switch (args[0]) {
-   case 'astra':
-      if (amount <= 0) return;
-      if (amount === NaN) return;
-      if (!amount) return;
-      if (balance < 1000 * amount)
-        return message.channel.send("you don't have enough money to buy this");
-      db.subtract(`balance_${message.author.id}`, 1000 * amount);
-      db.add(`astra_${message.author.id}`, amount);
-      message.channel.send(
-        `added ` +
-          "**" +
-          amount +
-          "**" +
-          ` ${astraemoji} to your stats for £${amount * 1000}`
-      );
-   break;
-  
-    case 'lordpass':
-      if (amount <= 0) return;
-      if (amount === NaN) return;
-      if (!amount) return;
-      if (balance < 20000 * amount)
-        return message.channel.send("you don't have enough money to buy this");
-      db.subtract(`balance_${message.author.id}`, 20000 * amount);
-      db.add(`lord_${message.author.id}`, amount);
-      message.channel.send(
-        `added ` +
-          "**" +
-          amount +
-          "**" +
-          ` ${lordemoji} to your stats for £${amount * 20000}`
-      );
-   break;
-     default:
-      let search = items.find(fatcock => fatcock.includes(args[0]));
-      if (search === undefined) return message.channel.send('that item doesn\'t exist');
-      message.channel.send(`did you mean: \`${search}\``);
-  }
+let itemname = args[0];
+
+const itemlist = require('../items.json');
+const item = itemlist[itemname];
+
+let total = item.buy * amount;
+let price = `${total}` * 1;
+let dbname = item.db;
+let name = item.name;
+let emoji = bot.emojis.find(emoji => emoji.name === `${item.emoji}`);
+
+if (amount < 0) return;
+if (isNaN(amount)) return;
+
+if (item) {
+  if (price > balance) return message.channel.send('you don\'t have enough to buy this, smelly idiot');
+  db.add(`${dbname}_${message.author.id}`, amount);
+  db.set(`balance_${message.author.id}`, balance - price);
+  message.channel.send(`added **${amount}** ${emoji} (${name}) to your stats for £${price}`);
+}
+
 }
 
 module.exports.help = {

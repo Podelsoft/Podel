@@ -17,6 +17,7 @@ module.exports.run = async (bot, message, args) => {
   let won = db.fetch(`wins_${user.id}`);
   let astra = db.fetch(`astra_${user.id}`);
   let lordpass = db.fetch(`lord_${user.id}`);
+  let overlordpass = db.fetch(`lord2_${user.id}`);
   let items = "no";
 
   if (bal === null) bal = 0;
@@ -24,8 +25,10 @@ module.exports.run = async (bot, message, args) => {
   if (won === null) won = 0;
   if (astra === null) astra = 0;
   if (lordpass === null) lordpass = 0;
+  if (overlordpass === null) overlordpass = 0;
   if (astra >= 1) items += `**${astra}** ` + astraemoji;
-  if (lordpass >= 1) items += ` **${lordpass}** ` + lordemoji;
+  if (lordpass >= 1) items += ` **${lordpass}** ` + lordemoji + ` (1w)`;
+  if (overlordpass >= 1) items += ` **${overlordpass}** ` + lordemoji + ` (1mo)`;
 
   const embed = new Discord.RichEmbed()
     .setTitle(user.tag + " | Stats")

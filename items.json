@@ -1,0 +1,23 @@
+{
+ "astra": {
+   "name": "Opel Astra 1.3L",
+   "buy": "1000",
+   "sell": "450",
+   "db": "astra",
+   "emoji": "astra"
+  },
+  "lordpass": {
+    "name": "1-Week Lord Pass",
+    "buy": "20000",
+    "sell": "10000",
+    "db": "lord",
+    "emoji": "lordpass"
+  }, 
+  "overlordpass": {
+    "name": "1-Month Overlord Pass",
+    "buy": "80000",
+    "sell": "45000",
+    "db": "lord2",
+    "emoji": "lordpass"
+  } 
+}

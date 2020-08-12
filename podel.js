@@ -361,6 +361,7 @@ bot.on("message", async message => {
   } */
   
     if (message.isMemberMentioned(bot.user)) {
+      if (args.join(' ').includes('@here')) return;
       if (args.join(' ').includes('@everyone')) return;
       let j = args.join(' ');
       let q = j.split(bot.user)[0];
@@ -402,7 +403,9 @@ message.channel.send(\`${ansrs[result]}\`)`;
     
     xp[message.author.id].xp = curxp;
     
-    if (message.isMemberMentioned(bot.user)) {
+    /*if (message.isMemberMentioned(bot.user)) {
+      if (args.join(' ').includes('@here')) return;
+      if (args.join(' ').includes('@everyone')) return;
       let j = args.join(' ');
       let q = j.split(bot.user)[0];
       let path = `./chat/${q.trim().toLowerCase()}.js`
@@ -422,7 +425,7 @@ message.channel.send(\`${ansrs[result]}\`)`;
             if (typeof evaled !== "string")
               evaled = require("util").inspect(evaled);*/
 
-            if (err) throw err;
+       /*     if (err) throw err;
             let j2 = data.trim();
             var lines = j2.split("\n");
             const reply = lines[Math.floor(Math.random() * lines.length)];
@@ -434,9 +437,9 @@ message.channel.send(\`${ansrs[result]}\`)`;
           }
         } else {
           message.channel.send('I have no answer to that, but you can teach me how to answer that by using `p!ans <QUESTION> | <ANSWER>`')
-        }
+        } 
       });
-    }
+    }*/
     
   } else {
     
@@ -461,12 +464,11 @@ message.channel.send(\`${ansrs[result]}\`)`;
 if (message.author.id === 90425297995837440){
   xp[message.author.id].xp = curxp;
 }
-  
- // xp[message.author.id].xp = curxp
-  
- fs.writeFile("./xp.json", JSON.stringify(xp), err => {
+
+  curxp++;
+  xp[message.author.id].xp = curxp; fs.writeFile("./xp.json", JSON.stringify(xp), err => {
     if (err) console.log(err);
-  }); 
+  });   
 
   if (nxtLvl <= xp[message.author.id].xp) {
     let lvlupmsgs = db.fetch(`lvmsgs_${message.author.id}`);
