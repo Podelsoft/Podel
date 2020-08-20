@@ -3,6 +3,7 @@ let config = require('../config.json'),
     colour = config.colour;
 const db = require('quick.db');
 const xp = require('../xp.json');
+const fs = require('fs');
 
 const clean = text => {
   if (typeof(text) === "string")

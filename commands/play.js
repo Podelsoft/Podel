@@ -22,6 +22,7 @@ module.exports.run = async (bot, message, args) => {
    "568129312876789776",
    "90425297995837440",
    "156355094034513920",
+   "604189156490346496"
   ]
 
   if (!list.includes(message.author.id)) return;

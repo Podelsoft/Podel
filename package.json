@@ -1,7 +1,7 @@
 {
   "name": "podel",
   "description": "the original podel bot",
-  "version": "0.9",
+  "version": "1.0",
   "main": "podel.js",
   "scripts": {
     "start": "node podel.js"

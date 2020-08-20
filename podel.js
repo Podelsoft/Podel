@@ -189,7 +189,7 @@ bot.on("messageUpdate", function(oldMessage, newMessage) {
   if (newMessage.author.bot) return;
   
   let embed = new Discord.RichEmbed()
-    .setTitle(`#${oldMessage.channel.name}`)
+    .setTitle(`#${oldMessage.channel.name} | ID: ${oldMessage.id}`)
     .setAuthor(oldMessage.author.tag, oldMessage.author.avatarURL)
     .addField("Old Message", `\`\`\`${oldMessage.content}\`\`\``, true)
     .addField("New Message", `\`\`\`${newMessage.content}\`\`\``, true)
@@ -230,7 +230,7 @@ bot.on("messageDelete", function(message){
   if (message.author.bot) return;
   
   let embed = new Discord.RichEmbed()
-    .setTitle(`#${message.channel.name}`)
+    .setTitle(`#${message.channel.name} | ID: ${message.id}`)
     .setAuthor(message.author.tag, message.author.avatarURL)
     .addField("Deleted Message", `\`\`\`${message.content}\`\`\``, true)
     .setColor(colour)
@@ -275,61 +275,6 @@ bot.on("message", async message => {
     
   let config = require('./config.json'),
     colour = config.colour;
-  
-  if (message.content.toLowerCase().includes('NIGGER'.toLowerCase())) {
-    if(message.content.toLowerCase().includes('HTTP'.toLowerCase())) return;
-    let embed = new Discord.RichEmbed()
-      .setTitle(`${message.author.tag} | Warn`)
-      .addField('Reason', 'Bad word usage', true)
-      .addField('User', message.author.tag, true)
-      .addField('Channel', message.channel.name, true)
-      .setThumbnail(message.author.displayAvatarURL)
-      .setColor(colour)
-      .setTimestamp()
-      .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL)
-      await db.add(`badwordCount_${message.author.id}`, 1)
-    message.delete().then(() => bot.guilds.get("696515024746709003").channels.get("696685949186342964").send(embed));
-  }
-  
-  let badword = db.fetch(`badwordCount_${message.author.id}`);
-  
-  if (badword >= 3) {
-    var role = message.guild.roles.find(role => role.name === "Muted");
-    let mutetime = '10m';
-    let ms = require("ms");
-    await message.member.addRole(role);
-    await db.delete(`badwordCount_${message.author.id}`)
-    
-    let embed = new Discord.RichEmbed()
-      .setTitle(`${message.author.tag} | Mute`)
-      .addField('Reason', 'Bad word usage', true)
-      .addField('User', message.author.tag, true)
-      .addField('Time', mutetime, true)
-      .addField('Channel', message.channel.name, true)
-      .setThumbnail(message.author.displayAvatarURL)
-      .setColor(config.colour)
-      .setTimestamp()
-      .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL)
-
-    await bot.guilds
-      .get("696515024746709003")
-      .channels.get("704356972606259220")
-      .send(embed);
-
-    setTimeout(function() {
-      if (!message.author.roles.some(role => role.name === "Muted")) return;
-      let embed2 = new Discord.RichEmbed()
-      .setTitle(`${message.author.tag} | Unmute`)
-      .addField('Time', mutetime, true)
-      .addField('User', message.author.tag, true)
-      .setThumbnail(message.author.displayAvatarURL)
-      .setColor(config.colour)
-      .setTimestamp()
-      .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL)
-      message.member.removeRole(role);
-      bot.guilds.get("696515024746709003").channels.get("704356972606259220").send(embed2);
-    }, ms(mutetime));
-  }
   
   const xp = require("./xp.json");
 
@@ -450,6 +395,61 @@ message.channel.send(\`${ansrs[result]}\`)`;
     } */
 
     if (message.guild.id === "696515024746709003") {
+
+ if (message.content.toLowerCase().includes('NIGGER'.toLowerCase())) {
+    if(message.content.toLowerCase().includes('HTTP'.toLowerCase())) return;
+    let embed = new Discord.RichEmbed()
+      .setTitle(`${message.author.tag} | Warn`)
+      .addField('Reason', 'Bad word usage', true)
+      .addField('User', message.author.tag, true)
+      .addField('Channel', message.channel.name, true)
+      .setThumbnail(message.author.displayAvatarURL)
+      .setColor(colour)
+      .setTimestamp()
+      .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL)
+      await db.add(`badwordCount_${message.author.id}`, 1)
+    message.delete().then(() => bot.guilds.get("696515024746709003").channels.get("696685949186342964").send(embed));
+  }
+  
+  let badword = db.fetch(`badwordCount_${message.author.id}`);
+  
+  if (badword >= 3) {
+    var role = message.guild.roles.find(role => role.name === "Muted");
+    let mutetime = '10m';
+    let ms = require("ms");
+    await message.member.addRole(role);
+    await db.delete(`badwordCount_${message.author.id}`)
+    
+    let embed = new Discord.RichEmbed()
+      .setTitle(`${message.author.tag} | Mute`)
+      .addField('Reason', 'Bad word usage', true)
+      .addField('User', message.author.tag, true)
+      .addField('Time', mutetime, true)
+      .addField('Channel', message.channel.name, true)
+      .setThumbnail(message.author.displayAvatarURL)
+      .setColor(config.colour)
+      .setTimestamp()
+      .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL)
+
+    await bot.guilds
+      .get("696515024746709003")
+      .channels.get("704356972606259220")
+      .send(embed);
+
+setTimeout(function() {
+      if (!message.author.roles.some(role => role.name === "Muted")) return;
+      let embed2 = new Discord.RichEmbed()
+      .setTitle(`${message.author.tag} | Unmute`)
+      .addField('Time', mutetime, true)
+      .addField('User', message.author.tag, true)
+      .setThumbnail(message.author.displayAvatarURL)
+      .setColor(config.colour)
+      .setTimestamp()
+      .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL)
+      message.member.removeRole(role);
+      bot.guilds.get("696515024746709003").channels.get("704356972606259220").send(embed2);
+    }, ms(mutetime));
+  }
  
    /* if (cooldown.has(message.author.id)) {
         xp[message.author.id].xp = curxp;

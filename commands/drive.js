@@ -5,9 +5,14 @@ const db = require("quick.db"),
   ms = require("parse-ms");
 
 module.exports.run = async (bot, message, args, tools) => {
-  let astra = db.fetch(`astra_${message.author.id}`);
+  let car = db.fetch(`car_${message.author.id}`);
 
-  if (astra >= 1) {
+  if (car !== "null") {
+  
+  let check = db.fetch(`${car}_${message.author.id}`);  
+
+  if (check <= 0) return db.delete(`car_${message.author.id}`);
+  if (check === null) return db.delete(`car_${message.author.id}`);  
     
     let rname = "";
     let rprize = 0;
@@ -79,14 +84,19 @@ module.exports.run = async (bot, message, args, tools) => {
         `you've already driven in podel city mate, please wait ${timeObj.hours}h ${timeObj.minutes}m until your next refuel`
       );
     } else {
-      message.channel.send(`${rname}, £${rprize} have been added to your stats cheers`);
 
-      db.set(`dailydrive_${message.author.id}`, Date.now());
-      db.add(`balance_${message.author.id}`, rprize);
+      if (car === 'astra') rprize = rprize;
+      if (car === 'mx5') rprize = rprize * 2;
+      if (car === 'cobalt') rprize = rprize * 4;
+
+      await message.channel.send(`${rname}, £${rprize} have been added to your stats cheers`);
+
+      await db.set(`dailydrive_${message.author.id}`, Date.now());
+      await db.add(`balance_${message.author.id}`, rprize); 
     }
   } else {
    
-   message.channel.send('you don\'t even have a car, buy one from the `p!shop`.'); 
+   message.channel.send('You haven\'t set your car. If you don\'t have one, buy one from the `p!shop`.'); 
  
  }
 };

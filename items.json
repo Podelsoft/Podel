@@ -1,23 +1,37 @@
 {
  "astra": {
-   "name": "Opel Astra 1.3L",
+   "name": "Opel Astra 1.3L (astra)",
    "buy": "1000",
    "sell": "450",
    "db": "astra",
    "emoji": "astra"
   },
+  "mx5": {
+    "name": "Mazda MX-5 Miata (mx5)",
+    "buy": "5000",
+    "sell": "2250",
+    "db": "mx5",
+    "emoji": "mx5"
+  },
+  "cobalt": {
+    "name": "Chevrolet Cobalt SS (cobalt)",
+    "buy": "20000",
+    "sell": "9500",
+    "db": "cobalt",
+    "emoji": "chev"
+  }, 
   "lordpass": {
-    "name": "1-Week Lord Pass",
+    "name": "1-Week Lord Pass (lordpass)",
     "buy": "20000",
     "sell": "10000",
     "db": "lord",
     "emoji": "lordpass"
   }, 
   "overlordpass": {
-    "name": "1-Month Overlord Pass",
+    "name": "1-Month Overlord Pass (overlordpass)",
     "buy": "80000",
     "sell": "45000",
     "db": "lord2",
     "emoji": "lordpass"
-  } 
+  }
 }

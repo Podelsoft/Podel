@@ -10,11 +10,10 @@ module.exports.run = async (bot, message, args) => {
 
   let j = args.join(' ');
   let reason = j.split(args[0])[1];
-
-  if (!reason) return message.channel.send('you must provide a valid reason.')
   
   if (message.member.hasPermission("BAN_MEMBERS")) {
-    const user = bot.users.find(user => user.username.toLowerCase().includes(args.join(" ").toLowerCase())) ||  message.mentions.users.first();
+   if (!reason) return message.channel.send('you must provide a valid reason.') 
+   const user = bot.users.find(user => user.username.toLowerCase().includes(args.join(" ").toLowerCase())) ||  message.mentions.users.first();
     if (user) {
       if (user.tag === "Podel#8232") return;
       const member = message.guild.member(user);
@@ -57,14 +56,9 @@ module.exports.run = async (bot, message, args) => {
             }
         });
      }
-    } else {
-        message.reply("That user isn't in this guild!");
-      }
-    } else {
-      message.reply("You didn't mention the user to ban!");
-    }
-  }
+   }
 
 module.exports.help = {
   name: "ban"
 }
+

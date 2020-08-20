@@ -33,7 +33,7 @@ if (item) {
   if (price > balance) return message.channel.send('you don\'t have enough to buy this, smelly idiot');
   db.add(`${dbname}_${message.author.id}`, amount);
   db.set(`balance_${message.author.id}`, balance - price);
-  message.channel.send(`added **${amount}** ${emoji} (${name}) to your stats for £${price}`);
+  message.channel.send(`added **${amount}** ${emoji} ${name} to your stats for £${price}`);
 }
 
 }

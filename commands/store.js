@@ -6,9 +6,6 @@ const config = require("../config.json"),
 
 module.exports.run = async (bot, message, args) => {
 
-  const astraemoji = bot.emojis.find(emoji => emoji.name === `astra`);
-  const lordemoji = bot.emojis.find(emoji => emoji.name === `lordpass`);
-
   let bal = db.fetch(`balance_${message.author.id}`);  
   
   if (bal === null) bal = 0;
@@ -38,7 +35,7 @@ for (var key in json) {
 if (json.hasOwnProperty(key)) {
 
 let emoji = bot.emojis.find(emoji => emoji.name === `${json[key].emoji}`); 
-embed.addField(`${emoji} (${json[key].name})`, `£${json[key].buy} | £${json[key].sell}`);
+embed.addField(`${emoji} ${json[key].name}`, `£${json[key].buy} | £${json[key].sell}`);
 
 }
 

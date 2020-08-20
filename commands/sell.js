@@ -26,7 +26,7 @@ if (item) {
  if (itemtot < amount) return message.channel.send(`you don't have enough ${emoji} (${name}) to sell`);
  db.add(`balance_${message.author.id}`, price);
  db.subtract(`${dbname}_${message.author.id}`, amount);
- message.channel.send(`sold **${amount}** ${emoji} (${name}) for £${price}`);
+ message.channel.send(`sold **${amount}** ${emoji} ${name} for £${price}`);
 }
   
 }

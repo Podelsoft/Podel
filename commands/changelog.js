@@ -7,12 +7,14 @@ module.exports.run = async (bot, message, args) => {
   let podelemoji = bot.emojis.find(emoji => emoji.name === `podel`);
   
   const embed = new Discord.RichEmbed()
-  .setTitle('v0.9 Changelog | 12/8/2020')
+  .setTitle('v1.0 Changelog | 20/8/2020')
   .setDescription(`\`\`\`diff
---- [update] Updated p!buy (2)
---- [update] Updated p!sell (2)
---- [update] Updated p!shop and the entire item system (moved to json)
---- [shop] Added the Overlord Pass (p!buy/sell overlordpass 1 or more)\`\`\``)
++ [update] Updated p!buy (3)
++ [update] Updated p!sell (3)
++ [update] Updated p!shop (2)
++ [update] Updated p!stats (almost entirely)
++ [command] Added p!setcar (p!setcar <car name>)
++ [shop] Added the following cars: Chevrolet Cobalt SS & Mazda MX-5 Miata\`\`\``)
   .setColor(colour)
   .setFooter('Podel, are ya coding son?', bot.user.avatarURL);
   
