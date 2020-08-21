@@ -13,6 +13,7 @@ module.exports.run = async (bot, message, args) => {
 + [update] Updated p!sell (3)
 + [update] Updated p!shop (2)
 + [update] Updated p!stats (almost entirely)
++ [update] Updated p!work (to work with all cars)
 + [command] Added p!setcar (p!setcar <car name>)
 + [shop] Added the following cars: Chevrolet Cobalt SS & Mazda MX-5 Miata\`\`\``)
   .setColor(colour)
