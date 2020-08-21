@@ -5,7 +5,9 @@ const db = require("quick.db"),
   ms = require("parse-ms");
 
 module.exports.run = async (bot, message, args, tools) => {
-  let car = db.fetch(`car_${message.author.id}`);
+  const car = db.fetch(`car_${message.author.id}`);
+
+  if (car === null) return message.channel.send('You haven\'t set your car. If you don\'t have one, buy one from the `p!shop`.');
 
   if (car !== "null") {
   
@@ -71,7 +73,7 @@ module.exports.run = async (bot, message, args, tools) => {
     if (routes[result] === '10') 
       rname = "you crashed at your local morrisons, drove inside, fell off a cliff at the back of the store and survived but your insurance covered everything",
       rprize = Math.floor(Math.random() * 100) + 90;
-    
+   
     let cooldown = 3600000,
       amount = 100;
 
@@ -85,10 +87,10 @@ module.exports.run = async (bot, message, args, tools) => {
       );
     } else {
 
-      if (car === 'astra') rprize = rprize;
-      if (car === 'mx5') rprize = rprize * 2;
-      if (car === 'cobalt') rprize = rprize * 4;
-
+      if (car.includes('astra')) rprize = rprize;
+      if (car.includes('mx5')) rprize = rprize * 2;
+      if (car.includes('cobalt')) rprize = rprize * 4;
+      
       await message.channel.send(`${rname}, £${rprize} have been added to your stats cheers`);
 
       await db.set(`dailydrive_${message.author.id}`, Date.now());
