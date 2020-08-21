@@ -6,19 +6,16 @@ const db = require("quick.db"),
 
 module.exports.run = async (bot, message, args) => {
 
-  const astraemoji = bot.emojis.find(emoji => emoji.name === `astra`);
-  
+  const car = db.fetch(`car_${message.author.id}`);
+
   let job = db.fetch(`job_${message.author.id}`);
-  let astra = db.fetch(`astra_${message.author.id}`);
-  
-  let car = "";
-  
+    
   let scp = 5;
   let tgp = 10;
   let amp = 60;
   let chp = 120;
-  
-  if (astra >= 1) scp = 14, tgp = 27, amp = 160, chp = 320;
+
+  if (car !== "null") scp = 14, tgp = 27, amp = 160, chp = 320;
 
   let cooldownjob = 4.32e7;
 
