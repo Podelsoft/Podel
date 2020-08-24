@@ -3,6 +3,7 @@ const config = require("../config.json"),
   colour = config.colour;
 const db = require("quick.db"),
   ms = require("parse-ms");
+const json = require("../items.json");
 
 module.exports.run = async (bot, message, args, tools) => {
   const car = db.fetch(`car_${message.author.id}`);
@@ -86,15 +87,15 @@ module.exports.run = async (bot, message, args, tools) => {
         `you've already driven in podel city mate, please wait ${timeObj.hours}h ${timeObj.minutes}m until your next refuel`
       );
     } else {
-
-      if (car.includes('astra')) rprize = rprize;
-      if (car.includes('mx5')) rprize = rprize * 2;
-      if (car.includes('cobalt')) rprize = rprize * 4;
       
-      await message.channel.send(`${rname}, £${rprize} have been added to your stats cheers`);
+      if (json[car].tier === 1) rprize = rprize;
+      if (json[car].tier === 2) rprize = rprize * 2;
+      if (json[car].tier === 3) rprize = rprize * 4;    
+
+    await message.channel.send(`${rname}, £${rprize} have been added to your stats cheers`);
 
       await db.set(`dailydrive_${message.author.id}`, Date.now());
-      await db.add(`balance_${message.author.id}`, rprize); 
+      await db.add(`balance_${message.author.id}`, rprize);
     }
   } else {
    

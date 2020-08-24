@@ -1,25 +1,4 @@
 {
- "astra": {
-   "name": "Opel Astra 1.3L (astra)",
-   "buy": "1000",
-   "sell": "450",
-   "db": "astra",
-   "emoji": "astra"
-  },
-  "mx5": {
-    "name": "Mazda MX-5 Miata (mx5)",
-    "buy": "5000",
-    "sell": "2250",
-    "db": "mx5",
-    "emoji": "mx5"
-  },
-  "cobalt": {
-    "name": "Chevrolet Cobalt SS (cobalt)",
-    "buy": "20000",
-    "sell": "9500",
-    "db": "cobalt",
-    "emoji": "chev"
-  }, 
   "lordpass": {
     "name": "1-Week Lord Pass (lordpass)",
     "buy": "20000",
@@ -33,5 +12,69 @@
     "sell": "45000",
     "db": "lord2",
     "emoji": "lordpass"
+  },
+ "astra": {
+   "name": "Opel Astra 1.3L (astra)",
+   "buy": "1000",
+   "sell": "450",
+   "db": "astra",
+   "emoji": "astra",
+   "tier": "1"
+  },
+  "sonata": {
+    "name": "2009 Hyundai Sonata (sonata)",
+    "buy": "1500",
+    "sell": "750",
+    "db": "sonata",
+    "emoji": "sonata",
+    "tier": "1"
+  },
+  "accent": {
+    "name": "2009 Hyundai Accent (accent)",
+    "buy": "2500",
+    "sell": "1200",
+    "db": "accent",
+    "emoji": "accent",
+    "tier": "1"
+  },
+  "rondo": {
+    "name": "2007 Kia Rondo EX Wagon (rondo)",
+    "buy": "3000",
+    "sell": "1450",
+    "db": "rondo",
+    "emoji": "rondo",
+    "tier": "2"
+  }, 
+  "mx5": {
+    "name": "Mazda MX-5 Miata (mx5)",
+    "buy": "5000",
+    "sell": "2250",
+    "db": "mx5",
+    "emoji": "mx5",
+    "tier": "2"
+  },
+  "sx4": {
+    "name": "2008 Suzuki SX4 Wagon (sx4)",
+    "buy": "7500",
+    "sell": "4350",
+    "db": "sx4",
+    "emoji": "sx4",
+    "tier": "2"
+  },
+  "cobalt": {
+    "name": "Chevrolet Cobalt SS (cobalt)",
+    "buy": "20000",
+    "sell": "9500",
+    "db": "cobalt",
+    "emoji": "chev",
+    "tier": "3"
+  },
+  "galant": {
+    "name": "2009 Mitsubishi Galant (galant)",
+    "buy": "22000",
+    "sell": "10500",
+    "db": "galant",
+    "emoji": "galant",
+    "tier": "3"
   }
 }

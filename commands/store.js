@@ -35,10 +35,12 @@ for (var key in json) {
 if (json.hasOwnProperty(key)) {
 
 let emoji = bot.emojis.find(emoji => emoji.name === `${json[key].emoji}`); 
+if (json[key].tier){
+embed.addField(`${emoji} ${json[key].name}`, `£${json[key].buy} | £${json[key].sell} | Tier: ${json[key].tier}`);
+} else {
 embed.addField(`${emoji} ${json[key].name}`, `£${json[key].buy} | £${json[key].sell}`);
-
 }
-
+}
 }
 
 await message.channel.send(embed);

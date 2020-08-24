@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
 
   let lordcode = Math.floor(Math.random() * 1000000000);
 
-  let role = message.guild.roles.find(role => role.name === "House of Lords");
+  let role = message.guild.roles.find(role => role.id === "713086695071023161");
   if (lordpass < amount)
     return message.channel.send("check your inventory again");
   if (amount <= 0) return;

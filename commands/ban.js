@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
   if (!reason) return message.channel.send('you must provide a valid reason.')
   
   if (message.member.hasPermission("BAN_MEMBERS")) {
-    const user = bot.users.find(user => user.username.toLowerCase().includes(args.join(" ").toLowerCase())) ||  message.mentions.users.first();
+   let user = bot.users.find(user => user.username.toLowerCase().includes(args[0].toLowerCase())) || message.mentions.users.first() || bot.users.find(user => user.id === args[0]);
     if (user) {
       if (user.tag === "Podel#8232") return;
       const member = message.guild.member(user);

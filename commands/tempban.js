@@ -17,9 +17,9 @@ module.exports.run = async (bot, message, args) => {
   if (message.member.hasPermission("BAN_MEMBERS")) {
     if (!bantime) return;
     if (!reason) return message.channel.send('you must provide a valid reason.')
-    let user = bot.users.find(user => user.username.toLowerCase().includes(args[0].toLowerCase())) || message.mentions.users.first();
+    let user = bot.users.find(user => user.username.toLowerCase().includes(args[0].toLowerCase())) || message.mentions.users.first() || bot.users.find(user => user.id === args[0]);
     if (user) {
-      const member = message.guild.member(user);
+     const member = message.guild.member(user);
       if (member) {
         message.channel.send(`Are you sure you want to ban **${user.tag}** for **${bantime}** (yes/no)`);
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 10000 });
