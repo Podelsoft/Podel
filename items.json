@@ -14,7 +14,7 @@
     "emoji": "lordpass"
   },
  "astra": {
-   "name": "Opel Astra 1.3L (astra)",
+   "name": "2006 Opel Astra 1.3L (astra)",
    "buy": "1000",
    "sell": "450",
    "db": "astra",
@@ -46,7 +46,7 @@
     "tier": "2"
   }, 
   "mx5": {
-    "name": "Mazda MX-5 Miata (mx5)",
+    "name": "1993 Mazda MX-5 Miata (mx5)",
     "buy": "5000",
     "sell": "2250",
     "db": "mx5",
@@ -62,7 +62,7 @@
     "tier": "2"
   },
   "cobalt": {
-    "name": "Chevrolet Cobalt SS (cobalt)",
+    "name": "2008 Chevrolet Cobalt SS (cobalt)",
     "buy": "20000",
     "sell": "9500",
     "db": "cobalt",
