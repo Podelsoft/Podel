@@ -46,7 +46,7 @@ module.exports.run = async (bot, message, args) => {
    
       await (message.delete());
       
-      await channel.fetchMessage(args[0]).then(msg => msg.delete(3000));    
+      await channel.fetchMessage(args[0]).then(msg => msg.delete());    
 
       await db.add(`warnCount_${user.id}`, 1)
  

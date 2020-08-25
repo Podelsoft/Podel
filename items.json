@@ -29,6 +29,14 @@
     "emoji": "sonata",
     "tier": "1"
   },
+  "murano": {
+    "name": "2007 Nissan Murano (murano)",
+    "buy": "2000",
+    "sell": "850",
+    "db": "murano"
+    "emoji": "murano",
+    "tier": "1"
+  },
   "accent": {
     "name": "2009 Hyundai Accent (accent)",
     "buy": "2500",
@@ -45,12 +53,28 @@
     "emoji": "rondo",
     "tier": "2"
   }, 
+  "m3": {
+    "name": "2007 BMW 3 Series (m3)",
+    "buy": "4500",
+    "sell": "2250",
+    "db": "m3",
+    "emoji": "m3",
+    "tier": "2"
+  },
   "mx5": {
     "name": "1993 Mazda MX-5 Miata (mx5)",
     "buy": "5000",
     "sell": "2250",
     "db": "mx5",
     "emoji": "mx5",
+    "tier": "2"
+  },
+  "tribute": {
+    "name": "2009 Mazda Tribute (tribute)",
+    "buy": "5500",
+    "sell": "2200",
+    "db": "tribute",
+    "emoji": "tribute",
     "tier": "2"
   },
   "sx4": {
@@ -76,5 +100,21 @@
     "db": "galant",
     "emoji": "galant",
     "tier": "3"
-  }
+  },
+  "passatwagon": {
+    "name": "2007 Volkswagen Passat Wagon (passatwagon)",
+    "buy": "32000",
+    "sell": "15000",
+    "db": "passatwagon",
+    "emoji": "passatwagon",
+    "tier": "3"
+  },
+  "passat": {
+    "name": "2007 Volkswagen Passat Sedan (passat)",
+    "buy": "40000",
+    "sell": "19800",
+    "db": "passat",
+    "emoji": "passat",
+    "tier": "3"
+  },
 }

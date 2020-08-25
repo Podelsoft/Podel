@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, help) => {
   
   const staffembed = new Discord.RichEmbed()
   .setTitle(message.author.tag + ' | Commands List')
-  .setDescription('`bazinga`, `podelvid`, `xp`, `changelog`, `info`, `website`, `yep`, `conspiracy`, `yt`, `suggest`, `boiler`, `server`, `podel`, `brick`, `user`, `simp`, `global`, `leaderboard`, `opts`, `apilist`, `kojima`, `daily`, `joblist`, `stats`, `store`, `buy`, `sell`, `lord`, `work`, `drive`, `invite`, `car`, `overlord`, `setcar`, `warn`, `clearwarn`, `kick`, `ban`, `check`, `clear`, `mute`, `unmute`, `tempban`, `unban`, `msgwarn`')
+  .setDescription('`bazinga`, `podelvid`, `xp`, `changelog`, `info`, `website`, `yep`, `conspiracy`, `yt`, `suggest`, `boiler`, `server`, `podel`, `brick`, `user`, `simp`, `global`, `leaderboard`, `opts`, `apilist`, `kojima`, `daily`, `joblist`, `stats`, `store`, `buy`, `sell`, `lord`, `work`, `drive`, `invite`, `car`, `overlord`, `setcar`, `warn`, `clearwarn`, `kick`, `ban`, `check`, `clear`, `mute`, `unmute`, `tempban`, `unban`, `msgwarn`, `mutemsg`')
   .setColor(colour)
   .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL);
   

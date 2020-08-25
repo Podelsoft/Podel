@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
   let amp = 60;
   let chp = 120;
 
-  if (car !== "null") scp = 14, tgp = 27, amp = 160, chp = 320;
+  if (car !== null) scp = 14, tgp = 27, amp = 160, chp = 320;
 
   let cooldownjob = 4.32e7;
 
