@@ -1,0 +1,176 @@
+{
+  "lordpass": {
+    "name": "1-Week Lord Pass (lordpass)",
+    "buy": "20000",
+    "sell": "10000",
+    "db": "lord",
+    "emoji": "lordpass"
+  }, 
+  "overlordpass": {
+    "name": "1-Month Overlord Pass (overlordpass)",
+    "buy": "80000",
+    "sell": "45000",
+    "db": "lord2",
+    "emoji": "lordpass"
+  },
+  "ptcruiser": {
+    "name": "2009 Chrysler PT Cruiser (ptcruiser)",
+    "buy": "700",
+    "sell": "250",
+    "db": "ptcruiser",
+    "emoji": "ptcruiser",
+    "tier": "1"
+  },
+  "aztek": {
+    "name": "2004 Pontiac Aztek (aztek)",
+    "buy": "800",
+    "sell": "400",
+    "db": "aztek",
+    "emoji": "aztek",
+    "tier": "1"
+  },
+  "astra": {
+   "name": "2006 Opel Astra 1.3L (astra)",
+   "buy": "1000",
+   "sell": "450",
+   "db": "astra",
+   "emoji": "astra",
+   "tier": "1"
+  },
+  "sonata": {
+    "name": "2009 Hyundai Sonata (sonata)",
+    "buy": "1500",
+    "sell": "750",
+    "db": "sonata",
+    "emoji": "sonata",
+    "tier": "1"
+  },
+  "murano": {
+    "name": "2007 Nissan Murano (murano)",
+    "buy": "2000",
+    "sell": "850",
+    "db": "murano",
+    "emoji": "murano",
+    "tier": "1"
+  },
+  "accent": {
+    "name": "2009 Hyundai Accent (accent)",
+    "buy": "2500",
+    "sell": "1200",
+    "db": "accent",
+    "emoji": "accent",
+    "tier": "1"
+  },
+  "rondo": {
+    "name": "2007 Kia Rondo EX Wagon (rondo)",
+    "buy": "3000",
+    "sell": "1450",
+    "db": "rondo",
+    "emoji": "rondo",
+    "tier": "2"
+  },
+  "rabbit": {
+    "name": "2009 Volkswagen Rabbit (rabbit)",
+    "buy": "3150",
+    "sell": "2100",
+    "db": "rabbit",
+    "emoji": "vwrabbit",
+    "tier": "2"
+  },
+  "lacrosse": {
+    "name": "2007 Buick LaCrosse (lacrosse)",
+    "buy": "3450",
+    "sell": "1600",
+    "db": "lacrosse",
+    "emoji": "lacrosse",
+    "tier": "2"
+  },
+  "xd": {
+    "name": "2009 Scion xD (xd)",
+    "buy": "4000",
+    "sell": "1950",
+    "db": "xd",
+    "emoji": "scionxd",
+    "tier": "2"
+  },
+  "m3": {
+    "name": "2007 BMW 3 Series (m3)",
+    "buy": "4500",
+    "sell": "2250",
+    "db": "m3",
+    "emoji": "m3",
+    "tier": "2"
+  },
+  "mx5": {
+    "name": "1993 Mazda MX-5 Miata (mx5)",
+    "buy": "5000",
+    "sell": "2250",
+    "db": "mx5",
+    "emoji": "mx5",
+    "tier": "2"
+  },
+  "malibu": {
+    "name": "2009 Chevrolet Malibu (malibu)",
+    "buy": "5250",
+    "sell": "3700",
+    "db": "malibu",
+    "emoji": "malibu",
+    "tier": "2"
+  },
+  "tribute": {
+    "name": "2009 Mazda Tribute (tribute)",
+    "buy": "5500",
+    "sell": "2200",
+    "db": "tribute",
+    "emoji": "tribute",
+    "tier": "2"
+  },
+  "sx4": {
+    "name": "2008 Suzuki SX4 Wagon (sx4)",
+    "buy": "7500",
+    "sell": "4350",
+    "db": "sx4",
+    "emoji": "sx4",
+    "tier": "2"
+  },
+  "solstice": {
+    "name": "2008 Pontiac Solstice (solstice)",
+    "buy": "8000",
+    "sell": "4000",
+    "db": "solstice",
+    "emoji": "solstice",
+    "tier": "2"
+  },
+  "cobalt": {
+    "name": "2008 Chevrolet Cobalt SS (cobalt)",
+    "buy": "20000",
+    "sell": "9500",
+    "db": "cobalt",
+    "emoji": "chev",
+    "tier": "3"
+  },
+  "galant": {
+    "name": "2009 Mitsubishi Galant (galant)",
+    "buy": "22000",
+    "sell": "10500",
+    "db": "galant",
+    "emoji": "galant",
+    "tier": "3"
+  },
+  "passatwagon": {
+    "name": "2007 Volkswagen Passat Wagon (passatwagon)",
+    "buy": "32000",
+    "sell": "15000",
+    "db": "passatwagon",
+    "emoji": "passatwagon",
+    "tier": "3"
+  },
+  "passat": {
+    "name": "2007 Volkswagen Passat Sedan (passat)",
+    "buy": "40000",
+    "sell": "19800",
+    "db": "passat",
+    "emoji": "passat",
+    "tier": "3"
+  }
+}
