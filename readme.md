@@ -13,12 +13,13 @@ The official Podel Bot Repository by Podelsoft
 
 ## To-do's
 - [x] replace mee6's XP and autorole system.
-- [x] add a shop and finally use json instead of coding the items inside the shop.js file (wtf is wrong with me)
+- [x] add a shop and finally use json instead of coding the items inside the shop.js file (wtf is wrong with me).
+- [x] fix all exploits.
 - [ ] provide food and shelter to my family of 2 wives and 12 children in baghdad.
 
 ## Authors
-- Me LOL
-- @brexite
+- [cristpz](https://github.com/cristpz/)
+- [brexite](https://github.com/brexite/)
 
 ## FAQ (if anyone asks, I am not 350,000 USD in debt):
 Q: can I kill all your time by asking questions about every part of the bot's code

@@ -241,6 +241,39 @@ bot.on("message", async message => {
     50 * xp[message.author.id].level +
     100;
 
+  if (message.mentions.has(bot.user)) {
+    if (args.join(' ').includes('@here')) return;
+    if (args.join(' ').includes('@everyone')) return;
+    let j = args.join(' ');
+    let q = j.split(bot.user)[0];
+    let path = `./chat/${q.trim().toLowerCase()}.js`
+    fs.readFile(path, 'utf8', function (err, data) {
+      if (!err) {
+        const clean = text => {
+          if (typeof (text) === 'string')
+            return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+          else
+            return text;
+        }
+        try {
+
+          if (err) throw err;
+          let j2 = data.trim();
+          var lines = j2.split("\n");
+          const reply = lines[Math.floor(Math.random() * lines.length)];
+
+          message.channel.send(reply);
+
+        } catch (err) {
+          console.log(err);
+          message.channel.send('error sending message: ' + err);
+        }
+      } else {
+        message.channel.send('I have no answer to that, but you can teach me how to answer that by using `p!ans <QUESTION> | <ANSWER>`')
+      }
+    });
+  }
+
   if (message.channel.id === "696538508227248178") {
 
     xp[message.author.id].xp = curxp;
