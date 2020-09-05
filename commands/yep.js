@@ -14,8 +14,7 @@ module.exports.run = async (bot, message, args, member) => {
 
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
-  const { body: buffer } = await snekfetch.get(user.avatarURL({ format: 'png', dynamic: true, size: 256 }));
-  const avatar = await Canvas.loadImage(buffer);
+  const avatar = await Canvas.loadImage(user.avatarURL({ format: 'png', dynamic: true, size: 1024 }));
   ctx.drawImage(avatar, 0, 0, canvas.width, canvas.height);
   ctx.drawImage(foreground, 50, 225, 150, 35);
 

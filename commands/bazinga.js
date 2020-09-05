@@ -21,8 +21,7 @@ module.exports.run = async (bot, message, args) => {
   ctx.closePath();
   ctx.clip();
 
-  const { body: buffer } = await snekfetch.get(user.avatarURL({ format: 'png', dynamic: true, size: 1024 }));
-  const avatar = await Canvas.loadImage(buffer);
+  const avatar = await Canvas.loadImage(user.avatarURL({ format: 'png', dynamic: true, size: 1024 }));
   ctx.drawImage(avatar, 100, 135, 50, 50);
 
   message.channel.send(":flag_bg:", { files: [canvas.toBuffer()] });

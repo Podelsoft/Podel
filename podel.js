@@ -21,7 +21,7 @@ const app = express()
 const statusMonitor = require('express-status-monitor')({ title: 'Podel Bot Status' });
 app.use(statusMonitor);
 app.get('/', statusMonitor.pageRoute);
-app.listen(3000);
+//app.listen(3000);
 
 fs.readdir("./commands/", (err, files) => {
   if (err) console.log(err);
@@ -42,8 +42,8 @@ bot.login(token);
 
 bot.on("ready", async () => {
   bot.user.setActivity(
-    "friends is a gritty documentary that follows six drug dealers as they try and survive in the city of Hong Kong.",
-    { url: "https://www.youtube.com/watch?v=CQ6fB4r7b4s", type: "STREAMING" }
+    "Fight at Dawat restaurant in Southall, West London UK.",
+    { url: "https://www.youtube.com/watch?v=YKMfsJqpyWo", type: "STREAMING" }
   );
 
   console.log(bot.user.username + " is online.");

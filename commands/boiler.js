@@ -12,8 +12,7 @@ module.exports.run = async (bot, message, args, member) => {
   const background = await Canvas.loadImage(
     "https://cdn.glitch.com/2de261db-5b70-494d-ae55-8a48514c9aa7%2Fboilerts.png?v=1586399768483"
   );
-  const { body: buffer } = await snekfetch.get(user.avatarURL({ format: 'png', dynamic: true, size: 1024 }));
-  const avatar = await Canvas.loadImage(buffer);
+  const avatar = await Canvas.loadImage(user.avatarURL({ format: 'png', dynamic: true, size: 1024 }));
   await ctx.drawImage(avatar, 183, 207, 80, 230);
   await ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 

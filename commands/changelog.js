@@ -7,11 +7,9 @@ module.exports.run = async (bot, message, args) => {
   let podelemoji = bot.emojis.cache.find(emoji => emoji.name === `podel`);
 
   const embed = new Discord.MessageEmbed()
-    .setTitle('v1.3.1 Changelog | 3/9/2020')
+    .setTitle('v1.3.2 Changelog | 5/9/2020')
     .setDescription(`
-  •	 Made a Deprecated folder for all deprecated code.
-  •	 Removed p!ans and the @podel answering thing (DEPRECATED).
-  •	 Removed more useless marked out code on podel.js.`)
+  •	 Fixed commands: p!bazinga, p!boiler, p!brick, p!car, p!global, p!kojima, p!simp, p!yep`)
     .setColor(colour)
     .setFooter('Podel, are ya coding son?', bot.user.avatarURL());
 

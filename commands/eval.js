@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const snekfetch = require('snekfetch');
 let config = require('../config.json'),
     colour = config.colour;
 const db = require('quick.db');
