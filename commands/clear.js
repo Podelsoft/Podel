@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
             return message.reply("I can't delete messages.").then(m => m.delete({timeout: 5000}));
         }
 
-        let deleteAmount;
+        let deleteAmount = args[0] + 1;
 
         if (parseInt(args[0]) > 100) {
             deleteAmount = 100;
@@ -28,8 +28,8 @@ module.exports.run = async (bot, message, args) => {
             deleteAmount = parseInt(args[0]);
         }
 
-        message.channel.bulkDelete(deleteAmount + 1, true)
-            .then(deleted => message.channel.send(`deleted \`${deleted.size - 1}\` messages.`).then(m => m.delete({timeout: 5000})))
+        message.channel.bulkDelete(deleteAmount, true)
+            .then(deleted => message.channel.send(`deleted \`${deleted.size}\` messages.`).then(m => m.delete({timeout: 5000})))
             .catch(err => message.reply(`something went wrong: ${err}`));
   
 }
