@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
   let user = bot.users.cache.find(user => user.username.toLowerCase().includes(args.join(' ').toLowerCase())) || message.mentions.users.first();
 
   if (!user) user = message.author;
-  if (user.tag === "Podel#8232") user = message.author;
+  if (user.id === bot.user.id) user = message.author;
 
 /*
   const astraemoji = bot.emojis.find(emoji => emoji.name === `astra`);

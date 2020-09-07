@@ -7,9 +7,11 @@ module.exports.run = async (bot, message, args) => {
   let podelemoji = bot.emojis.cache.find(emoji => emoji.name === `podel`);
 
   const embed = new Discord.MessageEmbed()
-    .setTitle('v1.3.3 Changelog | 7/9/2020')
+    .setTitle('v1.3.4 Changelog | 7/9/2020')
     .setDescription(`
-  •	 Fixed commands: p!rolefind, p!unban, p!unmute and p!clear`)
+  •	 Fixed commands: p!rolefind, p!unban, p!unmute and p!clear
+  •  Other minor command fixes.
+  •  Removed p!clear (DEPRECATED)`)
     .setColor(colour)
     .setFooter('Podel, are ya coding son?', bot.user.avatarURL());
 

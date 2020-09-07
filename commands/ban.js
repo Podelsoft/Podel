@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
   if (message.member.hasPermission("BAN_MEMBERS")) {
    let user = bot.users.cache.find(user => user.username.toLowerCase().includes(args[0].toLowerCase())) || message.mentions.users.first() || bot.users.cache.find(user => user.id === args[0]);
     if (user) {
-      if (user.tag === "Podel#8232") return;
+      if (user.id === bot.user.id) return;
       const member = message.guild.member(user);
       if (member) {
         message.channel.send(`Are you sure you want to ban **${user.tag}** (yes/no)`);

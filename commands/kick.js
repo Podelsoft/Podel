@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
   if (message.member.hasPermission("KICK_MEMBERS")) {
     const user = bot.users.cache.find(user => user.username.toLowerCase().includes(args.join(' ').toLowerCase())) ||  message.mentions.users.first() || bot.users.cache.find(user => user.id === args.join(' '));
     if (user) {
-      if (user.tag === "Podel#8232") return;
+      if (user.id === bot.user.id) return;
       const member = message.guild.member(user);
       if (member) {
         message.channel.send(`Are you sure you want to kick **${user.tag}** (yes/no)`);

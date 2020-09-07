@@ -1,14 +1,13 @@
 {
   "name": "podel",
   "description": "the original podel bot",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "main": "podel.js",
   "repository": "https://github.com/podelsoft/podel#readme",
   "author": "Podelsoft",
   "scripts": {
     "start": "node podel.js"
   },
-
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
     "canvas": "^2.6.1",

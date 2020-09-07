@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
     true: "✅"
   }
   let user = bot.users.cache.find(user => user.username.toLowerCase().includes(args.join(' ').toLowerCase())) || message.mentions.users.first();
-  if (user.tag === "Podel#8232") user = message.author;
+  if (user.id === bot.user.id) user = message.author;
   if (!user) {
     let embed = new Discord.MessageEmbed()
     .setTitle(message.author.tag + " User Info")
