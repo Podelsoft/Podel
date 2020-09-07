@@ -2,8 +2,6 @@ const Discord = require('discord.js');
 
 module.exports.run = async(bot, message, args) => {
 
-if (message.guild.id !== "696515024746709003") return;
-
   if (message.member.hasPermission("KICK_MEMBERS")) {
  
   if (args[0] && !args[1]) {
@@ -25,7 +23,7 @@ if (message.guild.id !== "696515024746709003") return;
   }
 
   if (args[2] && !args[3]) { 
-   let j = message.guild.cache.members.filter(member => {
+   let j = message.guild.members.cache.filter(member => {
 
    return member.roles.cache.some(r => args[0] === r.id) && member.roles.cache.some(r => args[1] === r.id) && member.roles.cache.some(r => args[2] === r.id)
 

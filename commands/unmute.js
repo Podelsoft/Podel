@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
   
   if (message.member.hasPermission('MANAGE_MESSAGES')) {
     
-    let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0])) || bot.users.cache.find(user => user.id === args[0]);
+    let user = message.guild.member(bot.users.cache.find(user => user.username.toLowerCase().includes(args[0]))) || message.mentions.members.first() || bot.users.cache.find(user => user.id === args[0]);    
     
     if(!user) return message.channel.send("user not found.");
         
