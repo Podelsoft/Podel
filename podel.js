@@ -12,6 +12,28 @@ bot.commands = new Discord.Collection();
 
 //bot.on('debug', console.log);
 
+bot.on('error', async error => {
+try {
+  app.webserver.close(); // Express.js instance
+  app.logger("Webserver was halted", 'success');
+} catch (e) {
+  app.logger("Cant't stop webserver:", 'error'); // No server started
+  app.logger(e, 'error');
+}
+
+var cmd = "node " + app.config.settings.ROOT_DIR + 'podel.js';
+
+if (app.killed === undefined) {
+  app.killed = true;
+
+  var exec = require('child_process').exec;
+  exec(cmd, function () {
+    app.logger('APPLICATION RESTARTED', 'success');
+    process.kill();
+  });
+}
+});
+
 const { Player } = require("discord-music-player");
 const player = new Player(bot, "AIzaSyBmLicH5RE9zLo8tUlrWbhZyUaxX8v_hV4");
 bot.player = player;
