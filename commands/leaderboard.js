@@ -9,15 +9,20 @@ let file = Object.entries(xp)
               .map(([key, val]) => ({id: key, ...val}))
               .sort((a, b) => b.xp - a.xp);
 
-  
-let result = file.slice(0, 10);
+let n2 = args[0] * 10;
+let n3 = n2 - 9;
+let n1 = n2 - 10;
+
+if (!args[0] || isNaN(args[0])) n1 = 0, n2 = 10, n3 = 1;
+
+let result = file.slice(n1, n2);
 let data = JSON.stringify(result);
 var output = "";
   
 data = data.replace(/[^0-9,]/g,'');
 data = data.split(',');
 
-var place = 1;
+var place = n3;
 
 //output = output + "\n" + place + "  USER: " + bot.users.get(data[i]).tag + "  Level: " + data[i+2] + "  XP: " + data[i+1];
 
