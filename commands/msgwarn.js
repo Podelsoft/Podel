@@ -39,9 +39,7 @@ module.exports.run = async (bot, message, args) => {
       .setColor(colour)
       .setTimestamp()
       .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL())
- 
-    let warns = db.fetch(`warnCount_${user.id}`);    
-   
+    
       await (message.delete());
       
       await channel.messages.fetch(args[0]).then(msg => msg.delete());    

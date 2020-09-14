@@ -19,7 +19,6 @@ module.exports.run = async (bot, message, args) => {
   let lastjob = await db.fetch(`lastjob_${message.author.id}`);
 
   if (lastjob !== null && cooldownjob - (Date.now() - lastjob) > 0) {
-    let timeObjob = ms(cooldownjob - (Date.now() - lastjob));
 
     if (`${job}` === "Somerfield Cashier") {
       let cooldown1 = 3.6e6;
@@ -160,11 +159,12 @@ module.exports.run = async (bot, message, args) => {
 
     if (jobs[result] === "Chairman")
       (earnings = `£${chp}/day`), (jobname = "Chairman");
+
       await db.push(`job_${message.author.id}`, jobname);
-      await message.channel.send(
-        `you have been assigned as a ${jobname}, your earnings are ${earnings}, use \`p!work\` to start earning.`
-      );
-     await db.set(`lastjob_${message.author.id}`, Date.now());
+
+      await message.channel.send(`you have been assigned as a ${jobname}, your earnings are ${earnings}, use \`p!work\` to start earning.`);
+
+      await db.set(`lastjob_${message.author.id}`, Date.now());
     }
   }
 };

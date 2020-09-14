@@ -71,8 +71,7 @@ module.exports.run = async (bot, message, args, tools) => {
       rname = "you crashed at your local morrisons, drove inside, fell off a cliff at the back of the store and survived but your insurance covered everything",
       rprize = Math.floor(Math.random() * 100) + 90;
    
-    let cooldown = 3600000,
-      amount = 100;
+    let cooldown = 3600000;
 
     let lastdrive = await db.fetch(`dailydrive_${message.author.id}`);
 
@@ -83,8 +82,7 @@ module.exports.run = async (bot, message, args, tools) => {
         `you've already driven in podel city mate, please wait ${timeObj.hours}h ${timeObj.minutes}m until your next refuel`
       );
     } else {
-      
-      if (json[car].tier === 1) rprize = rprize;
+
       if (json[car].tier === 2) rprize = rprize * 2;
       if (json[car].tier === 3) rprize = rprize * 4;    
 

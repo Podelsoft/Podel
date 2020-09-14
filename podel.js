@@ -252,7 +252,6 @@ bot.on("message", async message => {
   }
 
   let content = message.content.split(" ");
-  let command = content[0];
   let args = content.slice(1);
   let prefix = config.prefix;
 
@@ -289,10 +288,10 @@ bot.on("message", async message => {
       let badword = db.fetch(`badwordCount_${message.author.id}`);
 
       if (badword >= 3) {
-        var role = message.guild.roles.cache.find(role => role.name === "Muted");
+        var muterole = message.guild.roles.cache.find(role => role.name === "Muted");
         let mutetime = '10m';
         let ms = require("ms");
-        await message.member.roles.add(role);
+        await message.member.roles.add(muterole);
         await db.delete(`badwordCount_${message.author.id}`)
 
         let embed = new Discord.MessageEmbed()
@@ -321,7 +320,7 @@ bot.on("message", async message => {
             .setColor(config.colour)
             .setTimestamp()
             .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL())
-          message.member.roles.remove(role);
+          message.member.roles.remove(muterole);
           bot.guilds.cache.get("696515024746709003").channels.cache.get("704356972606259220").send(embed2);
         }, ms(mutetime));
       }

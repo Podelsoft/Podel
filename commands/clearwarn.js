@@ -18,10 +18,6 @@ module.exports.run = async (bot, message, args) => {
     let warns = db.fetch(`warnCount_${user.user.id}`);
     
     if (warns === null) return message.channel.send('that user has no warns to clear.');
-    
-    let reason = args.join(" ").slice(22);
-        
-    if (user) {
       
       let embed = new Discord.MessageEmbed()
       .setTitle(`${user.user.tag} | Cleared Warns`)
@@ -38,8 +34,7 @@ module.exports.run = async (bot, message, args) => {
       await db.delete(`warnCount_${user.user.id}`);
       
     }
-  }
-};
+  };
 
 module.exports.help = {
   name: "clearwarn",

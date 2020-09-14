@@ -5,11 +5,6 @@ let config = require('../config.json'),
 module.exports.run = async (bot, message, args) => {
   let podelemoji = bot.emojis.cache.find(emoji => emoji.name === `podel`);
 
-  let j = args.join(" ");
-  let a = j.split("v:")[1];
-  if (!j) a = 1;
-  if (isNaN(j)) a = 1;
-
   if (message.member.voice.channel) {
         
       let track = await bot.player.addToQueue(message.guild.id, args.join(" "));
