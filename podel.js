@@ -341,31 +341,31 @@ bot.on("message", async message => {
 
         if (curlvl >= 9) {
           if (!message.member.roles.cache.some(role => role.name === "Lads")) {
-            var role = message.guild.roles.cache.find(role => role.name === "Lads");
-            message.member.roles.add(role);
+            var rolelads = message.guild.roles.cache.find(role => role.name === "Lads");
+            message.member.roles.add(rolelads);
           }
         }
 
         if (curlvl >= 19) {
           if (!message.member.roles.cache.some(role => role.name === "Units")) {
-            var role = message.guild.roles.cache.find(role => role.name === "Units");
-            message.member.roles.add(role);
+            var roleunits = message.guild.roles.cache.find(role => role.name === "Units");
+            message.member.roles.add(roleunits);
           }
         }
 
         if (curlvl >= 49) {
           if (!message.member.roles.cache.some(role => role.name === "G")) {
-            var role = message.guild.roles.cache.find(role => role.name === "G");
-            message.member.roles.add(role);
+            var roleg = message.guild.roles.cache.find(role => role.name === "G");
+            message.member.roles.add(roleg);
           }
         }
 
         if (curlvl >= 99) {
           if (!message.member.roles.cache.some(role => role.name === "Fused")) {
-            var role = message.guild.roles.cache.find(role => role.name === "Fused");
-            var role2 = message.guild.roles.cache.find(role => role.id === "696707967176802364");
-            message.member.roles.add(role);
-            message.member.roles.add(role2);
+            var rolefused = message.guild.roles.cache.find(role => role.name === "Fused");
+            var roleimg = message.guild.roles.cache.find(role => role.id === "696707967176802364");
+            message.member.roles.add(rolefused);
+            message.member.roles.add(roleimg);
           }
         }
 

@@ -135,8 +135,10 @@ module.exports.run = async (bot, message, args) => {
         `you have been assigned as a ${jobname}, your earnings are ${earnings}, use \`p!work\` to start earning.`
       );
      await db.set(`lastjob_${message.author.id}`, Date.now());
+
     } else if (job === null) {
-      let jobs = [
+
+    let jobs = [
       "Somerfield Cashier",
       "Tesco Guard",
       "Aldi Manager",
@@ -160,11 +162,13 @@ module.exports.run = async (bot, message, args) => {
     if (jobs[result] === "Chairman")
       (earnings = `£${chp}/day`), (jobname = "Chairman");
 
+    async function work() {
       await db.push(`job_${message.author.id}`, jobname);
-
       await message.channel.send(`you have been assigned as a ${jobname}, your earnings are ${earnings}, use \`p!work\` to start earning.`);
-
       await db.set(`lastjob_${message.author.id}`, Date.now());
+    }
+
+    work();
     }
   }
 };
