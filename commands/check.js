@@ -1,4 +1,3 @@
-const Discord = require('discord.js');
 const db = require('quick.db');
 
 module.exports.run = async (bot, message, args) => {
@@ -9,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
     
     let user = message.guild.member(bot.users.cache.find(user => user.username.toLowerCase().includes(args.join(' ').toLowerCase()))) || message.mentions.members.first() || bot.users.cache.find(user => user.id === args[0]);
     
-    if(!user) return message.channel.send("user not found.");
+    if (!user) return message.channel.send("user not found.");
     
     let warns = db.fetch(`warnCount_${user.user.id}`);
     
@@ -26,18 +25,13 @@ module.exports.run = async (bot, message, args) => {
     if (kicks === null) kicks = 0;
     
     if (mutes === null) mutes = 0;
-    
-    let reason = args.join(" ").slice(22);
-      
-    if (user) {
-      
+          
       await (message.delete());
       
       await message.channel.send(`__**${user.user.tag}**__ | **Warns:** ${warns} | **Mutes:** ${mutes} | **Bans:** ${bans} | **Kicks:** ${kicks}`)
-      
+
     }
-  }
-};
+  };
 
 module.exports.help = {
   name: "check"

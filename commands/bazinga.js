@@ -1,10 +1,7 @@
-const Discord = require("discord.js");
 const Canvas = require("canvas");
-const snekfetch = require("snekfetch");
 
 module.exports.run = async (bot, message, args) => {
   let user = message.mentions.users.first() || message.author;
-  const { createCanvas, loadImage } = require("canvas");
   const canvas = Canvas.createCanvas(256, 256); // how do i compile
   const ctx = canvas.getContext("2d"); // how do I receive sex
 

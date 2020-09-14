@@ -12,9 +12,7 @@ module.exports.run = async (bot, message, args) => {
     let user = bot.users.cache.find(user => user.username.toLowerCase().includes(args[0])) || message.mentions.users.first() || bot.users.cache.find(user => user.id === args[0]);
     
     if(!user) return message.channel.send("user not found.");
-    
-    let warns = db.fetch(`warnCount_${user.id}`);
-        
+            
     let p = args.join(" ");
  
     let reason = p.toString().split(args[0])[1].trim();

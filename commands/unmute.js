@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const db = require('quick.db');
-const ms = require('ms');
 let config = require('../config.json'),
     colour = config.colour;
 
@@ -17,7 +16,6 @@ module.exports.run = async (bot, message, args) => {
     if (user) {
               
       var role = message.guild.roles.cache.find(role => role.name === "Muted");
-      let muted = db.fetch(`muted_${message.author.id}`);
       
       if (!user.roles.cache.some(role => role.name === "Muted")) return message.channel.send(`that user is already unmuted.`)
       

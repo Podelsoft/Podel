@@ -1,5 +1,3 @@
-const Discord = require("discord.js");
-const ytdl = require("ytdl-core");
 
 module.exports.run = async (bot, message, args) => {
   let botvoice = message.guild.members.cache.get('510483230151933964');

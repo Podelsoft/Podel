@@ -1,7 +1,4 @@
-const Discord = require("discord.js");
 const db = require("quick.db");
-let config = require("../config.json"),
-  colour = config.colour;
 
 module.exports.run = async (bot, message, args) => {
   if (!args[0]) {

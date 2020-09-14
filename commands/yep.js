@@ -2,7 +2,6 @@ const Canvas = require("canvas");
 
 module.exports.run = async (bot, message, args, member) => {
   let user = message.mentions.users.first() || message.author;
-  const { createCanvas, loadImage } = require("canvas");
   const canvas = Canvas.createCanvas(256, 256);
   const ctx = canvas.getContext("2d");
 

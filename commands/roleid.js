@@ -1,4 +1,3 @@
-const Discord = require('discord.js');
 
 module.exports.run = async(bot, message, args) => {
 if (message.member.hasPermission("KICK_MEMBERS")) {

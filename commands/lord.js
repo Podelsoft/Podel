@@ -1,14 +1,9 @@
-const Discord = require("discord.js");
 const db = require("quick.db");
-const config = require("../config.json"),
-  colour = config.colour;
 
 module.exports.run = async (bot, message, args) => {
   let amount = args[0];
   
   let lordpass = db.fetch(`lord_${message.author.id}`);
-
-  const lordemoji = bot.emojis.cache.find(emoji => emoji.name === `lordpass`);
 
   let lordcode = Math.floor(Math.random() * 1000000000);
 

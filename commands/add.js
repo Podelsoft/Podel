@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const ytdl = require("ytdl-core");
 let config = require('../config.json'),
     colour = config.colour;
 

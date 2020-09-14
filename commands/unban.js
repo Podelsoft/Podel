@@ -1,9 +1,3 @@
-const Discord = require("discord.js");
-const config = require("../config.json"),
-  colour = config.colour;
-const db = require("quick.db");
-const xp = require("../xp.json");
-const ms = require("ms");
 
 module.exports.run = async (bot, message, args) => {
   

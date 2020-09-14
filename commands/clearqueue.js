@@ -1,6 +1,3 @@
-const Discord = require("discord.js");
-const config = require("../config.json"),
-  colour = config.colour;
 
 module.exports.run = async (bot, message, args) => {
   if (message.member.voice.channel) {

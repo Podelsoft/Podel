@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const db = require('quick.db');
 let config = require('../config.json'),
     colour = config.colour;
 
@@ -11,7 +10,6 @@ module.exports.run = async (bot, message, args) => {
   if (user.id === bot.user.id) user = message.author;
 
   let podelemoji = bot.emojis.cache.find(emoji => emoji.name === `podel`);
-  let sgtemoji = bot.emojis.cache.find(emoji => emoji.name === `sgt`);
   
    var xp = require("../xp.json");
 
@@ -28,10 +26,7 @@ module.exports.run = async (bot, message, args) => {
   
   const progress = (curxp % 1000) / 1000;
   const progressOutOf10 = Math.round(progress * 10);
-  
-  const greenemoji = bot.emojis.cache.find(emoji => emoji.name === `green00213`);
-  const redemoji = bot.emojis.cache.find(emoji => emoji.name === `red00213`);
-  const x = "□";
+
   const barStr = `${'🟢'.repeat(progressOutOf10)}${'🔴'.repeat(10 - progressOutOf10)}`;
       
       const embed = new Discord.MessageEmbed()

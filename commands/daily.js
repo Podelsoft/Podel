@@ -1,6 +1,3 @@
-const Discord = require('discord.js');
-const config = require('../config.json'),
-      colour = config.colour;
 const db = require('quick.db'),
       ms = require('parse-ms');
 
@@ -18,7 +15,7 @@ module.exports.run = async (bot, message, args, tools) => {
     message.channel.send(`added £100 to your stats cheers`);
     
     db.set(`dailycd_${message.author.id}`, Date.now());
-    db.add(`balance_${message.author.id}`, 100);
+    db.add(`balance_${message.author.id}`, amount);
   }
  }
 module.exports.help = {

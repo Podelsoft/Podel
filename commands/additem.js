@@ -1,6 +1,4 @@
-const Discord = require('discord.js');
 const fs = require('fs');
-const db = require('quick.db');
 const json = require('../items.json');
 
 module.exports.run = async (bot, message, args) => {

@@ -4,8 +4,6 @@ let config = require('../config.json'),
 
 module.exports.run = async (bot, message, args) => {
 
-  let podelemoji = bot.emojis.cache.find(emoji => emoji.name === `podel`);
-
   const embed = new Discord.MessageEmbed()
     .setTitle('v1.3.4 Changelog | 7/9/2020')
     .setDescription(`

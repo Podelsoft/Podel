@@ -27,9 +27,7 @@ module.exports.run = async (bot, message, args) => {
 
 //  let user = bot.users.find(user => user.username.toLowerCase().includes(args[0])) || message.mentions.users.first();
   
-    if(!user) return message.channel.send("user/message not found.");
-
-    if (user) {
+    if (!user) return message.channel.send("user/message not found.");
 
     let embed = new Discord.MessageEmbed()
       .setTitle(`${user.tag} | Message Warn`)
@@ -54,9 +52,8 @@ module.exports.run = async (bot, message, args) => {
       
       await user.send(`you've been warned on Podel Server for **${reason}**` + '\n\n`message attached to warn:` ```' + msgcont + '```');      
       
-    } 
-  }
-};
+    }
+  };
 
 module.exports.help = {
   name: "msgwarn",

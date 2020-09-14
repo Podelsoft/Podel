@@ -1,5 +1,3 @@
-const Discord = require('discord.js');
-const db = require('quick.db');
 const fs = require('fs');
 const json = require('../items.json');
 

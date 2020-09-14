@@ -1,9 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {  
-  const snekfetch = require("snekfetch");  
   const Canvas = require("canvas");
-  const { createCanvas, loadImage } = require('canvas');
   const canvas = Canvas.createCanvas(360, 203);
   const ctx = canvas.getContext('2d');
 

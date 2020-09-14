@@ -1,4 +1,3 @@
-const Discord = require('discord.js');
 const json = require('../items.json');
 const db = require('quick.db');
 
@@ -8,7 +7,6 @@ for (var key in json) {
 
   if (json.hasOwnProperty(key)) {
    
-   let emoji = bot.emojis.cache.find(emoji => emoji.name === `${json[key].emoji}`); 
    let item = db.fetch(`${args[0]}_${message.author.id}`);  
  
    if (item >= 1 && json[key].db === args[0]) { 

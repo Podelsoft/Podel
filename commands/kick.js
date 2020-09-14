@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const xp = require("../xp.json");
 const db = require("quick.db");
 const config = require("../config.json"),
   colour = config.colour;

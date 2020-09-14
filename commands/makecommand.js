@@ -1,5 +1,3 @@
-const Discord = require("discord.js");
-const config = require("../config.json");
 
 module.exports.run = async (bot, message, args) => {
   if (message.author.id !== '306104099185623042') return;
@@ -13,19 +11,7 @@ module.exports.run = async (bot, message, args) => {
       fs.writeFile(
         `./commands/${name.trim().toLowerCase()}.js`,
         `
-const Discord = require('discord.js');
-const db = require('quick.db');
-const config = require('../config.json'),
-      colour = config.colour;
-const fs = require('fs');
-const superagent = require('superagent');
-const yts = require('yt-search');
-const ms = require('ms');
-const snekfetch = require('snekfetch');
-
-module.exports.run = async(bot, message, args) => {
 ${scode}
-}
 
 module.exports.help = {
   name: "${name.trim().toLowerCase()}"
