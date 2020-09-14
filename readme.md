@@ -1,6 +1,8 @@
 # cristpz/Podel
 The official Podel Bot Repository by Podelsoft
 
+[![DeepScan Grade](https://deepscan.io/api/teams/10908/projects/13841/branches/243121/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=10908&pid=13841&bid=243121)
+
 ## How to set-up and run Podel Bot
 
 1. Get [Node.js](https://nodejs.org/en/download/)
