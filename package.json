@@ -19,6 +19,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "fs": "0.0.2",
     "http-auth": "^4.1.2",
+    "lodash": "^4.17.20",
     "moment": "^2.27.0",
     "moment-duration-format": "^2.3.2",
     "ms": "^2.1.2",
