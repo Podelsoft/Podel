@@ -1,3 +1,0 @@
-
-
- I have no job

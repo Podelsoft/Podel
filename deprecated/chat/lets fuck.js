@@ -1,3 +1,0 @@
-
-
- no thats gay

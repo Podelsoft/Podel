@@ -43,7 +43,7 @@ const app = express()
 const statusMonitor = require('express-status-monitor')({ title: 'Podel Bot Status' });
 app.use(statusMonitor);
 app.get('/', statusMonitor.pageRoute);
-//app.listen(3000);
+app.listen(3000);
 
 fs.readdir("./commands/", (err, files) => {
   if (err) console.log(err);

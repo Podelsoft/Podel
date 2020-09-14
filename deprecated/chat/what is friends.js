@@ -1,1 +1,0 @@
-Friends is a Gritty documentary that follows six drug dealers as they try and survive in the city of Hong Kong. Staring chindlor bong, chu, rachel, rose, phobos 1 and harmonica.
