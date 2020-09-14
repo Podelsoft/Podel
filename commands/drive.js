@@ -15,8 +15,7 @@ module.exports.run = async (bot, message, args, tools) => {
   let check = db.fetch(`${car}_${message.author.id}`);  
 
   if (check <= 0) return db.delete(`car_${message.author.id}`);
-  if (check === null) return db.delete(`car_${message.author.id}`);  
-    
+      
     let rname = "";
     let rprize = 0;
     

@@ -370,7 +370,7 @@ bot.on("message", async message => {
           }
         }
 
-        if (`${lvlupmsgs}` === null) {
+        if (lvlupmsgs === null) {
           await message.author.send(lvlup);
         }
 

@@ -1,6 +1,4 @@
-const Discord = require("discord.js");
 const Canvas = require("canvas");
-const snekfetch = require("snekfetch");
 
 module.exports.run = async (bot, message, args, member) => {
   let user = message.mentions.users.first() || message.author;

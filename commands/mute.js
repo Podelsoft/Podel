@@ -15,10 +15,8 @@ module.exports.run = async (bot, message, args) => {
     
     let user = message.guild.member(bot.users.cache.find(user => user.username.toLowerCase().includes(args[0]))) || message.mentions.members.first() || bot.users.cache.find(user => user.id === args[0]);
     
-    if(!user) return message.channel.send("user not found.");
+    if (!user) return message.channel.send("user not found.");
         
-    if (user) {
-      
       let mutetime = args[1];
       
       if (!reason) return message.channel.send('you didn\'t provide a valid reason');
@@ -70,10 +68,8 @@ module.exports.run = async (bot, message, args) => {
       db.delete(`muted_${user.user.id}`);
       bot.guilds.cache.get("696515024746709003").channels.cache.get("704356972606259220").send(embed2);
       }, ms(mutetime));
-      
-    }
-  }
-};
+     }
+    };
 
 module.exports.help = {
   name: "mute",

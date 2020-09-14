@@ -6,10 +6,8 @@ module.exports.run = async (bot, message, args) => {
   
   const yts = require('yt-search');
  
-yts( args.join() ,function ( err, r ) {
+yts( args.join() , function ( err, r ) {
   const videos = r.videos
-  const playlists = r.playlists || r.lists
-  const channels = r.channels || r.accounts
 
  message.channel.send( videos[ 0 ].url )
 })  

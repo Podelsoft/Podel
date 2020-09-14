@@ -35,7 +35,7 @@ module.exports.run = async (bot, message, args) => {
                   );
                   await db.add(`banCount_${user.id}`, 1);
                  // await db.set(`bantime_${message.author.id}`, ms(bantime));
-                  if (bantime === NaN) return message.channel.send("for how long?? (like p!tempban @user 1s idk)");
+                  if (isNaN(bantime)) return message.channel.send("for how long?? (like p!tempban @user 1s idk)");
                   if (bantime < 0) return message.channel.send("how is this man.");
         
         let embed = new Discord.MessageEmbed()

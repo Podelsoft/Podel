@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
   if (lordpass < amount)
     return message.channel.send("check your inventory again");
   if (amount <= 0) return;
-  if (amount === NaN) return;
+  if (isNaN(amount)) return;
   if (!amount) return;
   db.subtract(`lord2_${message.author.id}`, amount);
   message.channel.send(`lording activated for ${args[0]} month(s) (${lordcode})`);
