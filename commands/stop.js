@@ -1,6 +1,6 @@
 
 module.exports.run = async (bot, message, args) => {
-  let botvoice = message.guild.members.cache.get('510483230151933964');
+  let botvoice = message.guild.members.cache.get(bot.user.id);
   
   if (message.member.voice.channel) {
     if (!botvoice.voice.channel) return; 
