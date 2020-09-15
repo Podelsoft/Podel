@@ -20,7 +20,6 @@ module.exports.run = async (bot, message, args) => {
       if (member) {
         message.channel.send(`Are you sure you want to ban **${user.tag}** (yes/no)`);
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 10000 });
-        console.log(collector)
         collector.on('collect', message => {
             if (message.content == "yes") {
                 member.ban({ reason: "eliminated by podelbot" })
@@ -45,9 +44,7 @@ module.exports.run = async (bot, message, args) => {
                 await bot.guilds.cache
                 .get("696515024746709003")
                 .channels.cache.get("704356972606259220")
-                .send(embed);              })
-              .catch(err => {
-                console.error(err);
+                .send(embed);              
               });
             } 
             else if (message.content == "no") {
