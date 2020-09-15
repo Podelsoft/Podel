@@ -1,17 +1,17 @@
-const Discord = require('discord.js');
-const db = require('quick.db');
-const ms = require('ms');
-let config = require('../config.json'),
+const Discord = require("discord.js");
+const db = require("quick.db");
+const ms = require("ms");
+let config = require("../config.json"),
     colour = config.colour;
 
 module.exports.run = async (bot, message, args) => {
   
   if (message.guild.id !== "696515024746709003") return;
   
-  if (message.member.hasPermission('MANAGE_MESSAGES')) {
+  if (message.member.hasPermission("MANAGE_MESSAGES")) {
 
-   const channel = bot.guilds.cache.get('696515024746709003').channels.cache.get(`${message.channel.id}`);
-   const channel2 = bot.guilds.cache.get('696515024746709003').channels.cache.get('734494129051926619');   
+   const channel = bot.guilds.cache.get("696515024746709003").channels.cache.get(`${message.channel.id}`);
+   const channel2 = bot.guilds.cache.get("696515024746709003").channels.cache.get("734494129051926619");   
 
     let p = args.join(" ");
  
@@ -33,13 +33,13 @@ module.exports.run = async (bot, message, args) => {
       
       let mutetime = args[1];
       
-      if (!reason) return message.channel.send('you didn\'t provide a valid reason');
+      if (!reason) return message.channel.send("you didn\"t provide a valid reason");
   
-      if (!mutetime) return message.channel.send('you didn\'t specify any indefinite continued progress of existence and events in the past, present, and future regarded as a whole.');
+      if (!mutetime) return message.channel.send("you didn\"t specify any indefinite continued progress of existence and events in the past, present, and future regarded as a whole.");
       
-      if (isNaN(mutetime)) return message.channel.send('for how long?? (like p!mute @user 1s idk)');
+      if (isNaN(mutetime)) return message.channel.send("for how long?? (like p!mute @user 1s idk)");
       
-      if (mutetime < 0) return message.channel.send('how is this man.')
+      if (mutetime < 0) return message.channel.send("how is this man.")
       
       var role = message.guild.cache.roles.find(role => role.name === "Muted");
       
@@ -47,15 +47,15 @@ module.exports.run = async (bot, message, args) => {
       
       let embed = new Discord.MessageEmbed()
       .setTitle(`${user.user.tag} | Message Mute`)
-      .addField('Time', mutetime)
-      .addField('Reason', reason)
-      .addField('Mod/Admin', message.author.tag)
-      .addField('Message', msgcont)
-      .addField('Message ID', idmsg)
+      .addField("Time", mutetime)
+      .addField("Reason", reason)
+      .addField("Mod/Admin", message.author.tag)
+      .addField("Message", msgcont)
+      .addField("Message ID", idmsg)
       .setThumbnail(user.user.displayAvatarURL())
       .setColor(colour)
       .setTimestamp()
-      .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL())
+      .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
       
       await (message.delete());
       
@@ -65,10 +65,10 @@ module.exports.run = async (bot, message, args) => {
       
       await db.add(`muteCount_${user.user.id}`, 1)
       
-      await db.push(`muted_${user.user.id}`, 'yes');
+      await db.push(`muted_${user.user.id}`, "yes");
       
-      await user.user.send('you\'ve been muted on Podel Server for **' + mutetime + '** (Reason: ' + reason + ') \n\n`message attached to mute:` ```' + msgcont + '```')
-      .catch(() => channel2.send(user.user + ', you\'ve been muted on Podel Server for **' + mutetime + '** (Reason: ' + reason + ') \n\n`message attached to mute:` ```' + msgcont + '```').then(msg => msg.delete(20000)));
+      await user.user.send("you\"ve been muted on Podel Server for **" + mutetime + "** (Reason: " + reason + ") \n\n`message attached to mute:` ```" + msgcont + "```")
+      .catch(() => channel2.send(user.user + ", you\"ve been muted on Podel Server for **" + mutetime + "** (Reason: " + reason + ") \n\n`message attached to mute:` ```" + msgcont + "```").then(msg => msg.delete(20000)));
       
       await bot.guilds.cache.get("696515024746709003").channels.cache.get("704356972606259220").send(embed);
       
@@ -76,15 +76,15 @@ module.exports.run = async (bot, message, args) => {
       if (!user.roles.cache.some(role => role.name === "Muted")) return;
       let embed2 = new Discord.RichEmbed()
       .setTitle(`${user.user.tag} | Unmute`)
-      .addField('Time', mutetime)
-      .addField('Reason', reason)
-      .addField('Mod/Admin', message.author.tag)
-      .addField('Message', msgcont)
-      .addField('Message ID', idmsg)
+      .addField("Time", mutetime)
+      .addField("Reason", reason)
+      .addField("Mod/Admin", message.author.tag)
+      .addField("Message", msgcont)
+      .addField("Message ID", idmsg)
       .setThumbnail(user.user.displayAvatarURL())
-      .setColor('#9e0e24')
+      .setColor("#9e0e24")
       .setTimestamp()
-      .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL())
+      .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
       user.roles.remove(role);
       db.delete(`muted_${user.user.id}`);
       bot.guilds.cache.get("696515024746709003").channels.cache.get("704356972606259220").send(embed2);
@@ -94,5 +94,5 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "msgmute",
-  aliases: ['mm', 'mutemsg']
+  aliases: ["mm", "mutemsg"]
 }

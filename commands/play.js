@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-let config = require('../config.json'),
+let config = require("../config.json"),
     colour = config.colour;
 
 module.exports.run = async (bot, message, args) => {
@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args) => {
         
         await message.channel.send(embed);
     } else {
-      message.channel.send('fuck off, use `p!add` to add songs to the queue')
+      message.channel.send("fuck off, use `p!add` to add songs to the queue")
     }
   } else {
     message.reply("you need to join a voice channel first.");

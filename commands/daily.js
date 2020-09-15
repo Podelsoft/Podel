@@ -1,5 +1,5 @@
-const db = require('quick.db'),
-      ms = require('parse-ms');
+const db = require("quick.db"),
+      ms = require("parse-ms");
 
 module.exports.run = async (bot, message, args, tools) => {
   let cooldown = 43200000,
@@ -20,5 +20,5 @@ module.exports.run = async (bot, message, args, tools) => {
  }
 module.exports.help = {
   name: "daily",
-  aliases: ['d', 'dailies']
+  aliases: ["d", "dailies"]
 }

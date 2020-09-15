@@ -14,5 +14,5 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "stop",
-  aliases: ['eatshit', 'die', 'disconnect', 'leave', 'fuckoff']
+  aliases: ["eatshit", "die", "disconnect", "leave", "fuckoff"]
 }

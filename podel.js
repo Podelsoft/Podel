@@ -2,33 +2,33 @@ const Discord = require("discord.js");
 const config = require("./config.json"),
   colour = config.colour;
 const token = require("../secret.json").token;
-const bot = new Discord.Client({disableMentions: 'everyone'});
+const bot = new Discord.Client({disableMentions: "everyone"});
 const fs = require("fs");
 const db = require("quick.db");
-const ytdl = require('ytdl-core');
+const ytdl = require("ytdl-core");
 let cooldown = new Set();
 let cds = 3;
 bot.commands = new Discord.Collection();
 
-//bot.on('debug', console.log);
+//bot.on("debug", console.log);
 
-bot.on('error', async error => {
+bot.on("error", async error => {
 try {
   app.webserver.close(); // Express.js instance
-  app.logger("Webserver was halted", 'success');
+  app.logger("Webserver was halted", "success");
 } catch (e) {
-  app.logger("Cant't stop webserver:", 'error'); // No server started
-  app.logger(e, 'error');
+  app.logger("Can't stop webserver:", "error"); // No server started
+  app.logger(e, "error");
 }
 
-var cmd = "node " + app.config.settings.ROOT_DIR + 'podel.js';
+var cmd = "node " + app.config.settings.ROOT_DIR + "podel.js";
 
 if (app.killed === undefined) {
   app.killed = true;
 
-  var exec = require('child_process').exec;
+  var exec = require("child_process").exec;
   exec(cmd, function () {
-    app.logger('APPLICATION RESTARTED', 'success');
+    app.logger("APPLICATION RESTARTED", "success");
     process.kill();
   });
 }
@@ -38,11 +38,11 @@ const { Player } = require("discord-music-player");
 const player = new Player(bot, "AIzaSyBmLicH5RE9zLo8tUlrWbhZyUaxX8v_hV4");
 bot.player = player;
 
-const express = require('express')
+const express = require("express")
 const app = express()
-const statusMonitor = require('express-status-monitor')({ title: 'Podel Bot Status' });
+const statusMonitor = require("express-status-monitor")({ title: "Podel Bot Status" });
 app.use(statusMonitor);
-app.get('/', statusMonitor.pageRoute);
+app.get("/", statusMonitor.pageRoute);
 app.listen(3000);
 
 fs.readdir("./commands/", (err, files) => {
@@ -120,7 +120,7 @@ bot.on("guildMemberUpdate", function (oldMember, newMember) {
     .setAuthor(oldMember.user.tag, oldMember.user.avatarURL())
     .addField("Old Nickname", `\`\`\`${oldMember.displayName}\`\`\``, true)
     .addField("New Nickname", `\`\`\`${newMember.displayName}\`\`\``, true)
-    .setColor('#ff6105')
+    .setColor("#ff6105")
     .setTimestamp()
     .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL());
   if (oldMember.guild.id !== "696515024746709003") return;
@@ -189,7 +189,7 @@ bot.on("messageDelete", async message => {
 
   } else {
 
-  if (message.content.toLowerCase().includes('NIGGER'.toLowerCase())) return;
+  if (message.content.toLowerCase().includes("NIGGER".toLowerCase())) return;
 
   if (message.content.length > 1024) return;
 
@@ -234,12 +234,12 @@ bot.on("message", async message => {
 
   if (message.author.bot) return;
 
-  if (message.channel.id === "708435487525961840" && !message.member.hasPermission('KICK_MEMBERS') && !message.content.startsWith('p!join')) {
+  if (message.channel.id === "708435487525961840" && !message.member.hasPermission("KICK_MEMBERS") && !message.content.startsWith("p!join")) {
     message.delete();
     return;
   }
 
-  let config = require('./config.json'),
+  let config = require("./config.json"),
     colour = config.colour;
 
   const xp = require("./xp.json");
@@ -270,17 +270,17 @@ bot.on("message", async message => {
 
     if (message.guild.id === "696515024746709003") {
 
-      if (message.content.toLowerCase().includes('NIGGER'.toLowerCase())) {
-        if (message.content.toLowerCase().includes('HTTP'.toLowerCase())) return;
+      if (message.content.toLowerCase().includes("NIGGER".toLowerCase())) {
+        if (message.content.toLowerCase().includes("HTTP".toLowerCase())) return;
         let embed = new Discord.MessageEmbed()
           .setTitle(`${message.author.tag} | Warn`)
-          .addField('Reason', 'Bad word usage', true)
-          .addField('User', message.author.tag, true)
-          .addField('Channel', message.channel.name, true)
+          .addField("Reason", "Bad word usage", true)
+          .addField("User", message.author.tag, true)
+          .addField("Channel", message.channel.name, true)
           .setThumbnail(message.author.displayAvatarURL())
           .setColor(colour)
           .setTimestamp()
-          .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL())
+          .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
         await db.add(`badwordCount_${message.author.id}`, 1)
         message.delete().then(() => bot.guilds.cache.get("696515024746709003").channels.cache.get("696685949186342964").send(embed));
       }
@@ -289,21 +289,21 @@ bot.on("message", async message => {
 
       if (badword >= 3) {
         var muterole = message.guild.roles.cache.find(role => role.name === "Muted");
-        let mutetime = '10m';
+        let mutetime = "10m";
         let ms = require("ms");
         await message.member.roles.add(muterole);
         await db.delete(`badwordCount_${message.author.id}`)
 
         let embed = new Discord.MessageEmbed()
           .setTitle(`${message.author.tag} | Mute`)
-          .addField('Reason', 'Bad word usage', true)
-          .addField('User', message.author.tag, true)
-          .addField('Time', mutetime, true)
-          .addField('Channel', message.channel.name, true)
+          .addField("Reason", "Bad word usage", true)
+          .addField("User", message.author.tag, true)
+          .addField("Time", mutetime, true)
+          .addField("Channel", message.channel.name, true)
           .setThumbnail(message.author.displayAvatarURL())
           .setColor(config.colour)
           .setTimestamp()
-          .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL())
+          .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
 
         await bot.guilds.cache
           .get("696515024746709003")
@@ -314,12 +314,12 @@ bot.on("message", async message => {
           if (!message.author.roles.cache.some(role => role.name === "Muted")) return;
           let embed2 = new Discord.MessageEmbed()
             .setTitle(`${message.author.tag} | Unmute`)
-            .addField('Time', mutetime, true)
-            .addField('User', message.author.tag, true)
+            .addField("Time", mutetime, true)
+            .addField("User", message.author.tag, true)
             .setThumbnail(message.author.displayAvatarURL())
             .setColor(config.colour)
             .setTimestamp()
-            .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL())
+            .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
           message.member.roles.remove(muterole);
           bot.guilds.cache.get("696515024746709003").channels.cache.get("704356972606259220").send(embed2);
         }, ms(mutetime));
@@ -393,7 +393,7 @@ bot.on("message", async message => {
           cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName)
         );
 
-      if (command2 === undefined) return message.channel.send('that command doesn\'t exist');
+      if (command2 === undefined) return message.channel.send("that command doesn\"t exist");
 
       command2.run(bot, message, args);
     } catch (err) {

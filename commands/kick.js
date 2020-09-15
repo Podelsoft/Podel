@@ -15,7 +15,6 @@ module.exports.run = async (bot, message, args) => {
       if (member) {
         message.channel.send(`Are you sure you want to kick **${user.tag}** (yes/no)`);
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 10000 });
-        console.log(collector)
         collector.on('collect', message => {
             if (message.content == "yes") {
                 member.kick({ reason: "eliminated by podelbot" })

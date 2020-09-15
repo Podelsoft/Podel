@@ -1,5 +1,5 @@
-const Discord = require('discord.js');
-let config = require('../config.json'),
+const Discord = require("discord.js");
+let config = require("../config.json"),
     colour = config.colour;
 
 const clean = text => {
@@ -20,15 +20,15 @@ module.exports.run = async (bot, message, args) => {
         evaled = require("util").inspect(evaled);
  
       let embed = new Discord.MessageEmbed()
-      .addField('Input', `\`\`\`${args.join(' ')}\`\`\``)
-      .addField('Output', `\`\`\`${clean(evaled)}\`\`\``)
+      .addField("Input", `\`\`\`${args.join(" ")}\`\`\``)
+      .addField("Output", `\`\`\`${clean(evaled)}\`\`\``)
       .setColor(colour);
       
       message.channel.send(embed);
     } catch (err) {
       let embed = new Discord.MessageEmbed()
-      .addField('Input', `\`\`\`${args.join(' ')}\`\`\``)
-      .addField('Error', `\`\`\`xl\n${clean(err)}\n\`\`\``)
+      .addField("Input", `\`\`\`${args.join(" ")}\`\`\``)
+      .addField("Error", `\`\`\`xl\n${clean(err)}\n\`\`\``)
       .setColor(colour);
       
       message.channel.send(embed);
@@ -44,15 +44,15 @@ module.exports.run = async (bot, message, args) => {
         evaled = require("util").inspect(evaled);
  
       let embed = new Discord.MessageEmbed()
-      .addField('Input', `\`\`\`${args.join(' ')}\`\`\``)
-      .addField('Output', `\`\`\`${clean(evaled)}\`\`\``)
+      .addField("Input", `\`\`\`${args.join(" ")}\`\`\``)
+      .addField("Output", `\`\`\`${clean(evaled)}\`\`\``)
       .setColor(colour);
       
       message.channel.send(embed);
     } catch (err) {
       let embed = new Discord.MessageEmbed()
-      .addField('Input', `\`\`\`${args.join(' ')}\`\`\``)
-      .addField('Error', `\`\`\`xl\n${clean(err)}\n\`\`\``)
+      .addField("Input", `\`\`\`${args.join(" ")}\`\`\``)
+      .addField("Error", `\`\`\`xl\n${clean(err)}\n\`\`\``)
       .setColor(colour);
       
       message.channel.send(embed);
@@ -68,15 +68,15 @@ module.exports.run = async (bot, message, args) => {
         evaled = require("util").inspect(evaled);
  
       let embed = new Discord.MessageEmbed()
-      .addField('Input', `\`\`\`${args.join(' ')}\`\`\``)
-      .addField('Output', `\`\`\`${clean(evaled)}\`\`\``)
+      .addField("Input", `\`\`\`${args.join(" ")}\`\`\``)
+      .addField("Output", `\`\`\`${clean(evaled)}\`\`\``)
       .setColor(colour);
       
       message.channel.send(embed);
     } catch (err) {
       let embed = new Discord.MessageEmbed()
-      .addField('Input', `\`\`\`${args.join(' ')}\`\`\``)
-      .addField('Error', `\`\`\`xl\n${clean(err)}\n\`\`\``)
+      .addField("Input", `\`\`\`${args.join(" ")}\`\`\``)
+      .addField("Error", `\`\`\`xl\n${clean(err)}\n\`\`\``)
       .setColor(colour);
       
       message.channel.send(embed);
