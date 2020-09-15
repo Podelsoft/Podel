@@ -5,7 +5,7 @@ let config = require('../config.json'),
 
 module.exports.run = async (bot, message, args) => {
   
-  let { body } = await superagent
+  let {body} = await superagent
   .get('https://api.cristpz.eu/v1/conspiracy');
   
   const embed = new Discord.MessageEmbed()

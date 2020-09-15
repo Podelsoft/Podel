@@ -2,7 +2,7 @@ const db = require('quick.db'),
       ms = require('parse-ms');
 
 module.exports.run = async (bot, message, args, tools) => {
-  let cooldown = 4.32e+7,
+  let cooldown = 43200000,
       amount = 100;
   
   let lastDaily = await db.fetch(`dailycd_${message.author.id}`);
