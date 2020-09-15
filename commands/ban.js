@@ -5,30 +5,29 @@ const config = require("../config.json"),
 
 module.exports.run = async (bot, message, args) => {
   
-  if (message.guild.id !== "696515024746709003") return;
+  if (message.guild.id !== "696515024746709003") { return };
 
-  let j = args.join(' ');
+  let j = args.join(" ");
   let reason = j.split(args[0])[1];
-
-  if (!reason) return message.channel.send('you must provide a valid reason.')
   
   if (message.member.hasPermission("BAN_MEMBERS")) {
-   let user = bot.users.cache.find(user => user.username.toLowerCase().includes(args[0].toLowerCase())) || message.mentions.users.first() || bot.users.cache.find(user => user.id === args[0]);
+  if (!reason) { return message.channel.send("you must provide a valid reason.") };
+   let user = bot.users.cache.find((user) => user.username.toLowerCase().includes(args[0].toLowerCase())) || message.mentions.users.first() || bot.users.cache.find((user) => user.id === args[0]);
     if (user) {
-      if (user.id === bot.user.id) return;
+      if (user.id === bot.user.id) { return };
       const member = message.guild.member(user);
       if (member) {
         message.channel.send(`Are you sure you want to ban **${user.tag}** (yes/no)`);
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 10000 });
-        collector.on('collect', message => {
-            if (message.content == "yes") {
+        collector.on("collect", (message) => {
+            if (message.content === "yes") {
                 member.ban({ reason: "eliminated by podelbot" })
                 .then(async () => {
                   /*xp[user.id] = {
                     xp: 0,
                     level: 1
                   };*/
-                  await user.send("you've been banned from Podel Server (Reason:" + reason + ")")
+                  await user.send("you've been banned from Podel Server (Reason:" + reason + ")");
                   await message.reply(
                     `Successfully banned ${user.tag} (Reason:${reason})`
                   );
@@ -47,7 +46,7 @@ module.exports.run = async (bot, message, args) => {
                 .send(embed);              
               });
             } 
-            else if (message.content == "no") {
+            else if (message.content === "no") {
                 message.channel.send("cancelled.");
                 return;
             }
@@ -59,8 +58,8 @@ module.exports.run = async (bot, message, args) => {
     } else {
       message.reply("You didn't mention the user to ban!");
     }
-  }
+  };
 
 module.exports.help = {
   name: "ban"
-}
+};
