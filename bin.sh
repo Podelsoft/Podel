@@ -1,2 +1,2 @@
 args=("$@")
-curl --data-binary @${args[0]} https:/curlpaste.com/once
+curl --data-binary @${args[0]} https://curlpaste.com/once

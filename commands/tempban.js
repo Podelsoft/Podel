@@ -28,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
               await db.add(`banCount_${user.id}`, 1);
                 member.ban({ reason: "eliminated by podelbot for " + bantime })
                 .then(async () => {
-                  await user.send("you've been banned from Podel Server for **" + bantime + "** (Reason:" + reason + ")")
+                  await user.send(`you've been banned from Podel Server for **${bantime}** (Reason:${reason})`)
                   await message.reply(
                     `Successfully banned ${user.tag} for ${bantime} (Reason:${reason})`
                   );

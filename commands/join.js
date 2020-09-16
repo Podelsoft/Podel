@@ -1,6 +1,8 @@
 const db = require("quick.db");
 
 module.exports.run = async (bot, message, args) => {
+
+  if (message.channel.id !== "708435487525961840")
   var role = message.guild.roles.cache.find(role => role.name === "New Member");
 
   let muted = db.fetch(`muted_${message.author.id}`);
