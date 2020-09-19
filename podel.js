@@ -393,7 +393,7 @@ bot.on("message", async message => {
           cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName)
         );
 
-      if (command2 === undefined) return message.channel.send("that command doesn\"t exist");
+      if (command2 === undefined) return message.channel.send("that command doesn\'t exist");
 
       command2.run(bot, message, args);
     } catch (err) {
