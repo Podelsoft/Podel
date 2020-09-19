@@ -4,7 +4,6 @@ The official Podel Bot Repository by Podelsoft
 [![DeepScan Grade](https://deepscan.io/api/teams/10908/projects/13841/branches/243121/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=10908&pid=13841&bid=243121)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/2842aa3a01604d4a84c9d491ba88cf78)](https://www.codacy.com/gh/Podelsoft/Podel?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Podelsoft/Podel&amp;utm_campaign=Badge_Grade)
 [![Dependencies](https://david-dm.org/podelsoft/podel.svg)](https://david-dm.org/podelsoft/podel)
-[![Coverage Status](https://coveralls.io/repos/github/Podelsoft/Podel/badge.svg?branch=master)](https://coveralls.io/github/Podelsoft/Podel?branch=master)
 
 ## How to set-up and run Podel Bot
 
