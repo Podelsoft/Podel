@@ -48,5 +48,6 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "rank",
-  aliases: ['xp']
+  aliases: ['xp'],
+  type: "user"
 }

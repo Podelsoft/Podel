@@ -19,5 +19,6 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "opts",
-  aliases: ['options']
+  aliases: ['options'],
+  type: "user"
 }

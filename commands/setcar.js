@@ -21,5 +21,6 @@ for (var key in json) {
 }
 
 module.exports.help = {
-  name: "setcar"
+  name: "setcar",
+  type: "user"
 }

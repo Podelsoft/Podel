@@ -18,5 +18,6 @@ module.exports.run = async(bot, message, args) => {
 
 module.exports.help = {
   name: "joblist",
-  aliases: ['jobs', 'jobinfo']
+  aliases: ['jobs', 'jobinfo'],
+  type: "user"
 }

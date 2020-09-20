@@ -14,5 +14,6 @@ yts( args.join() , function ( err, r ) {
 
 module.exports.help = {
   name: "yt",
-  aliases: ['youtube', 'searchyt']
+  aliases: ['youtube', 'searchyt'],
+  type: "user"
 }

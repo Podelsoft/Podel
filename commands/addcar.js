@@ -3,6 +3,8 @@ const json = require('../items.json');
 
 module.exports.run = async (bot, message, args) => {
 
+ if (message.guild.id !== "696515024746709003") { return };
+
  if (message.member.hasPermission("BAN_MEMBERS")) {
  
  let j = args.join(' ');

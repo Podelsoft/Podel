@@ -47,5 +47,6 @@ message.channel.send(embed);
 
 module.exports.help = {
   name: "leaderboard",
-  aliases: ['top', 'top10', 'lb']
+  aliases: ['top', 'top10', 'lb'],
+  type: "user"
 }

@@ -4,7 +4,8 @@ const config = require('../config.json'),
 
 module.exports.run = async(bot, message, args) => {
     if (isNaN(args[0]) || args[0] < 0) return message.channel.send("you need to input a valid number.");
-    let result = 5 * (args[0] * args[0]) + 50 * args[0] + 100;
+    let level = args[0] - 1; 
+    let result = 5 * (level * level) + 50 * level + 100;
     let embed = new Discord.MessageEmbed()
     .setTitle(`Level ${args[0]}`)
     .addField(`XP to LVL`, result)
@@ -14,5 +15,6 @@ module.exports.run = async(bot, message, args) => {
 }
 
 module.exports.help = {
-    name: "calc"
+    name: "calc",
+    type: "user"
 }

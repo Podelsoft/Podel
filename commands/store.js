@@ -48,5 +48,6 @@ await message.channel.send(embed);
 
 module.exports.help = {
   name: "store",
-  aliases: ['shop', 'market', 'tesco']
+  aliases: ['shop', 'market', 'tesco'],
+  type: "user"
 };

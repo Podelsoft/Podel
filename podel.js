@@ -5,9 +5,6 @@ const token = require("../secret.json").token;
 const bot = new Discord.Client({disableMentions: "everyone"});
 const fs = require("fs");
 const db = require("quick.db");
-const ytdl = require("ytdl-core");
-let cooldown = new Set();
-let cds = 3;
 bot.commands = new Discord.Collection();
 
 //bot.on("debug", console.log);
@@ -43,7 +40,7 @@ const app = express()
 const statusMonitor = require("express-status-monitor")({ title: "Podel Bot Status" });
 app.use(statusMonitor);
 app.get("/", statusMonitor.pageRoute);
-app.listen(3000);
+//app.listen(3000);
 
 fs.readdir("./commands/", (err, files) => {
   if (err) console.log(err);

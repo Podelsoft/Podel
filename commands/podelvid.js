@@ -6,5 +6,6 @@ module.exports.run = async (bot, message, args) => {
   message.channel.send(body.url);
 }
 module.exports.help = {
-  name: "podelvid"
+  name: "podelvid",
+  type: "user"
 }

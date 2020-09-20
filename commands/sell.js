@@ -29,5 +29,6 @@ if (isNaN(amount)) return;
 }
 
 module.exports.help = {
-  name: "sell"
+  name: "sell",
+  type: "user"
 }

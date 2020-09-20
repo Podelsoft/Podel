@@ -9,5 +9,6 @@ module.exports.run = async (bot, message, args) => {
 };
 
 module.exports.help = {
-  name: "resume"
+  name: "resume",
+  type: "user"
 };

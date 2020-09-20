@@ -43,5 +43,6 @@ module.exports.run = async (bot, message, args, tools) => {
 
 module.exports.help = {
   name: "send",
-  aliases: ['pay', 'transfer']
+  aliases: ['pay', 'transfer'],
+  type: "user"
 }

@@ -75,5 +75,6 @@ if (items === "no") {
 
 module.exports.help = {
   name: "stats",
-  aliases: ['bal', 'balance', 'profile', 'money', 'wallet']
+  aliases: ['bal', 'balance', 'profile', 'money', 'wallet'],
+  type: "user"
 }

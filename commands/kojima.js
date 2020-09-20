@@ -21,5 +21,6 @@ module.exports.run = async (bot, message, args, member) => {
 };
 
 module.exports.help = {
-  name: "kojima"
+  name: "kojima",
+  type: "user"
 };

@@ -12,5 +12,6 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "clearqueue",
-  aliases: ["clearq", "cq"]
+  aliases: ["clearq", "cq"],
+  type: "user"
 }

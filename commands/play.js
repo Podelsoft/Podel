@@ -42,5 +42,6 @@ module.exports.run = async (bot, message, args) => {
 };
 
 module.exports.help = {
-  name: "play"
+  name: "play",
+  type: "user"
 }

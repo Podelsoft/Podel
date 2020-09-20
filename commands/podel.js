@@ -7,5 +7,6 @@ module.exports.run = async (bot, message, args) => {
 };
 
 module.exports.help = {
-  name: "podel"
+  name: "podel",
+  type: "user"
 }

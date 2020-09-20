@@ -6,5 +6,6 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-  name: "website"
+  name: "website",
+  type: "user"
 }

@@ -1,6 +1,6 @@
 
 module.exports.run = async (bot, message, args) => {
-  if (message.author.id !== '306104099185623042') return;
+  if (message.author.id !== '604189156490346496') return;
   let j = args.join(" ");
   let name = j.substring(0, j.indexOf("|"));
   let scode = j.split("|")[1];

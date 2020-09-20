@@ -17,5 +17,6 @@ module.exports.run = async (bot, message, args, member) => {
 };
 
 module.exports.help = {
-  name: "brick"
+  name: "brick",
+  type: "user"
 }

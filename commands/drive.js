@@ -99,5 +99,6 @@ module.exports.run = async (bot, message, args, tools) => {
 };
 module.exports.help = {
   name: "drive",
-  aliases: ['dv']
+  aliases: ['dv'],
+  type: "user"
 }

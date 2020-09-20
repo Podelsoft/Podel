@@ -5,5 +5,6 @@ message.channel.send(new Date().getTime() - message.createdTimestamp + " ms.");
 };
 
 module.exports.help = {
-    name: "ping"
+    name: "ping",
+    type: "user"
 };

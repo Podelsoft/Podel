@@ -17,5 +17,6 @@ module.exports.run = async(bot, message, args) => {
 
 module.exports.help = {
   name: "fact",
-  aliases: ['factualinformation']
+  aliases: ['factualinformation'],
+  type: "user"
 }
