@@ -18,7 +18,8 @@ let name = item.name;
 let emoji = bot.emojis.cache.find(emoji => emoji.name === `${item.emoji}`);
 let itemtot = db.fetch(`${dbname}_${message.author.id}`);
 
-if (amount < 0) return;
+if ((amount % 1) != 0) return;
+if (amount < 1) return;
 if (isNaN(amount)) return;
 
  if (itemtot < amount) return message.channel.send(`you don't have enough ${emoji} (${name}) to sell`);

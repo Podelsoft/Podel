@@ -14,6 +14,7 @@ module.exports.run = async (bot, message, args) => {
   if (message.guild.id !== "696515024746709003") return;
   
   if (message.member.hasPermission("BAN_MEMBERS")) {
+    if (isNaN(ms(bantime)))
     if (!bantime) return;
     if (!reason) return message.channel.send('you must provide a valid reason.')
     let user = bot.users.cache.find(user => user.username.toLowerCase().includes(args[0].toLowerCase())) || message.mentions.users.first() || bot.users.cache.find(user => user.id === args[0]);
@@ -29,12 +30,14 @@ module.exports.run = async (bot, message, args) => {
                 member.ban({ reason: "eliminated by podelbot for " + bantime })
                 .then(async () => {
                   await user.send(`you've been banned from Podel Server for **${bantime}** (Reason:${reason})`)
+                  .catch(async () => {
+                    message.channel.send('couldn\'t send message to user').then(msg => msg.delete({timeout: 5000}));
+                  });
                   await message.reply(
                     `Successfully banned ${user.tag} for ${bantime} (Reason:${reason})`
                   );
                   await db.add(`banCount_${user.id}`, 1);
-                 // await db.set(`bantime_${message.author.id}`, ms(bantime));
-                  if (isNaN(bantime)) return message.channel.send("for how long?? (like p!tempban @user 1s idk)");
+                  if (isNaN(ms(bantime))) return message.channel.send("for how long?? (like p!tempban @user 1s idk)");
                   if (bantime < 0) return message.channel.send("how is this man.");
         
         let embed = new Discord.MessageEmbed()
@@ -68,9 +71,7 @@ module.exports.run = async (bot, message, args) => {
               "Podel, coded by the government of georgia",
               bot.user.avatarURL()
             );
-          message.guild.unban(user, {
-            reason: "was tempbanned for " + bantime
-          });
+          message.guild.members.unban(user.id);
           bot.guilds.cache
             .get("696515024746709003")
             .channels.cache.get("704356972606259220")

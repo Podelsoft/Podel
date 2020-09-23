@@ -24,7 +24,7 @@ const json = require('../items.json');
 
 let embed = new Discord.MessageEmbed()
 .setTitle(`Podel Store (you have £${bal})`)
-.setDescription(`List of items/perks you can buy and sell using p!buy or p!sell <itemname> <amount>`)
+.setDescription(`List of items/perks that you can buy and sell using p!buy or p!sell <itemname> <amount>`)
 .setColor(colour)
 .setTimestamp()
 .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL())
@@ -34,12 +34,13 @@ for (var key in json) {
 if (json.hasOwnProperty(key)) {
 
 let emoji = bot.emojis.cache.find(emoji => emoji.name === `${json[key].emoji}`); 
-if (json[key].tier){
-embed.addField(`${emoji} ${json[key].name}`, `📥 £${json[key].buy} | 📤 £${json[key].sell} | Tier: ${json[key].tier}`);
-} else {
-embed.addField(`${emoji} ${json[key].name}`, `📥 £${json[key].buy} | 📤 £${json[key].sell}`);
+
+if (!json[key].tier){
+  embed.addField(`${emoji} ${json[key].name}`, `📥 £${json[key].buy} | 📤 £${json[key].sell}`);
 }
+
 }
+
 }
 
 await message.channel.send(embed);

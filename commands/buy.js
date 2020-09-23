@@ -25,7 +25,8 @@ let dbname = item.db;
 let name = item.name;
 let emoji = bot.emojis.cache.find(emoji => emoji.name === `${item.emoji}`);
 
-if (amount < 0) return;
+if ((amount % 1) != 0) return;
+if (amount < 1) return;
 if (isNaN(amount)) return;
 
   if (price > balance) return message.channel.send('you don\'t have enough to buy this, smelly idiot');

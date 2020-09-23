@@ -40,7 +40,7 @@ const app = express()
 const statusMonitor = require("express-status-monitor")({ title: "Podel Bot Status" });
 app.use(statusMonitor);
 app.get("/", statusMonitor.pageRoute);
-//app.listen(3000);
+app.listen(3000);
 
 fs.readdir("./commands/", (err, files) => {
   if (err) console.log(err);
@@ -328,6 +328,7 @@ bot.on("message", async message => {
       });
 
       if (nxtLvl <= xp[message.author.id].xp) {
+        
         let lvlupmsgs = db.fetch(`lvmsgs_${message.author.id}`);
         xp[message.author.id].level = curlvl + 1;
 
@@ -341,23 +342,17 @@ bot.on("message", async message => {
             var rolelads = message.guild.roles.cache.find(role => role.name === "Lads");
             message.member.roles.add(rolelads);
           }
-        }
-
-        if (curlvl >= 19) {
+        } else if (curlvl >= 19) {
           if (!message.member.roles.cache.some(role => role.name === "Units")) {
             var roleunits = message.guild.roles.cache.find(role => role.name === "Units");
             message.member.roles.add(roleunits);
           }
-        }
-
-        if (curlvl >= 49) {
+        } else if (curlvl >= 49) {
           if (!message.member.roles.cache.some(role => role.name === "G")) {
             var roleg = message.guild.roles.cache.find(role => role.name === "G");
             message.member.roles.add(roleg);
           }
-        }
-
-        if (curlvl >= 99) {
+        } else if (curlvl >= 99) {
           if (!message.member.roles.cache.some(role => role.name === "Fused")) {
             var rolefused = message.guild.roles.cache.find(role => role.name === "Fused");
             var roleimg = message.guild.roles.cache.find(role => role.id === "696707967176802364");
@@ -376,8 +371,6 @@ bot.on("message", async message => {
       }
     }
   }
-
-  if (!message.content.startsWith(prefix)) return;
 
   const args2 = message.content.slice(prefix.length).split(/ +/);
   const commandName = args2.shift().toLowerCase();

@@ -12,6 +12,8 @@ module.exports.run = async (bot, message, args, tools) => {
   
   if(targetMember.bot) return message.reply(`you can't give money to bots`);
   
+  if ((amount % 1) != 0) return;
+  if (amount < 1) return;
   if (isNaN(amount)) return;
   
   let targetBalance = await db.fetch(`balance_${targetMember.id}`),
@@ -32,10 +34,10 @@ module.exports.run = async (bot, message, args, tools) => {
   let embed = new Discord.MessageEmbed()
   .setColor(colour)
   .setTitle('Code: ' + transactioncode)
-  .setAuthor(message.author.tag, message.author.displayAvatarURL)
+  .setAuthor(message.author.tag, message.author.displayAvatarURL())
   .setDescription(`sent **£${amount}** to \`${targetMember.user.username}\``)
   .setTimestamp()
-  .setFooter(`Podel, coded by the government of georgia`, bot.user.displayAvatarURL);
+  .setFooter(`Podel, coded by the government of georgia`, bot.user.displayAvatarURL());
 
   await bot.guilds.cache.get("644551231020204062").channels.cache.get("715210857197338684").send(embed);
   await message.channel.send(embed);

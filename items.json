@@ -19,7 +19,11 @@
     "sell": "250",
     "db": "ptcruiser",
     "emoji": "ptcruiser",
-    "tier": "1"
+    "tier": "1",
+    "max": "190",
+    "acceleration": "11.1",
+    "handling": "shit",
+    "grade": "18"
   },
   "aztek": {
     "name": "2004 Pontiac Aztek (aztek)",
@@ -27,7 +31,11 @@
     "sell": "400",
     "db": "aztek",
     "emoji": "aztek",
-    "tier": "1"
+    "tier": "1",
+    "max": "240",
+    "acceleration": "8.5",
+    "handling": "shit",
+    "grade": "24"
   },
   "astra": {
    "name": "2006 Opel Astra 1.3L (astra)",
@@ -35,7 +43,11 @@
    "sell": "450",
    "db": "astra",
    "emoji": "astra",
-   "tier": "1"
+   "tier": "1",
+   "max": "205",
+   "acceleration": "8.5",
+   "handling": "meh",
+   "grade": "35"
   },
   "sonata": {
     "name": "2009 Hyundai Sonata (sonata)",
@@ -43,7 +55,11 @@
     "sell": "750",
     "db": "sonata",
     "emoji": "sonata",
-    "tier": "1"
+    "tier": "1",
+    "max": "253",
+    "acceleration": "7.1",
+    "handling": "ok",
+    "grade": "39"
   },
   "murano": {
     "name": "2007 Nissan Murano (murano)",
@@ -51,7 +67,11 @@
     "sell": "850",
     "db": "murano",
     "emoji": "murano",
-    "tier": "1"
+    "tier": "1",
+    "max": "200",
+    "acceleration": "8.4",
+    "handling": "ok",
+    "grade": "49"
   },
   "accent": {
     "name": "2009 Hyundai Accent (accent)",
@@ -59,7 +79,11 @@
     "sell": "1200",
     "db": "accent",
     "emoji": "accent",
-    "tier": "1"
+    "tier": "1",
+    "max": "177",
+    "acceleration": "11.3",
+    "handling": "good",
+    "grade": "54"
   },
   "rondo": {
     "name": "2007 Kia Rondo EX Wagon (rondo)",
@@ -67,7 +91,11 @@
     "sell": "1450",
     "db": "rondo",
     "emoji": "rondo",
-    "tier": "2"
+    "tier": "2",
+    "max": "182",
+    "acceleration": "8.9",
+    "handling": "good",
+    "grade": "58"
   },
   "rabbit": {
     "name": "2009 Volkswagen Rabbit (rabbit)",
@@ -75,7 +103,11 @@
     "sell": "2100",
     "db": "rabbit",
     "emoji": "vwrabbit",
-    "tier": "2"
+    "tier": "2",
+    "max": "220",
+    "acceleration": "7.5",
+    "handling": "meh",
+    "grade": "57"
   },
   "lacrosse": {
     "name": "2007 Buick LaCrosse (lacrosse)",
@@ -83,7 +115,11 @@
     "sell": "1600",
     "db": "lacrosse",
     "emoji": "lacrosse",
-    "tier": "2"
+    "tier": "2",
+    "max": "229",
+    "acceleration": "6.1",
+    "handling": "good",
+    "grade": "59"
   },
   "xd": {
     "name": "2009 Scion xD (xd)",
@@ -91,7 +127,11 @@
     "sell": "1950",
     "db": "xd",
     "emoji": "scionxd",
-    "tier": "2"
+    "tier": "2",
+    "max": "193",
+    "acceleration": "8.3",
+    "handling": "ok",
+    "grade": "60"
   },
   "m3": {
     "name": "2007 BMW 3 Series (m3)",
@@ -99,7 +139,11 @@
     "sell": "2250",
     "db": "m3",
     "emoji": "m3",
-    "tier": "2"
+    "tier": "2",
+    "max": "250",
+    "acceleration": "4.9",
+    "handling": "ok",
+    "grade": "62"
   },
   "mx5": {
     "name": "1993 Mazda MX-5 Miata (mx5)",
@@ -107,7 +151,11 @@
     "sell": "2250",
     "db": "mx5",
     "emoji": "mx5",
-    "tier": "2"
+    "tier": "2",
+    "max": "195",
+    "acceleration": "8.8",
+    "handling": "meh",
+    "grade": "63"
   },
   "malibu": {
     "name": "2009 Chevrolet Malibu (malibu)",
@@ -115,7 +163,11 @@
     "sell": "3700",
     "db": "malibu",
     "emoji": "malibu",
-    "tier": "2"
+    "tier": "2",
+    "max": "212",
+    "acceleration": "9",
+    "handling": "good",
+    "grade": "64"
   },
   "tribute": {
     "name": "2009 Mazda Tribute (tribute)",
@@ -123,7 +175,11 @@
     "sell": "2200",
     "db": "tribute",
     "emoji": "tribute",
-    "tier": "2"
+    "tier": "2",
+    "max": "184",
+    "acceleration": "9.4",
+    "handling": "good",
+    "grade": "64"
   },
   "sx4": {
     "name": "2008 Suzuki SX4 Wagon (sx4)",
@@ -131,7 +187,11 @@
     "sell": "4350",
     "db": "sx4",
     "emoji": "sx4",
-    "tier": "2"
+    "tier": "2",
+    "max": "192",
+    "acceleration": "8.4",
+    "handling": "great",
+    "grade": "67"
   },
   "solstice": {
     "name": "2008 Pontiac Solstice (solstice)",
@@ -139,7 +199,11 @@
     "sell": "4000",
     "db": "solstice",
     "emoji": "solstice",
-    "tier": "2"
+    "tier": "2",
+    "max": "229",
+    "acceleration": "5.4",
+    "handling": "great",
+    "grade": "70"
   },
   "cobalt": {
     "name": "2008 Chevrolet Cobalt SS (cobalt)",
@@ -147,7 +211,11 @@
     "sell": "9500",
     "db": "cobalt",
     "emoji": "chev",
-    "tier": "3"
+    "tier": "3",
+    "max": "258",
+    "acceleration": "5.7",
+    "handling": "great",
+    "grade": "73"
   },
   "galant": {
     "name": "2009 Mitsubishi Galant (galant)",
@@ -155,7 +223,23 @@
     "sell": "10500",
     "db": "galant",
     "emoji": "galant",
-    "tier": "3"
+    "tier": "3",
+    "max": "210",
+    "acceleration": "9",
+    "handling": "really good",
+    "grade": "75"
+  },
+  "slr": {
+    "name": "2010 Mercedes-Benz SLR McLaren",
+    "buy": "25000",
+    "sell": "11000",
+    "db": "slr",
+    "emoji": "slr",
+    "tier": "3",
+    "max": "334",
+    "acceleration": "3.4",
+    "handling": "really good",
+    "grade": "80"
   },
   "passatwagon": {
     "name": "2007 Volkswagen Passat Wagon (passatwagon)",
@@ -163,7 +247,11 @@
     "sell": "15000",
     "db": "passatwagon",
     "emoji": "passatwagon",
-    "tier": "3"
+    "tier": "3",
+    "max": "209",
+    "acceleration": "6.2",
+    "handling": "amazing",
+    "grade": "83"
   },
   "passat": {
     "name": "2007 Volkswagen Passat Sedan (passat)",
@@ -171,6 +259,22 @@
     "sell": "19800",
     "db": "passat",
     "emoji": "passat",
-    "tier": "3"
+    "tier": "3",
+    "max": "250",
+    "acceleration": "6.4",
+    "handling": "amazing",
+    "grade": "86"
+  },
+  "quattro": {
+    "name": "1985 Audi Sport Quattro S1 (quattro)",
+    "buy": "100000",
+    "sell": "75000",
+    "db": "quattro",
+    "emoji": "quattro",
+    "tier": "4",
+    "max": "220",
+    "acceleration": "3",
+    "handling": "excellent",
+    "grade": "92"
   }
 }

@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
   
       if (!mutetime) return message.channel.send('you didn\'t specify any indefinite continued progress of existence and events in the past, present, and future regarded as a whole.');
       
-      if (isNaN(mutetime)) return message.channel.send('for how long?? (like p!mute @user 1s idk)');
+      if (isNaN(ms(mutetime))) return message.channel.send('for how long?? (like p!mute @user 1s idk)');
       
       if (mutetime < 0) return message.channel.send('how is this man.')
       

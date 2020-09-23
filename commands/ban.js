@@ -27,7 +27,10 @@ module.exports.run = async (bot, message, args) => {
                     xp: 0,
                     level: 1
                   };*/
-                  await user.send(`you've been banned from Podel Server (Reason:${reason})`);
+                  await user.send(`you've been banned from Podel Server (Reason:${reason})`)
+                  .catch(async () => {
+                    message.channel.send('couldn\'t send message to user').then(msg => msg.delete({timeout: 5000}));
+                  });
                   await message.reply(
                     `Successfully banned ${user.tag} (Reason:${reason})`
                   );
