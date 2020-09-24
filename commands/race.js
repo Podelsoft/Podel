@@ -45,86 +45,53 @@ module.exports.run = async (bot, message, args) => {
     .setTimestamp()
     .setFooter('Podel, do ya thang', bot.user.avatarURL());
 
-    await message.channel.send(embedstart).then(async (startmsg) => {
+    async function start() {
 
-    await startmsg.react("✅");
+        let cperc1 = db.fetch(`perc_${message.author.id}`);
+        let cperc2 = db.fetch(`perc_${user.id}`)
+
+        if (!cperc1) return message.channel.send("You need to reset your car. `(no perc)`")
+        else
+        if (!cperc2) return message.channel.send("That user needs to reset their car. `(no perc)`");
+    
+        let perc1 = parseInt(cperc1);
+        let perc2 = parseInt(cperc2);
+
+        let comp1;
+        let comp2;
+    
+        let chan1;
+        let chan2;
+    
+        if (perc1 > perc2) { 
+            comp1 = perc1 - perc2
+            chan1 = 100 - comp1
+            if (comp1 < chan1) chan1 = perc1 - perc2, comp1 = 100 - chan1, chan2 = comp1 
+        }
+        else
+        if (perc2 > perc1) { 
+            comp2 = perc2 - perc1
+            chan2 = 100 - comp2
+            if (comp2 < chan2) chan2 = perc2 - perc1, comp2 = 100 - chan2, chan1 = comp2 
+        }
+        else
+        if (perc1 === perc2) comp1 = 50, comp2 = 50;
+
+    setTimeout(async () => {
+
+    message.channel.send(embedstart).then(async (startmsg) => {
+
     await startmsg.react("❌");
+    await startmsg.react("✅");
 
-    const filter = (reaction, user) => reaction.emoji.name === "❌" || "✅" && user.id === message.mentions.users.first().id;
+    const filter = (reaction, user) => reaction.emoji.name === "✅" || "❌" && user.id === message.mentions.users.first().id;
     const collector = startmsg.createReactionCollector(filter, { max: 1, time: 20000 });
 
     collector.on('collect', async (reaction) => {
 
-    if (reaction.emoji.name === "✅") {
+    if (reaction.emoji.name.includes("✅")) {
 
     let result = Math.floor((Math.random() * 100) + 0);
-
-    let perc1;
-    let perc2;
-
-    // Perc 1
-    if (json[car1].grade >= 10) { perc1 === 10 }
-    else
-    if (json[car1].grade >= 20) { perc1 === 20 }
-    else 
-    if (json[car1].grade >= 30) { perc1 === 30 }
-    else
-    if (json[car1].grade >= 40) { perc1 === 40 }
-    else
-    if (json[car1].grade >= 50) { perc1 === 50 }
-    else
-    if (json[car1].grade >= 60) { perc1 === 60 }
-    else
-    if (json[car1].grade >= 70) { perc1 === 70 }
-    else
-    if (json[car1].grade >= 80) { perc1 === 80 }
-    else
-    if (json[car1].grade >= 90) { perc1 === 90 }
-    else
-    if (json[car1].grade >= 100) { perc1 === 100 }; 
-
-    // Perc 2
-    if (json[car2].grade >= 10) { perc2 === 10 }
-    else
-    if (json[car2].grade >= 20) { perc2 === 20 }
-    else 
-    if (json[car2].grade >= 30) { perc2 === 30 }
-    else
-    if (json[car2].grade >= 40) { perc2 === 40 }
-    else
-    if (json[car2].grade >= 50) { perc2 === 50 }
-    else
-    if (json[car2].grade >= 60) { perc2 === 60 }
-    else
-    if (json[car2].grade >= 70) { perc2 === 70 }
-    else
-    if (json[car2].grade >= 80) { perc2 === 80 }
-    else
-    if (json[car2].grade >= 90) { perc2 === 90 }
-    else
-    if (json[car2].grade >= 100) { perc2 === 100 };
-
-    let comp1;
-    let comp2;
-
-    let chan1;
-    let chan2;
-
-    if (perc1 > perc2) { 
-        comp1 = perc1 - perc2
-        chan1 = 100 - comp1
-        if (comp1 < chan1) chan1 = perc1 - perc2, comp1 = 100 - chan1
-        chan2 = comp1 
-    }
-    else
-    if (perc2 > perc1) { 
-        comp2 = perc2 - perc1
-        chan2 = 100 - comp2
-        if (comp2 < chan2) chan2 = perc2 - perc1, comp2 = 100 - chan2
-        chan1 = comp2 
-    }
-    else
-    if (perc1 === perc2) comp1 = 50, comp2 = 50;
 
     if (result <= comp1) {
         let emojicar1 = bot.emojis.cache.find(emoji => emoji.name === `${json[car1].emoji}`);
@@ -152,12 +119,17 @@ module.exports.run = async (bot, message, args) => {
         db.add(`balance_${user.id}`, wager);
     }
 
-   } else if (reaction.emoji.name === "❌") return message.channel.send(`${message.author} rekt ✅.`) 
+   } else if (reaction.emoji.name.includes("❌")) return message.channel.send(`${message.author} rekt ✅`) 
 
   });
 
  });
 
+});
+
+}
+
+start();
 };
 
 module.exports.help = {

@@ -23,9 +23,7 @@ module.exports.run = async (bot, message, args, tools) => {
   if (selfBalance === null) selfBalance = 0;
   
   if (amount > selfBalance) return message.channel.send(`you can't make that transaction`);
-  
-  if (amount < 0) return;
-  
+    
   db.add(`balance_${targetMember.id}`, amount);
   db.subtract(`balance_${message.author.id}`, amount);
   

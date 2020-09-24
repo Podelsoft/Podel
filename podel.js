@@ -337,22 +337,22 @@ bot.on("message", async message => {
           .setColor("#9e0e24")
           .addField("PODEL LVL UP", curlvl + 1);
 
-        if (curlvl >= 9) {
+        if (curlvl >= 9 && curlvl < 19) {
           if (!message.member.roles.cache.some(role => role.name === "Lads")) {
             var rolelads = message.guild.roles.cache.find(role => role.name === "Lads");
             message.member.roles.add(rolelads);
           }
-        } else if (curlvl >= 19) {
+        } else if (curlvl >= 19 && curlvl < 49) {
           if (!message.member.roles.cache.some(role => role.name === "Units")) {
             var roleunits = message.guild.roles.cache.find(role => role.name === "Units");
             message.member.roles.add(roleunits);
           }
-        } else if (curlvl >= 49) {
+        } else if (curlvl >= 49 && curlvl < 99) {
           if (!message.member.roles.cache.some(role => role.name === "G")) {
             var roleg = message.guild.roles.cache.find(role => role.name === "G");
             message.member.roles.add(roleg);
           }
-        } else if (curlvl >= 99) {
+        } else if (curlvl >= 99 && curlvl < 499) {
           if (!message.member.roles.cache.some(role => role.name === "Fused")) {
             var rolefused = message.guild.roles.cache.find(role => role.name === "Fused");
             var roleimg = message.guild.roles.cache.find(role => role.id === "696707967176802364");
