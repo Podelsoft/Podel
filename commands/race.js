@@ -66,13 +66,13 @@ module.exports.run = async (bot, message, args) => {
         if (perc1 > perc2) { 
             comp1 = perc1 - perc2
             chan1 = 100 - comp1
-            if (comp1 < chan1) chan1 = perc1 - perc2, comp1 = 100 - chan1, chan2 = comp1 
+            if (comp1 < chan1) chan1 = perc1 - perc2, comp1 = 100 - chan1;
         }
         else
         if (perc2 > perc1) { 
             comp2 = perc2 - perc1
             chan2 = 100 - comp2
-            if (comp2 < chan2) chan2 = perc2 - perc1, comp2 = 100 - chan2, chan1 = comp2 
+            if (comp2 < chan2) chan2 = perc2 - perc1, comp2 = 100 - chan2;
         }
         else
         if (perc1 === perc2) comp1 = 50, comp2 = 50;
