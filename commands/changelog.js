@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
   const embed = new Discord.MessageEmbed()
     .setTitle('v1.4.0 Changelog | 24/9/2020')
     .setDescription(`
-  •	 Fixed/Updated commands: p!help, p!rolefind, p!unban, p!unmute, p!mute, p!ban, p!tempban, p!kick, p!msgmute and p!shop.
+  •	 Fixed/Updated commands: p!setcar, p!race, p!help, p!rolefind, p!unban, p!unmute, p!mute, p!ban, p!tempban, p!kick, p!msgmute and p!shop.
   •  New commands: p!dealership (to make space for new items on the p!shop), p!race (for car racing).
   •  New cars: the 1985 Audi Sport Quattro S1 and the 2010 Mercedes-Benz McLaren SLR
   •  Added car perfomance stats (top speed, acceleration in 0-100km/h, handling and car grade). 
