@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
         message.channel.send(`Are you sure you want to ban **${user.tag}** (yes/no)`);
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 10000 });
         collector.on("collect", (message) => {
-            if (message.content === "yes") {
+            if (message.content.toLowerCase() === "yes") {
                 member.ban({ reason: "eliminated by podelbot" })
                 .then(async () => {
                   /*xp[user.id] = {
@@ -49,7 +49,7 @@ module.exports.run = async (bot, message, args) => {
                 .send(embed);              
               });
             } 
-            else if (message.content === "no") {
+            else if (message.content.toLowerCase() === "no") {
                 message.channel.send("cancelled.");
                 return;
             }

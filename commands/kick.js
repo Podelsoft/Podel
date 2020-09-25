@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
         message.channel.send(`Are you sure you want to kick **${user.tag}** (yes/no)`);
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 10000 });
         collector.on('collect', message => {
-            if (message.content == "yes") {
+            if (message.content.toLowerCase() == "yes") {
                 member.kick({ reason: "eliminated by podelbot" })
                 .then(async () => {
                   await user.send(`you've been kicked from Podel Server (Reason:${reason})`)
@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
                 console.error(err);
               });
             } 
-            else if (message.content == "no") {
+            else if (message.content.toLowerCase() == "no") {
                 message.channel.send("cancelled.");
                 return;
             }

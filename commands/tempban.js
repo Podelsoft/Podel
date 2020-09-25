@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args) => {
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 10000 });
         console.log(collector)
         collector.on('collect', async message => {
-            if (message.content == "yes") {
+            if (message.content.toLowerCase() == "yes") {
               await db.add(`banCount_${user.id}`, 1);
                 member.ban({ reason: "eliminated by podelbot for " + bantime })
                 .then(async () => {
@@ -82,7 +82,7 @@ module.exports.run = async (bot, message, args) => {
         console.error(err);
       });
             }
-            else if (message.content == "no") {
+            else if (message.content.toLowerCase() == "no") {
                 message.channel.send("cancelled.");
                 return;
             }
