@@ -133,5 +133,6 @@ start();
 };
 
 module.exports.help = {
-    name: "race"
+    name: "race",
+    type: "user"
 };
