@@ -276,5 +276,17 @@
     "acceleration": "3",
     "handling": "excellent",
     "grade": "92"
+  },
+  "undefined": {
+    "name": "The Undefined (undefined)",
+    "buy": "1000000",
+    "sell": "800000",
+    "db": "undefined",
+    "emoji": "undefined",
+    "tier": "5",
+    "max": "???",
+    "acceleration": "???",
+    "handling": "???",
+    "grade": "100"
   }
 }

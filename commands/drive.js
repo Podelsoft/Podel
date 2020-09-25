@@ -21,6 +21,8 @@ module.exports.run = async (bot, message, args, tools) => {
     if (json[car].tier === '3') mult = 4
     else
     if (json[car].tier === '4') mult = 8 
+    else
+    if (json[car].tier === '5') mult = 100
     
     let routes = [
       '1',

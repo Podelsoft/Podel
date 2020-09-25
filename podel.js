@@ -207,7 +207,7 @@ bot.on("messageDelete", async message => {
    }
 });
 
-bot.on("guildMemberAdd", member => {
+bot.on("guildMemberAdd", async member => {
 
   let role = member.guild.roles.cache.find(role => role.id === "708436278302998600");
 
@@ -217,13 +217,37 @@ bot.on("guildMemberAdd", member => {
     member.roles.add(role);
   }
 
+  const Canvas = require("canvas");
+  const canvas = Canvas.createCanvas(875, 210);
+  const ctx = canvas.getContext("2d");
+
+  const background = await Canvas.loadImage(
+"https://media.discordapp.net/attachments/697548272192979074/759193785795608616/man3.png"
+  );
+
+  ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+  const avatar = await Canvas.loadImage(member.user.avatarURL({ format: 'png', dynamic: true, size: 1024 }));
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = '#ffffff';
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+    ctx.font = '29px courier';
+    ctx.fillStyle = '#000000';
+    ctx.fillText(member.user.username, canvas.width / 22.5, canvas.height / 1.15);
+    ctx.beginPath();
+    ctx.arc(800, 50, 60, 0, Math.PI * 2, true);
+    ctx.closePath();
+    ctx.clip();
+  ctx.drawImage(avatar, 735, 0, 128, 128);
+
   let channel = bot.guilds.cache
     .find(channel => channel.id === "696515024746709003")
     .channels.cache.get("696714277272158319");
   channel
     .send(
       `**${member.user.tag}**` +
-      " joined the crap server \nhttps://cdn.glitch.com/5d94d2b3-55ae-4001-86e0-104c8c5e4005%2Fye-2-2.mp4?v=1590680942274"
+      " joined the crap server", 
+      { files: [canvas.toBuffer()] } 
     );
 });
 
