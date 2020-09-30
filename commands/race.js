@@ -40,7 +40,7 @@ module.exports.run = async (bot, message, args) => {
     
     let embedstart = new Discord.MessageEmbed()
     .setAuthor(`${message.author.tag} | Race Invite`, `${message.author.avatarURL()}`)
-    .setDescription(`Hey ${user}, ${message.author.tag} has invited you to a drag race for **${wager}** quid. (you have 20 seconds to react with ✅ to accept or ❌ to decline)`)
+    .setDescription(`Hey ${user}, ${message.author.tag} has invited you to a drag race for **${wager}** quid. (20 seconds until the race start, react with ✅ to accept or ❌ to decline)`)
     .setColor(colour)
     .setTimestamp()
     .setFooter('Podel, do ya thang', bot.user.avatarURL());
@@ -77,19 +77,15 @@ module.exports.run = async (bot, message, args) => {
         else
         if (perc1 === perc2) comp1 = 50, comp2 = 50;
 
-    setTimeout(async () => {
-
     message.channel.send(embedstart).then(async (startmsg) => {
 
-    await startmsg.react("❌");
     await startmsg.react("✅");
+    await startmsg.react("❌");
+    
+    startmsg.awaitReactions((reaction, user) => user.id === message.mentions.users.first().id && (reaction.emoji.name === "✅" || "❌"), { max: 1, time: 20000 })
+    .then(async (collected) => {
 
-    const filter = (reaction, user) => reaction.emoji.name === "✅" || "❌" && user.id === message.mentions.users.first().id;
-    const collector = startmsg.createReactionCollector(filter, { max: 1, time: 20000 });
-
-    collector.on('collect', async (reaction) => {
-
-    if (reaction.emoji.name.includes("✅")) {
+    if (collected.first().emoji.name === "✅") {
 
     let result = Math.floor((Math.random() * 100) + 0);
 
@@ -119,11 +115,12 @@ module.exports.run = async (bot, message, args) => {
         db.add(`balance_${user.id}`, wager);
     }
 
-   } else if (reaction.emoji.name.includes("❌")) return message.channel.send(`${message.author} rekt ✅`) 
+   } else if (collected.first().emoji.name === "❌") return message.channel.send(`${message.author} rekt ✅`) 
 
+  })
+  .catch(() => {
+      message.channel.send(`Race Stopped: \`Timed Out\``);
   });
-
- });
 
 });
 
