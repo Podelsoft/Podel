@@ -5,7 +5,7 @@ let config = require('../config.json'),
 
 module.exports.run = async (bot, message, args) => {
 
-  if (message.guild.id !== "696515024746709003") return;
+  if (message.guild.id !== config.guildID) return;
   
   if (message.member.hasPermission('KICK_MEMBERS')) {
 
@@ -21,7 +21,9 @@ module.exports.run = async (bot, message, args) => {
 
     await channel.messages.fetch(args[0]).then(msg => idmsg = msg.id);
 
+    if (message.attachments.size < 0) {
     await channel.messages.fetch(args[0]).then(msg => msgcont = msg.content);
+    } else { msgcont = "attachment saved in logs" }
 
     await channel.messages.fetch(args[0]).then(msg => user = msg.author);
 
@@ -46,7 +48,7 @@ module.exports.run = async (bot, message, args) => {
 
       await db.add(`warnCount_${user.id}`, 1)
  
-      await bot.guilds.cache.get("696515024746709003").channels.cache.get("704356972606259220").send(embed);
+      await bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed);
       
       await user.send(`you've been warned on Podel Server for **${reason}**` + '\n\n`message attached to warn:` ```' + msgcont + '```');      
       
@@ -55,6 +57,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "msgwarn",
-  aliases: ['mw', 'msgw', 'messagewarn']
+  aliases: ['mw', 'msgw', 'messagewarn'],
+  type: "mod"
 }
 

@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
   let j = args.join(' ');
   let reason = j.split(args[1])[1];
   
-  if (message.guild.id !== "696515024746709003") return;
+  if (message.guild.id !== config.guildID) return;
   
   if (message.member.hasPermission('MANAGE_MESSAGES')) {
     
@@ -51,7 +51,7 @@ module.exports.run = async (bot, message, args) => {
       
       await user.user.send('you\'ve been muted on Podel Server for **' + mutetime + '** (Reason:' + reason + ')');
       
-      await bot.guilds.cache.get("696515024746709003").channels.cache.get("704356972606259220").send(embed);
+      await bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed);
       
       setTimeout(function() {
       if (!user.roles.cache.some(role => role.name === "Muted")) return;
@@ -66,12 +66,13 @@ module.exports.run = async (bot, message, args) => {
       .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL())
       user.roles.remove(role);
       db.delete(`muted_${user.user.id}`);
-      bot.guilds.cache.get("696515024746709003").channels.cache.get("704356972606259220").send(embed2);
+      bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed2);
       }, ms(mutetime));
      }
     };
 
 module.exports.help = {
   name: "mute",
-  aliases: ['m', 'silence']
+  aliases: ['m', 'silence'],
+  type: "mod"
 }

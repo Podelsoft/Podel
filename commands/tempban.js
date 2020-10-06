@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
   let j = args.join(' ');
   let reason = j.split(args[1])[1];  
  
-  if (message.guild.id !== "696515024746709003") return;
+  if (message.guild.id !== config.guildID) return;
   
   if (message.member.hasPermission("BAN_MEMBERS")) {
     if (isNaN(ms(bantime)))
@@ -54,7 +54,7 @@ module.exports.run = async (bot, message, args) => {
           );
 
         await bot.guilds.cache
-          .get("696515024746709003")
+          .get(config.guildID)
           .channels.cache.get("704356972606259220")
           .send(embed);
 
@@ -73,7 +73,7 @@ module.exports.run = async (bot, message, args) => {
             );
           message.guild.members.unban(user.id);
           bot.guilds.cache
-            .get("696515024746709003")
+            .get(config.guildID)
             .channels.cache.get("704356972606259220")
             .send(embed2);
         }, ms(bantime));
@@ -97,5 +97,6 @@ module.exports.run = async (bot, message, args) => {
 };
 
 module.exports.help = {
-  name: "tempban"
+  name: "tempban",
+  type: "mod"
 }

@@ -8,5 +8,6 @@ if (message.member.hasPermission("KICK_MEMBERS")) {
 
 module.exports.help = {
   name: "roleid",
-  aliases: ["rid", "idrole"]
+  aliases: ["rid", "idrole"],
+  type: "mod"
 }

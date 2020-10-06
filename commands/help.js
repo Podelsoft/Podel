@@ -28,14 +28,20 @@ module.exports.run = async (bot, message, help) => {
 
   files.forEach(file => {
     let toOutput = file.replace(".js", "");
-//    let fltr = bot.commands.get(toOutput).help.type;
-//    if (message.guild.id === "696515024746709003" && message.member.hasPermission("KICK_MEMBERS")) {
-      output.push(`\`${toOutput}\``);
-//    } else {
-//      if (fltr) {
-//        output.push(`\`${toOutput}\``);
-//      }
-//    }
+    if (bot.commands.get(`${toOutput}`)) {
+      let fltr = bot.commands.get(`${toOutput}`).help.type;
+    if (message.guild.id === config.guildID && message.member.hasPermission("KICK_MEMBERS")) {
+      if (!config.owner.includes(message.author.id) && fltr !== "owner") {
+        output.push(`\`${toOutput}\``);
+      } else {
+        output.push(`\`${toOutput}\``);
+      }
+    } else {
+      if (fltr === "user") {
+        output.push(`\`${toOutput}\``);
+      }
+    }
+  }
   });
 
   embed.setDescription(output.join(", "));
@@ -45,7 +51,7 @@ module.exports.run = async (bot, message, help) => {
   /*if (!message.member.hasPermission("KICK_MEMBERS")) {
     message.channel.send(embed);
   } else if (message.member.hasPermission("KICK_MEMBERS")) {
-    if (message.guild.id !== "696515024746709003") { return message.channel.send(embed); }
+    if (message.guild.id !== config.guildID) { return message.channel.send(embed); }
     message.channel.send(staffembed);
   }*/
   

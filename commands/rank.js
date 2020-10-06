@@ -22,7 +22,7 @@ module.exports.run = async (bot, message, args) => {
 
   let curxp = xp[user.id].xp;
   let curlvl = xp[user.id].level;
-  let nxtlvl = 5 * (xp[user.id].level * xp[user.id].level) + 50 * xp[user.id].level + 100;
+  let nxtlvl = 5 * (xp[user.id].level ** 2) + 50 * xp[user.id].level + 100;
   
   const progress = (curxp % 1000) / 1000;
   const progressOutOf10 = Math.round(progress * 10);

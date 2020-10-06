@@ -1,6 +1,8 @@
+const config = require("../config.json");
 
 module.exports.run = async (bot, message, args) => {
   
+  if (message.guild.id === config.guildID) return;
   if (message.member.hasPermission("BAN_MEMBERS")) {
     if (!message.guild.me.hasPermission(["BAN_MEMBERS"])) return message.channel.send("I can't do that");
       try {
@@ -14,5 +16,6 @@ module.exports.run = async (bot, message, args) => {
 };
 
 module.exports.help = {
-  name: "unban"
+  name: "unban",
+  type: "mod"
 }

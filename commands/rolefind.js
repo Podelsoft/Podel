@@ -36,5 +36,6 @@ module.exports.run = async(bot, message, args) => {
 
 module.exports.help = {
    name: "rf",
-   aliases: ["rolefind", "searchrole", "findrole"]
+   aliases: ["rolefind", "searchrole", "findrole"],
+   type: "mod"
 }

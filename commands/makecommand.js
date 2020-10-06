@@ -33,5 +33,6 @@ ${scode.trim()}\`\`\``);
 
 module.exports.help = {
   name: "makecommand",
-  aliases: ['mc', 'makecmd']
+  aliases: ['mc', 'makecmd'],
+  type: "owner"
 }

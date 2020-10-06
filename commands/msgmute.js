@@ -6,12 +6,12 @@ let config = require("../config.json"),
 
 module.exports.run = async (bot, message, args) => {
   
-  if (message.guild.id !== "696515024746709003") return;
+  if (message.guild.id !== config.guildID) return;
   
   if (message.member.hasPermission("MANAGE_MESSAGES")) {
 
-   const channel = bot.guilds.cache.get("696515024746709003").channels.cache.get(`${message.channel.id}`);
-   const channel2 = bot.guilds.cache.get("696515024746709003").channels.cache.get("734494129051926619");   
+   const channel = bot.guilds.cache.get(config.guildID).channels.cache.get(`${message.channel.id}`);
+   const channel2 = bot.guilds.cache.get(config.guildID).channels.cache.get("734494129051926619");   
 
     let p = args.join(" ");
  
@@ -23,7 +23,9 @@ module.exports.run = async (bot, message, args) => {
 
     await channel.messages.fetch(args[0]).then(msg => idmsg = msg.id);
 
-    await channel.messages.fetch(args[0]).then(msg => msgcont = msg.content);
+    if (message.attachments.size < 0) {
+      await channel.messages.fetch(args[0]).then(msg => msgcont = msg.content);
+    } else { msgcont = "attachment saved in logs" }
 
     await channel.messages.fetch(args[0]).then(msg => user2 = msg.author);
     
@@ -70,7 +72,7 @@ module.exports.run = async (bot, message, args) => {
       await user.user.send("you\"ve been muted on Podel Server for **" + mutetime + "** (Reason: " + reason + ") \n\n`message attached to mute:` ```" + msgcont + "```")
       .catch(() => channel2.send(user.user + ", you\"ve been muted on Podel Server for **" + mutetime + "** (Reason: " + reason + ") \n\n`message attached to mute:` ```" + msgcont + "```").then(msg => msg.delete(20000)));
       
-      await bot.guilds.cache.get("696515024746709003").channels.cache.get("704356972606259220").send(embed);
+      await bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed);
       
       setTimeout(function() {
       if (!user.roles.cache.some(role => role.name === "Muted")) return;
@@ -87,12 +89,13 @@ module.exports.run = async (bot, message, args) => {
       .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
       user.roles.remove(role);
       db.delete(`muted_${user.user.id}`);
-      bot.guilds.cache.get("696515024746709003").channels.cache.get("704356972606259220").send(embed2);
+      bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed2);
       }, ms(mutetime));
     }
   };
 
 module.exports.help = {
   name: "msgmute",
-  aliases: ["mm", "mutemsg"]
+  aliases: ["mm", "mutemsg"],
+  type: "mod"
 }

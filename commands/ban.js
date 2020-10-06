@@ -5,7 +5,7 @@ const config = require("../config.json"),
 
 module.exports.run = async (bot, message, args) => {
   
-  if (message.guild.id !== "696515024746709003") { return };
+  if (message.guild.id !== config.guildID) { return };
 
   let j = args.join(" ");
   let reason = j.split(args[0])[1];
@@ -44,7 +44,7 @@ module.exports.run = async (bot, message, args) => {
                     .setFooter("Podel, get fucked dude", bot.user.avatarURL());
                 await db.add(`banCount_${user.id}`, 1);
                 await bot.guilds.cache
-                .get("696515024746709003")
+                .get(config.guildID)
                 .channels.cache.get("704356972606259220")
                 .send(embed);              
               });
@@ -64,5 +64,7 @@ module.exports.run = async (bot, message, args) => {
   };
 
 module.exports.help = {
-  name: "ban"
+  name: "ban",
+  aliases: ["mod"],
+  type: "mod"
 };

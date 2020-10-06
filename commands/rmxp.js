@@ -1,5 +1,10 @@
+const config = require("../config.json");
 
 module.exports.run = async (bot, message, args) => {
+  
+  if (message.guild.id !== config.guildID) return;
+
+  if (message.member.hasPermission('MANAGE_MESSAGES')) {
 
   if (!args[0]) return message.reply("you need to provide a valid user ID");
   if (!args[1]) return message.reply("you need to provide a valid amount of XP to remove");
@@ -18,8 +23,10 @@ module.exports.run = async (bot, message, args) => {
 
   message.channel.send("removed " + args[1] + " XP from ID " + args[0]);
 
+  }
 }
 
 module.exports.help = {
-   name: "rmxp"
+   name: "rmxp",
+   type: "mod"
 }

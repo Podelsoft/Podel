@@ -5,7 +5,7 @@ let config = require('../config.json'),
 
 module.exports.run = async (bot, message, args) => {
   
-  if (message.guild.id !== "696515024746709003") return;
+  if (message.guild.id !== config.guildID) return;
   
   if (message.member.hasPermission('KICK_MEMBERS')) {
     
@@ -32,12 +32,13 @@ module.exports.run = async (bot, message, args) => {
  
       await user.send(`you've been warned on Podel Server for **${reason}**`);      
 
-      await bot.guilds.cache.get("696515024746709003").channels.cache.get("704356972606259220").send(embed);
+      await bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed);
       
     }
   };
 
 module.exports.help = {
   name: "warn",
-  aliases: ['w']
+  aliases: ['w'],
+  type: "mod"
 }

@@ -3,7 +3,7 @@ const json = require('../items.json');
 
 module.exports.run = async (bot, message, args) => {
 
- if (message.guild.id !== "696515024746709003") { return };
+ if (message.guild.id !== config.guildID) { return };
 
  if (message.member.hasPermission("BAN_MEMBERS")) {
 
@@ -37,5 +37,6 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-  name: "additem"
+  name: "additem",
+  type: "owner"
 }

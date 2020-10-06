@@ -11,7 +11,7 @@ const clean = text => {
 
 module.exports.run = async (bot, message, args) => {
     
-  if(message.author.id === config.ownerID) {
+  if (config.owner.includes(message.author.id)) {
     try {
       const code = args.join(" ");
       let evaled = eval(code);
@@ -86,5 +86,6 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-  name: "eval"
+  name: "eval",
+  type: "owner"
 }

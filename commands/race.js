@@ -57,26 +57,9 @@ module.exports.run = async (bot, message, args) => {
         let perc1 = parseInt(cperc1);
         let perc2 = parseInt(cperc2);
 
-        let comp1;
-        let comp2;
-    
-        let chan1;
-        let chan2;
-    
-        if (perc1 > perc2) { 
-            comp1 = perc1 - perc2
-            chan1 = 100 - comp1
-            if (comp1 < chan1) chan1 = perc1 - perc2, comp1 = 100 - chan1;
-        }
-        else
-        if (perc2 > perc1) { 
-            comp2 = perc2 - perc1
-            chan2 = 100 - comp2
-            if (comp2 < chan2) chan2 = perc2 - perc1, comp2 = 100 - chan2;
-        }
-        else
-        if (perc1 === perc2) comp1 = 50, comp2 = 50;
-
+        let gdiff;
+        gdiff = perc1 - perc2;
+        
     message.channel.send(embedstart).then(async (startmsg) => {
 
     await startmsg.react("✅");
@@ -87,9 +70,9 @@ module.exports.run = async (bot, message, args) => {
 
     if (collected.first().emoji.name === "✅") {
 
-    let result = Math.floor((Math.random() * 100) + 0);
+    let result = (Math.random() * 100) + gdiff;
 
-    if (result <= comp1) {
+    if (0 <= result) {
         let emojicar1 = bot.emojis.cache.find(emoji => emoji.name === `${json[car1].emoji}`);
         let embedc1 = new Discord.MessageEmbed()
         .setAuthor(`${message.author.tag} Won!`, `${message.author.avatarURL()}`)
@@ -101,7 +84,7 @@ module.exports.run = async (bot, message, args) => {
         message.channel.send(embedc1);
         db.subtract(`balance_${user.id}`, wager);
         db.add(`balance_${message.author.id}`, wager);
-    } else if (result <= comp2) {
+    } else if (result < 0) {
         let emojicar2 = bot.emojis.cache.find(emoji => emoji.name === `${json[car2].emoji}`);
         let embedc2 = new Discord.MessageEmbed()
         .setAuthor(`${user.tag} Won!`, `${user.avatarURL()}`)

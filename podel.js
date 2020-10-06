@@ -84,10 +84,10 @@ bot.on("guildBanRemove", function (guild, user) {
       "Podel, coded by the government of georgia",
       bot.user.avatarURL()
     );
-  if (guild.id !== "696515024746709003") return;
+  if (guild.id !== config.guildID) return;
   bot.guilds.cache
-    .get("696515024746709003")
-    .channels.cache.get("696685949186342964")
+    .get(config.guildID)
+    .channels.cache.get(config.logsID)
     .send(embed2);
 });
 
@@ -102,10 +102,10 @@ bot.on("guildBanAdd", function (guild, user) {
       "Podel, coded by the government of georgia",
       bot.user.avatarURL()
     );
-  if (guild.id !== "696515024746709003") return;
+  if (guild.id !== config.guildID) return;
   bot.guilds.cache
-    .get("696515024746709003")
-    .channels.cache.get("696685949186342964")
+    .get(config.guildID)
+    .channels.cache.get(config.logsID)
     .send(embed2);
 });
 
@@ -120,10 +120,10 @@ bot.on("guildMemberUpdate", function (oldMember, newMember) {
     .setColor("#ff6105")
     .setTimestamp()
     .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL());
-  if (oldMember.guild.id !== "696515024746709003") return;
+  if (oldMember.guild.id !== config.guildID) return;
   bot.guilds.cache
-    .get("696515024746709003")
-    .channels.cache.get("696685949186342964")
+    .get(config.guildID)
+    .channels.cache.get(config.logsID)
     .send(embed);
 });
 
@@ -141,10 +141,10 @@ bot.on("messageUpdate", function (oldMessage, newMessage) {
     .setColor(colour)
     .setTimestamp()
     .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL());
-  if (oldMessage.guild.id !== "696515024746709003") return;
+  if (oldMessage.guild.id !== config.guildID) return;
   bot.guilds.cache
-    .get("696515024746709003")
-    .channels.cache.get("696685949186342964")
+    .get(config.guildID)
+    .channels.cache.get(config.logsID)
     .send(embed);
 });
 
@@ -166,20 +166,20 @@ bot.on("messageDelete", async message => {
     .setTimestamp()
     .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL());
 
-  if (message.guild.id !== "696515024746709003") return;
+  if (message.guild.id !== config.guildID) return;
 
   if (message.content.length >= 1) 
   {
     embed.addField("Deleted Message", `\`\`\`${message.content}\`\`\``, true)
     await bot.guilds.cache
-    .get("696515024746709003")
-    .channels.cache.get("696685949186342964")
+    .get(config.guildID)
+    .channels.cache.get(config.logsID)
     .send(embed);
     return;
   } else {
     await bot.guilds.cache
-    .get("696515024746709003")
-    .channels.cache.get("696685949186342964")
+    .get(config.guildID)
+    .channels.cache.get(config.logsID)
     .send(embed);
     return;
   }
@@ -199,10 +199,10 @@ bot.on("messageDelete", async message => {
     .setColor(colour)
     .setTimestamp()
     .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL());
-  if (message.guild.id !== "696515024746709003") return;
+  if (message.guild.id !== config.guildID) return;
   bot.guilds.cache
-    .get("696515024746709003")
-    .channels.cache.get("696685949186342964")
+    .get(config.guildID)
+    .channels.cache.get(config.logsID)
     .send(embed);
    }
 });
@@ -241,7 +241,7 @@ bot.on("guildMemberAdd", async member => {
   ctx.drawImage(avatar, 735, 0, 128, 128);
 
   let channel = bot.guilds.cache
-    .find(channel => channel.id === "696515024746709003")
+    .find(channel => channel.id === config.guildID)
     .channels.cache.get("696714277272158319");
   channel
     .send(
@@ -279,7 +279,7 @@ bot.on("message", async message => {
   let curxp = xp[message.author.id].xp;
   let curlvl = xp[message.author.id].level;
   let nxtLvl =
-    5 * (xp[message.author.id].level * xp[message.author.id].level) +
+    5 * (xp[message.author.id].level ** 2) +
     50 * xp[message.author.id].level +
     100;
 
@@ -289,7 +289,7 @@ bot.on("message", async message => {
 
   } else {
 
-    if (message.guild.id === "696515024746709003") {
+    if (message.guild.id === config.guildID) {
 
       if (message.content.toLowerCase().includes("NIGGER".toLowerCase())) {
         if (message.content.toLowerCase().includes("HTTP".toLowerCase())) return;
@@ -303,7 +303,7 @@ bot.on("message", async message => {
           .setTimestamp()
           .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
         await db.add(`badwordCount_${message.author.id}`, 1)
-        message.delete().then(() => bot.guilds.cache.get("696515024746709003").channels.cache.get("696685949186342964").send(embed));
+        message.delete().then(() => bot.guilds.cache.get(config.guildID).channels.cache.get(config.logsID).send(embed));
       }
 
       let badword = db.fetch(`badwordCount_${message.author.id}`);
@@ -327,7 +327,7 @@ bot.on("message", async message => {
           .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
 
         await bot.guilds.cache
-          .get("696515024746709003")
+          .get(config.guildID)
           .channels.cache.get("704356972606259220")
           .send(embed);
 
@@ -342,7 +342,7 @@ bot.on("message", async message => {
             .setTimestamp()
             .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
           message.member.roles.remove(muterole);
-          bot.guilds.cache.get("696515024746709003").channels.cache.get("704356972606259220").send(embed2);
+          bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed2);
         }, ms(mutetime));
       }
       

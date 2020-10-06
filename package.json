@@ -1,7 +1,7 @@
 {
   "name": "podel",
   "description": "the original podel bot",
-  "version": "1.4.0",
+  "version": "1.4.5",
   "main": "podel.js",
   "repository": "https://github.com/podelsoft/podel#readme",
   "author": "Podelsoft",
