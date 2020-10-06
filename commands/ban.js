@@ -5,16 +5,16 @@ const config = require("../config.json"),
 
 module.exports.run = async (bot, message, args) => {
   
-  if (message.guild.id !== config.guildID) { return };
+  if (message.guild.id !== config.guildID) { return }
 
   let j = args.join(" ");
   let reason = j.split(args[0])[1];
   
   if (message.member.hasPermission("BAN_MEMBERS")) {
-  if (!reason) { return message.channel.send("you must provide a valid reason.") };
+  if (!reason) { return message.channel.send("you must provide a valid reason.") }
    let user = bot.users.cache.find((user) => user.username.toLowerCase().includes(args[0].toLowerCase())) || message.mentions.users.first() || bot.users.cache.find((user) => user.id === args[0]);
     if (user) {
-      if (user.id === bot.user.id) { return };
+      if (user.id === bot.user.id) { return }
       const member = message.guild.member(user);
       if (member) {
         message.channel.send(`Are you sure you want to ban **${user.tag}** (yes/no)`);

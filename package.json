@@ -26,6 +26,8 @@
     "node-gyp": "^7.1.0",
     "opusscript": "0.0.7",
     "parse-ms": "^2.1.0",
+    "pidusage": "^2.0.21",
+    "pm2": "^4.2.3",
     "quick.db": "^7.1.1",
     "snekfetch": "^4.0.4",
     "superagent": "^6.1.0",

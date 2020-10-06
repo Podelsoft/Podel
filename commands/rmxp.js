@@ -18,7 +18,9 @@ module.exports.run = async (bot, message, args) => {
   xp[args[0]].xp = xp[args[0]].xp - args[1]; 
 
   fs.writeFile("../xp.json", JSON.stringify(xp), err => {
-    if (err) console.log(err);
+    if (err) {
+      message.channel.send(err);
+    }
   });
 
   message.channel.send("removed " + args[1] + " XP from ID " + args[0]);

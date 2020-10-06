@@ -55,7 +55,7 @@ output.push(`${key} | ${json[key].buy} | ${json[key].sell}`);
 
 }
 
-};
+}
   
   let p = output.join("\n ");
   embed.setDescription(p.slice(0, 124));

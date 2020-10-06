@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
       if (member) {
         message.channel.send(`Are you sure you want to ban **${user.tag}** for **${bantime}** (yes/no)`);
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 10000 });
-        console.log(collector)
+        //console.log(collector)
         collector.on('collect', async message => {
             if (message.content.toLowerCase() == "yes") {
               await db.add(`banCount_${user.id}`, 1);
@@ -79,7 +79,7 @@ module.exports.run = async (bot, message, args) => {
         }, ms(bantime));
       })
       .catch(err => {
-        console.error(err);
+        message.channel.send(err);
       });
             }
             else if (message.content.toLowerCase() == "no") {

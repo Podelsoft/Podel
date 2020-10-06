@@ -19,7 +19,7 @@ module.exports.help = {
 `,
         function(err) {
           if (err) throw err;
-          console.log(`added command ${name.trim()}.js | Code: ${scode.trim()} `);
+          // console.log(`added command ${name.trim()}.js | Code: ${scode.trim()} `);
           message.channel.send(`added command **${name.trim()}.js** | **Code:** \n\`\`\`js
 ${scode.trim()}\`\`\``);
         }
@@ -27,7 +27,7 @@ ${scode.trim()}\`\`\``);
     } else return;
   } catch (err) {
     message.channel.send("`ERROR:` " + "```" + err + "```");
-    console.error(err);
+    // console.error(err);
   }
 };
 

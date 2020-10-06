@@ -3,7 +3,7 @@ const json = require('../items.json');
 
 module.exports.run = async (bot, message, args) => {
 
- if (message.guild.id !== config.guildID) { return };
+ if (message.guild.id !== config.guildID) { return }
 
  if (message.member.hasPermission("BAN_MEMBERS")) {
  
@@ -29,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
   };
 
   fs.writeFile("../items.json", JSON.stringify(json), err => {
-    if (err) console.log(err);
+    if (err) throw err;
   });  
 
   message.channel.send(`car successfully added.`);

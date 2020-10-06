@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
   let reason = j.split(args[0])[1];
 
   if (message.member.hasPermission("KICK_MEMBERS")) {
-    if (!reason) { return message.channel.send("you must provide a valid reason.") };
+    if (!reason) { return message.channel.send("you must provide a valid reason.") }
     let user = bot.users.cache.find((user) => user.username.toLowerCase().includes(args[0].toLowerCase())) || message.mentions.users.first() || bot.users.cache.find((user) => user.id === args[0]);
     if (user) {
       if (user.id === bot.user.id) return;
@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args) => {
                 .send(embed);  
               })
               .catch(err => {
-                console.error(err);
+                message.channel.send(err);
               });
             } 
             else if (message.content.toLowerCase() == "no") {
