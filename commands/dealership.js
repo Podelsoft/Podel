@@ -58,14 +58,17 @@ output.push(`${key} | ${json[key].buy} | ${json[key].sell}`);
 };
   
   let p = output.join("\n ");
-  embed.setDescription(p.slice(0, 311));
+  embed.setDescription(p.slice(0, 124));
   
   async function m1() {
     await message.channel.send(embed)
      .then(async (m) => {
      await m.react("1️⃣");
      await m.react("2️⃣");
-     const filter = (reaction, user) => reaction.emoji.name === "2️⃣" || "1️⃣" && user.id === message.author.id;
+     await m.react("3️⃣");
+     await m.react("4️⃣");
+     await m.react("5️⃣");
+     const filter = (reaction, user) => reaction.emoji.name === "5️⃣" || "4️⃣" || "3️⃣" || "2️⃣" || "1️⃣" && user.id === message.author.id;
      const collector = m.createReactionCollector(filter, { max: 10, time: 2 * 60 * 1000 });
 
      collector.on('collect', async (reaction, user) => {
@@ -78,14 +81,35 @@ output.push(`${key} | ${json[key].buy} | ${json[key].sell}`);
 
       let embed1 = new Discord.MessageEmbed()
       .setTitle(`Podel City Dealership (you have £${bal})`)
-      .setDescription(p.slice(0, 311))
+      .setDescription(p.slice(0, 124))
       .setColor(colour)
       .setTimestamp()
       .setFooter('Podel, wheela deela', bot.user.avatarURL());
 
       let embed2 = new Discord.MessageEmbed()
       .setTitle(`Podel City Dealership (you have £${bal})`)
-      .setDescription(p.slice(312, 750))
+      .setDescription(p.slice(125, 335))
+      .setColor(colour)
+      .setTimestamp()
+      .setFooter('Podel, wheela deela', bot.user.avatarURL());
+
+      let embed3 = new Discord.MessageEmbed()
+      .setTitle(`Podel City Dealership (you have £${bal})`)
+      .setDescription(p.slice(336, 455))
+      .setColor(colour)
+      .setTimestamp()
+      .setFooter('Podel, wheela deela', bot.user.avatarURL());
+
+      let embed4 = new Discord.MessageEmbed()
+      .setTitle(`Podel City Dealership (you have £${bal})`)
+      .setDescription(p.slice(455, 482))
+      .setColor(colour)
+      .setTimestamp()
+      .setFooter('Podel, wheela deela', bot.user.avatarURL());
+
+      let embed5 = new Discord.MessageEmbed()
+      .setTitle(`Podel City Dealership (you have £${bal})`)
+      .setDescription(p.slice(482, 510))
       .setColor(colour)
       .setTimestamp()
       .setFooter('Podel, wheela deela', bot.user.avatarURL());
@@ -94,6 +118,12 @@ output.push(`${key} | ${json[key].buy} | ${json[key].sell}`);
         m.edit(embed1);
       } else if (reaction.emoji.name === "2️⃣") {
         m.edit(embed2);
+      } else if (reaction.emoji.name === "3️⃣") {
+        m.edit(embed3);
+      } else if (reaction.emoji.name === "4️⃣") {
+        m.edit(embed4);
+      } else if (reaction.emoji.name === "5️⃣") {
+        m.edit(embed5);
       }
     });
    })

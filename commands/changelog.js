@@ -5,9 +5,9 @@ let config = require('../config.json'),
 module.exports.run = async (bot, message, args) => {
 
   const embed = new Discord.MessageEmbed()
-    .setTitle('v1.4.5 Changelog | 24/9/2020')
+    .setTitle('v1.4.5 Changelog | 6/10/2020')
     .setDescription(`
-  •	 Fixed/Updated commands: p!race, p!help, p!leaderboard, p!msgmute and p!msgwarn.
+  •	 Fixed/Updated commands: p!race, p!dealership, p!help, p!leaderboard, p!msgmute and p!msgwarn.
   •  Added command types to all commands (for p!help).
   •  Other minor code fixes.`)
     .setColor(colour)
