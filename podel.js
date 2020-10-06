@@ -69,10 +69,6 @@ bot.on("ready", async () => {
 
 });
 
-bot.on("warn", function (info) {
-  console.log(`WARN: ${info}`);
-});
-
 bot.on("guildBanRemove", function (guild, user) {
   let embed2 = new Discord.MessageEmbed()
     .setTitle(`${user.tag} | Unban`)
@@ -209,7 +205,7 @@ bot.on("messageDelete", async message => {
 
 bot.on("guildMemberAdd", async member => {
 
-  let role = member.guild.roles.cache.find(role => role.id === "708436278302998600");
+  let role = member.guild.roles.cache.find((role) => role.id === "708436278302998600");
 
   if (!role) {
     return;
@@ -302,18 +298,18 @@ bot.on("message", async message => {
           .setColor(colour)
           .setTimestamp()
           .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
-        await db.add(`badwordCount_${message.author.id}`, 1)
+        await db.add(`badwordCount_${message.author.id}`, 1);
         message.delete().then(() => bot.guilds.cache.get(config.guildID).channels.cache.get(config.logsID).send(embed));
       }
 
       let badword = db.fetch(`badwordCount_${message.author.id}`);
 
       if (badword >= 3) {
-        var muterole = message.guild.roles.cache.find(role => role.name === "Muted");
+        var muterole = message.guild.roles.cache.find((role) => role.name === "Muted");
         let mutetime = "10m";
         let ms = require("ms");
         await message.member.roles.add(muterole);
-        await db.delete(`badwordCount_${message.author.id}`)
+        await db.delete(`badwordCount_${message.author.id}`);
 
         let embed = new Discord.MessageEmbed()
           .setTitle(`${message.author.tag} | Mute`)
@@ -332,7 +328,7 @@ bot.on("message", async message => {
           .send(embed);
 
         setTimeout(function () {
-          if (!message.author.roles.cache.some(role => role.name === "Muted")) return;
+          if (!message.author.roles.cache.some((role) => role.name === "Muted")) return;
           let embed2 = new Discord.MessageEmbed()
             .setTitle(`${message.author.tag} | Unmute`)
             .addField("Time", mutetime, true)
@@ -362,18 +358,18 @@ bot.on("message", async message => {
           .addField("PODEL LVL UP", curlvl + 1);
 
         if (curlvl >= 9 && curlvl < 19) {
-          if (!message.member.roles.cache.some(role => role.name === "Lads")) {
-            var rolelads = message.guild.roles.cache.find(role => role.name === "Lads");
+          if (!message.member.roles.cache.some((role) => role.name === "Lads")) {
+            var rolelads = message.guild.roles.cache.find((role) => role.name === "Lads");
             message.member.roles.add(rolelads);
           }
         } else if (curlvl >= 19 && curlvl < 49) {
-          if (!message.member.roles.cache.some(role => role.name === "Units")) {
-            var roleunits = message.guild.roles.cache.find(role => role.name === "Units");
+          if (!message.member.roles.cache.some((role) => role.name === "Units")) {
+            var roleunits = message.guild.roles.cache.find((role) => role.name === "Units");
             message.member.roles.add(roleunits);
           }
         } else if (curlvl >= 49 && curlvl < 99) {
-          if (!message.member.roles.cache.some(role => role.name === "G")) {
-            var roleg = message.guild.roles.cache.find(role => role.name === "G");
+          if (!message.member.roles.cache.some((role) => role.name === "G")) {
+            var roleg = message.guild.roles.cache.find((role) => role.name === "G");
             message.member.roles.add(roleg);
           }
         } else if (curlvl >= 99 && curlvl < 499) {

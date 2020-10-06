@@ -21,13 +21,13 @@ module.exports.run = async (bot, message, args) => {
     let msgcont = "";
     let user2 = "";
 
-    await channel.messages.fetch(args[0]).then(msg => idmsg = msg.id);
+    await channel.messages.fetch(args[0]).then((msg) => idmsg = msg.id);
 
     if (message.attachments.size < 0) {
-      await channel.messages.fetch(args[0]).then(msg => msgcont = msg.content);
+      await channel.messages.fetch(args[0]).then((msg) => msgcont = msg.content);
     } else { msgcont = "attachment saved in logs" }
 
-    await channel.messages.fetch(args[0]).then(msg => user2 = msg.author);
+    await channel.messages.fetch(args[0]).then((msg) => user2 = msg.author);
     
     let user = message.guild.member(user2);
     
@@ -61,7 +61,7 @@ module.exports.run = async (bot, message, args) => {
       
       await (message.delete());
       
-      await channel.fetchMessage(args[0]).then(msg => msg.delete());
+      await channel.fetchMessage(args[0]).then((msg) => msg.delete());
 
       await user.roles.add(role);
       
@@ -70,7 +70,7 @@ module.exports.run = async (bot, message, args) => {
       await db.push(`muted_${user.user.id}`, "yes");
       
       await user.user.send("you\"ve been muted on Podel Server for **" + mutetime + "** (Reason: " + reason + ") \n\n`message attached to mute:` ```" + msgcont + "```")
-      .catch(() => channel2.send(user.user + ", you\"ve been muted on Podel Server for **" + mutetime + "** (Reason: " + reason + ") \n\n`message attached to mute:` ```" + msgcont + "```").then(msg => msg.delete(20000)));
+      .catch(() => channel2.send(user.user + ", you\"ve been muted on Podel Server for **" + mutetime + "** (Reason: " + reason + ") \n\n`message attached to mute:` ```" + msgcont + "```").then((msg) => msg.delete(20000)));
       
       await bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed);
       

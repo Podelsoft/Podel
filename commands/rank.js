@@ -1,5 +1,5 @@
-const Discord = require('discord.js');
-let config = require('../config.json'),
+const Discord = require("discord.js");
+let config = require("../config.json"),
     colour = config.colour;
 
 module.exports.run = async (bot, message, args) => {
@@ -48,6 +48,6 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "rank",
-  aliases: ['xp'],
+  aliases: ["xp"],
   type: "user"
 }

@@ -17,7 +17,7 @@ let itemname = args[0];
 const itemlist = require('../items.json');
 const item = itemlist[itemname];
 
-if (!item) return;
+if (!item) { return }
 
 let total = item.buy * amount;
 let price = `${total}` * 1;
@@ -25,9 +25,9 @@ let dbname = item.db;
 let name = item.name;
 let emoji = bot.emojis.cache.find(emoji => emoji.name === `${item.emoji}`);
 
-if ((amount % 1) != 0) return;
-if (amount < 1) return;
-if (isNaN(amount)) return;
+if ((amount % 1) !== 0) { return }
+if (amount < 1) { return }
+if (isNaN(amount)) { return }
 
   if (price > balance) return message.channel.send('you don\'t have enough to buy this, smelly idiot');
   db.add(`${dbname}_${message.author.id}`, amount);

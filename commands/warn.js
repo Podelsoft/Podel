@@ -1,13 +1,13 @@
-const Discord = require('discord.js');
-const db = require('quick.db');
-let config = require('../config.json'),
+const Discord = require("discord.js");
+const db = require("quick.db");
+let config = require("../config.json"),
     colour = config.colour;
 
 module.exports.run = async (bot, message, args) => {
   
   if (message.guild.id !== config.guildID) return;
   
-  if (message.member.hasPermission('KICK_MEMBERS')) {
+  if (message.member.hasPermission("KICK_MEMBERS")) {
     
     let user = bot.users.cache.find(user => user.username.toLowerCase().includes(args[0])) || message.mentions.users.first() || bot.users.cache.find(user => user.id === args[0]);
     
@@ -19,12 +19,12 @@ module.exports.run = async (bot, message, args) => {
 
       let embed = new Discord.MessageEmbed()
       .setTitle(`${user.tag} | Warn`)
-      .addField('Reason', reason, true)
-      .addField('Mod/Admin', message.author.tag, true)
+      .addField("Reason", reason, true)
+      .addField("Mod/Admin", message.author.tag, true)
       .setThumbnail(user.displayAvatarURL())
       .setColor(colour)
       .setTimestamp()
-      .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL())
+      .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
       
       await (message.delete());
       
@@ -39,6 +39,6 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "warn",
-  aliases: ['w'],
+  aliases: ["w"],
   type: "mod"
 }

@@ -29,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
           
       await (message.delete());
       
-      await message.channel.send(`__**${user.user.tag}**__ | **Warns:** ${warns} | **Mutes:** ${mutes} | **Bans:** ${bans} | **Kicks:** ${kicks}`)
+      await message.channel.send(`__**${user.user.tag}**__ | **Warns:** ${warns} | **Mutes:** ${mutes} | **Bans:** ${bans} | **Kicks:** ${kicks}`);
 
     }
   };
@@ -37,4 +37,4 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
   name: "check",
   type: "mod"
-}
+};

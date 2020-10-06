@@ -14,29 +14,6 @@ const json = require('../items.json');
 const gauge = bot.emojis.cache.find(emoji => emoji.name === `gauge`); 
 const steeringwheel = bot.emojis.cache.find(emoji => emoji.name === `steeringwheel`); 
 
-if (args[0]) {
-
-  if (json[args[0]]) {
-    let emoji = bot.emojis.cache.find(emoji => emoji.name === `${json[args[0]].emoji}`); 
-    let embed = new Discord.MessageEmbed()
-    .setAuthor(`${json[args[0]].name}`, `${emoji.url}`)
-    .addFields({name:`Buying Price 📥`, value: `£${json[args[0]].buy}`, inline: true})
-    .addFields({name: `Selling Price 📤`, value: `£${json[args[0]].sell}`, inline: true})
-    .addFields({name: `Database Name 🖥️`, value: `\`${json[args[0]].db}\``, inline: false})
-    .addFields({name: `Emoji Name 📝`, value: `\`${json[args[0]].emoji}\``, inline: false})
-    .addFields({name: `Top Speed ${gauge}`, value: `**${json[args[0]].max}** km/h`, inline: false})
-    .addFields({name: `Acceleration 🔥`, value: `**${json[args[0]].acceleration}s** (0-100km/h)`, inline: false})
-    .addFields({name: `Handling ${steeringwheel}`, value: `**${json[args[0]].handling}**`, inline: false})
-    .addFields({name: `Grade 🏆`, value: `**${json[args[0]].grade}/100**`, inline: true})
-    .addFields({name: `Tier ⬆️`, value: json[args[0]].tier, inline: true})
-    .setColor(colour)
-    .setTimestamp()
-    .setFooter('Podel, wheela deela', bot.user.avatarURL());
-    message.channel.send(embed);
-  } else { return message.channel.send("that car doesn't exist.") }
-
-} else { 
-
 let embed = new Discord.MessageEmbed()
 .setTitle(`Podel City Dealership (you have £${bal})`)
 .setColor(colour)
@@ -57,10 +34,10 @@ output.push(`${key} | ${json[key].buy} | ${json[key].sell}`);
 
 }
   
-  let p = output.join("\n ");
-  embed.setDescription(p.slice(0, 124));
-  
-  async function m1() {
+let p = output.join("\n ");
+embed.setDescription(p.slice(0, 124));
+
+async function m1() {
     await message.channel.send(embed)
      .then(async (m) => {
      await m.react("1️⃣");
@@ -129,6 +106,28 @@ output.push(`${key} | ${json[key].buy} | ${json[key].sell}`);
    })
   }
 
+if (args[0]) {
+
+  if (json[args[0]]) {
+    let emoji = bot.emojis.cache.find(emoji => emoji.name === `${json[args[0]].emoji}`); 
+    let embed = new Discord.MessageEmbed()
+    .setAuthor(`${json[args[0]].name}`, `${emoji.url}`)
+    .addFields({name:`Buying Price 📥`, value: `£${json[args[0]].buy}`, inline: true})
+    .addFields({name: `Selling Price 📤`, value: `£${json[args[0]].sell}`, inline: true})
+    .addFields({name: `Database Name 🖥️`, value: `\`${json[args[0]].db}\``, inline: false})
+    .addFields({name: `Emoji Name 📝`, value: `\`${json[args[0]].emoji}\``, inline: false})
+    .addFields({name: `Top Speed ${gauge}`, value: `**${json[args[0]].max}** km/h`, inline: false})
+    .addFields({name: `Acceleration 🔥`, value: `**${json[args[0]].acceleration}s** (0-100km/h)`, inline: false})
+    .addFields({name: `Handling ${steeringwheel}`, value: `**${json[args[0]].handling}**`, inline: false})
+    .addFields({name: `Grade 🏆`, value: `**${json[args[0]].grade}/100**`, inline: true})
+    .addFields({name: `Tier ⬆️`, value: json[args[0]].tier, inline: true})
+    .setColor(colour)
+    .setTimestamp()
+    .setFooter('Podel, wheela deela', bot.user.avatarURL());
+    message.channel.send(embed);
+  } else { return message.channel.send("that car doesn't exist.") }
+
+} else {
   m1();
 }
 };

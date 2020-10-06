@@ -18,7 +18,7 @@ module.exports.run = async (bot, message, args) => {
     if (!wager) return message.channel.send("you need to place a valid wager.");
     if (isNaN(wager)) return message.channel.send("you need to place a valid wager.");
     if (wager <= 0) return message.channel.send("you need to place a valid wager.");
-    if ((wager % 1) != 0) return message.channel.send("you need to place a valid wager.");
+    if ((wager % 1) !== 0) return message.channel.send("you need to place a valid wager.");
     if (wager > bal1) return message.channel.send("you don't have enough money for this race.");
     if (wager > bal2) return message.channel.send("that user doesn't have enough money for this race.");
 
