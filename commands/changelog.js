@@ -9,6 +9,7 @@ module.exports.run = async (bot, message, args) => {
     .setDescription(`
   •	 Fixed/Updated commands: p!race, p!dealership, p!help, p!leaderboard, p!msgmute and p!msgwarn.
   •  Added command types to all commands (for p!help).
+  •  Status monitor was removed due to terminal pollution, code is still there, feel free to make any pull requests.
   •  Other minor code fixes.`)
     .setColor(colour)
     .setFooter("Podel, are ya coding son?", bot.user.avatarURL());

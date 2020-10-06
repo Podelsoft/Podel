@@ -35,12 +35,14 @@ const { Player } = require("discord-music-player");
 const player = new Player(bot, "AIzaSyBmLicH5RE9zLo8tUlrWbhZyUaxX8v_hV4");
 bot.player = player;
 
+/*
 const express = require("express")
 const app = express()
 const statusMonitor = require("express-status-monitor")({ title: "Podel Bot Status" });
 app.use(statusMonitor);
 app.get("/", statusMonitor.pageRoute);
 app.listen(3000);
+*/
 
 fs.readdir("./commands/", (err, files) => {
   if (err) console.log(err);
