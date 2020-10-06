@@ -31,8 +31,10 @@ module.exports.run = async (bot, message, help) => {
     if (bot.commands.get(`${toOutput}`)) {
       let fltr = bot.commands.get(`${toOutput}`).help.type;
     if (message.guild.id === config.guildID && message.member.hasPermission("KICK_MEMBERS")) {
-      if (!config.owner.includes(message.author.id) && fltr == "owner") {
-        output.push(`\`${toOutput}\``);
+      if (!config.owner.includes(message.author.id)) {
+        if (fltr !== "owner") {
+          output.push(`\`${toOutput}\``);
+        }
       } else {
         output.push(`\`${toOutput}\``);
       }
