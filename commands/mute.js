@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
   let j = args.join(' ');
   let reason = j.split(args[1])[1];
   
-  if (message.guild.id !== config.guildID) return;
+  if (message.guild.id !== config.guildID) { return }
   
   if (message.member.hasPermission('MANAGE_MESSAGES')) {
     
@@ -73,6 +73,6 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "mute",
-  aliases: ['m', 'silence'],
+  aliases: ["m", "silence"],
   type: "mod"
 }

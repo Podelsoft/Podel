@@ -5,7 +5,7 @@ const config = require("../config.json"),
 
 module.exports.run = async (bot, message, args, tools) => {
 
-if (!args[0]) return message.channel.send("use p!leaderboard `balance` or p!leaderboard `xp` to get started mate.");
+if (!args[0]) { return message.channel.send("use p!leaderboard `balance` or p!leaderboard `xp` to get started mate."); }
 //if (args[0].toLowerCase() !== "balance") return message.channel.send("use p!leaderboard `balance` or p!leaderboard `xp` instead.");
 //if (args[0].toLowerCase() !== "xp") return message.channel.send("use p!leaderboard `balance` or p!leaderboard `xp` instead.");
 
@@ -19,7 +19,11 @@ let n2 = args[1] * 10;
 let n3 = n2 - 9;
 let n1 = n2 - 10;
 
-if (!args[1] || isNaN(args[1])) n1 = 0, n2 = 10, n3 = 1;
+if (!args[1] || isNaN(args[1])) { 
+  n1 = 0, 
+  n2 = 10, 
+  n3 = 1;
+}
 
 let result = file.slice(n1, n2);
 let data = JSON.stringify(result);
@@ -30,11 +34,11 @@ data = data.split(',');
 var place = n3;
 
 let embed = new Discord.MessageEmbed()
-.setAuthor('Podel XP Leaderboard', message.guild.iconURL())
+.setAuthor("Podel XP Leaderboard", message.guild.iconURL())
 .setColor(colour)
 .setTimestamp()
-.setFooter('Podel, coded by the government of georgia', bot.user.avatarURL())
-.setThumbnail('https://cdn.glitch.com/5d94d2b3-55ae-4001-86e0-104c8c5e4005%2Fswiss%20banking%20montage%20for%20bot.png?v=1588393805266');
+.setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
+.setThumbnail("https://cdn.glitch.com/5d94d2b3-55ae-4001-86e0-104c8c5e4005%2Fswiss%20banking%20montage%20for%20bot.png?v=1588393805266");
 
 for (var i = 0; i < 29; i = i + 3) {
   let usertag = bot.users.cache.get(data[i]);
@@ -57,10 +61,10 @@ message.channel.send(embed);
     .setAuthor(`Podel Balance Leaderboard`, message.guild.iconURL())
     .setColor(colour)
     .setTimestamp()
-    .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL())
-    .setThumbnail('https://scitechdaily.com/images/Economic-Crash.jpg');
+    .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
+    .setThumbnail("https://scitechdaily.com/images/Economic-Crash.jpg");
 
-  let money = db.all().filter(data => data.ID.startsWith(`balance`)).sort((a, b) => b.data - a.data)
+  let money = db.all().filter((data) => data.ID.startsWith("balance")).sort((a, b) => b.data - a.data);
     money.length = 10;
     var i = 0;
     let indexnum = 0;
@@ -81,6 +85,6 @@ message.channel.send(embed);
 
 module.exports.help = {
   name: "leaderboard",
-  aliases: ['top', 'top10', 'lb'],
+  aliases: ["top", "top10", "lb"],
   type: "user"
 }

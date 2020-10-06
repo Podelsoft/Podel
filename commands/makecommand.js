@@ -1,6 +1,7 @@
+const config = require('../config.json');
 
 module.exports.run = async (bot, message, args) => {
-  if (message.author.id !== '604189156490346496') return;
+  if (config.owner.includes(message.author.id)) return;
   let j = args.join(" ");
   let name = j.substring(0, j.indexOf("|"));
   let scode = j.split("|")[1];
@@ -33,6 +34,6 @@ ${scode.trim()}\`\`\``);
 
 module.exports.help = {
   name: "makecommand",
-  aliases: ['mc', 'makecmd'],
+  aliases: ["mc", "makecmd"],
   type: "owner"
 }

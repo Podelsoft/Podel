@@ -5,7 +5,7 @@ let config = require('../config.json'),
 
 module.exports.run = async (bot, message, args) => {
   
-  if (message.guild.id !== config.guildID) return;
+  if (message.guild.id !== config.guildID) { return } 
   
   if (message.member.hasPermission('KICK_MEMBERS')) {
     
@@ -38,6 +38,6 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "clearwarn",
-  aliases: ['cw'],
+  aliases: ["cw"],
   type: "mod"
 }

@@ -1,8 +1,9 @@
-const db = require('quick.db');
+const db = require("quick.db");
+const config = require("../config.json");
 
 module.exports.run = async (bot, message, args) => {
   
-  if (message.guild.id !== config.guildID) return;
+  if (message.guild.id !== config.guildID) { return }
   
   if (message.member.hasPermission('KICK_MEMBERS')) {
     

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const json = require('../items.json');
+const config = require('../config.json');
 
 module.exports.run = async (bot, message, args) => {
 

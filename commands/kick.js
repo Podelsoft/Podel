@@ -5,7 +5,7 @@ const config = require("../config.json"),
 
 module.exports.run = async (bot, message, args) => {
   
-  if (message.guild.id !== config.guildID) return;
+  if (message.guild.id !== config.guildID) { return }
   let j = args.join(" ");
   let reason = j.split(args[0])[1];
 
