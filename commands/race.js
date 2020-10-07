@@ -70,9 +70,9 @@ module.exports.run = async (bot, message, args) => {
 
     if (collected.first().emoji.name === "✅") {
 
-    let result = (Math.random() * 100) + gdiff;
+    let result = (Math.random() * 100) + gdiff - 50;
 
-    if (0 <= result) {
+    if (result >= 0) {
         let emojicar1 = bot.emojis.cache.find(emoji => emoji.name === `${json[car1].emoji}`);
         let embedc1 = new Discord.MessageEmbed()
         .setAuthor(`${message.author.tag} Won!`, `${message.author.avatarURL()}`)
