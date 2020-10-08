@@ -346,7 +346,7 @@ bot.on("message", async message => {
       
       curxp++;
       xp[message.author.id].xp = curxp; fs.writeFile("./xp.json", JSON.stringify(xp), err => {
-        if (err) console.log(err);
+        if (err) throw err;
       });
 
       if (nxtLvl <= xp[message.author.id].xp) {
