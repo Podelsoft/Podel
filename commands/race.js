@@ -70,7 +70,7 @@ module.exports.run = async (bot, message, args) => {
 
     if (collected.first().emoji.name === "✅") {
 
-    let result = (Math.random() * 200) + 50 - 100;
+    let result = (Math.random() * 200) + gdiff - 100;
 
     if (result >= 0) {
         let emojicar1 = bot.emojis.cache.find(emoji => emoji.name === `${json[car1].emoji}`);
