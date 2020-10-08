@@ -45,7 +45,7 @@ app.listen(3000);
 */
 
 fs.readdir("./commands/", (err, files) => {
-  if (err) console.log(err);
+  if (err) throw err;
   let jsfile = files.filter(f => f.split(".").pop() === "js");
 
   if (jsfile.length <= 0) {
