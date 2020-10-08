@@ -409,7 +409,7 @@ bot.on("message", async message => {
 
       command2.run(bot, message, args);
     } catch (err) {
-      console.error(err);
+      throw err;
     }
   }
 
