@@ -2,7 +2,7 @@ title: Podel Bot
 description: The best Podel related bot on the internet.
 show_downloads: true
 github:
-  zip_url: https://github.com/Podelsoft/Podel/archive/v1.4.5.zip
-  tar.gz_url: https://github.com/Podelsoft/Podel/archive/v1.4.5.tar.gz
+  zip_url: https://github.com/Podelsoft/Podel/zipball/master
+  tar_url: https://github.com/Podelsoft/Podel/tarball/master
 google_analytics:
 theme: jekyll-theme-hacker
