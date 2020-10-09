@@ -1,6 +1,4 @@
 # cristpz/Podel
-The official Podel Bot Repository by Podelsoft
-
 [![DeepScan Grade](https://deepscan.io/api/teams/10908/projects/13841/branches/243121/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=10908&pid=13841&bid=243121)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/2842aa3a01604d4a84c9d491ba88cf78)](https://www.codacy.com/gh/Podelsoft/Podel?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Podelsoft/Podel&amp;utm_campaign=Badge_Grade)
 [![Dependencies](https://david-dm.org/podelsoft/podel.svg)](https://david-dm.org/podelsoft/podel)
@@ -9,7 +7,7 @@ The official Podel Bot Repository by Podelsoft
 
 1. Get [Node.js](https://nodejs.org/en/download/)
 2. Create a folder and use `cd` on your terminal to get to your directory. Example: `cd C:\Users\muppit\Desktop\gamingfolder`
-3. Download [Podel](https://github.com/cristpz/Podel/releases/tag/Beta).
+3. Download [Podel](https://github.com/cristpz/Podel/releases/).
 4. Unzip the archive to your folder.
 5. Run `npm i`, don't close the terminal.
 6. Once it's done go to podel.js and replace [this](https://imgur.com/a/fo8QqNT) in line 4.
