@@ -9,7 +9,7 @@ The official Podel Bot Repository by Podelsoft
 
 1. Get [Node.js](https://nodejs.org/en/download/)
 2. Create a folder and use `cd` on your terminal to get to your directory. Example: `cd C:\Users\muppit\Desktop\gamingfolder`
-3. Download [Podel](https://github.com/cristpz/Podel/releases/tag/Beta).
+3. Download [Podel](https://github.com/cristpz/Podel/releases/).
 4. Unzip the archive to your folder.
 5. Run `npm i`, don't close the terminal.
 6. Once it's done go to podel.js and replace [this](https://imgur.com/a/fo8QqNT) in line 4.
@@ -24,6 +24,9 @@ The official Podel Bot Repository by Podelsoft
 ## Authors
 - [cristpz](https://github.com/cristpz/)
 - [brexite](https://github.com/brexite/)
+
+## Support & Contact
+Just DM **crist#0971** on Discord or send an **e-mail** to [contact@cristpz.eu](mailto://contact@cristpz.eu).
 
 ## FAQ (if anyone asks, I am not 350,000 USD in debt):
 Q: can I kill all your time by asking questions about every part of the bot's code

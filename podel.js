@@ -67,7 +67,7 @@ bot.on("ready", async () => {
     { url: "https://www.youtube.com/watch?v=YKMfsJqpyWo", type: "STREAMING" }
   );
 
-  //console.log(bot.user.username + " is online.");
+  console.log(bot.user.username + " is online.");
 
 });
 
