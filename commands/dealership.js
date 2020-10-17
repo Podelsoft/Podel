@@ -79,14 +79,14 @@ module.exports.run = async (bot, message, args) => {
 
           let embed4 = new Discord.MessageEmbed()
             .setTitle(`Podel City Dealership (you have £${bal})`)
-            .setDescription(p.slice(455, 482))
+            .setDescription(p.slice(455, 504))
             .setColor(colour)
             .setTimestamp()
             .setFooter('Podel, wheela deela', bot.user.avatarURL());
 
           let embed5 = new Discord.MessageEmbed()
             .setTitle(`Podel City Dealership (you have £${bal})`)
-            .setDescription(p.slice(482, 510))
+            .setDescription(p.slice(504, 534))
             .setColor(colour)
             .setTimestamp()
             .setFooter('Podel, wheela deela', bot.user.avatarURL());

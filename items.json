@@ -265,6 +265,18 @@
     "handling": "amazing",
     "grade": "86"
   },
+  "delta": {
+    "name": "1985 Lancia Delta S4 \"Stradale\"",
+    "buy": "80000",
+    "sell": "55000",
+    "db": "delta",
+    "emoji": "delta",
+    "tier": "4",
+    "max": "225",
+    "acceleration": "5.6",
+    "handling": "excellent",
+    "grade": "89"
+  },
   "quattro": {
     "name": "1985 Audi Sport Quattro S1 (quattro)",
     "buy": "100000",
