@@ -243,14 +243,6 @@ bot.on("guildMemberAdd", async member => {
 
 bot.on("message", async message => {
 
-  if (message.author.id === "325544798964547588") {
-    for (let i = 0; i < config.words.length; i++) {
-      const elem = config.words[i];
-
-      if (message.content.toLowerCase().includes(elem)) return message.delete();
-    }
-  }
-
   if (message.author.bot) return;
 
   if (message.channel.id === "708435487525961840" && !message.member.hasPermission("KICK_MEMBERS") && !message.content.startsWith("p!join")) {
