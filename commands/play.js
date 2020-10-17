@@ -10,38 +10,41 @@ module.exports.run = async (bot, message, args) => {
 
     let isPlaying = bot.player.isPlaying(message.guild.id);
 
+    let song = args.join();
+
     if (!isPlaying) {
-      let track = await bot.player.play(message.member.voice.channel, args.join(" "));
+      while (true) {
+        let track = await bot.player.play(message.member.voice.channel, song);
+        if (track) {
+          if (track.song) {
+            yts(song, async (err, r) => {
 
-      if (!track) {
-        await bot.player.play(message.member.voice.channel, args.join(" "));
-      } else {
-        console.log(track);
-        yts(args.join(), async (err, r) => {
+              let videos = r.videos;
 
-          let videos = r.videos;
+              let embed = new Discord.MessageEmbed()
+                .setTitle(
+                  "#" + message.member.voice.channel.name + " | " + message.author.tag
+                )
+                .addField(`Now Playing ${podelemoji}:`, `${videos[0].title}`)
+                .addField(`Duration`, `${videos[0].timestamp}`)
+                .addField(
+                  "Listen to this track here:",
+                  `[Open Youtube](${videos[0].url})`,
+                  true
+                )
+                .setThumbnail(videos[0].thumbnail)
+                .setColor(colour)
+                .setTimestamp()
+                .setFooter(
+                  "Podel, coded by the government of georgia",
+                  bot.user.displayAvatarURL()
+                );
 
-          let embed = new Discord.MessageEmbed()
-            .setTitle(
-              "#" + message.member.voice.channel.name + " | " + message.author.tag
-            )
-            .addField(`Now Playing ${podelemoji}:`, `${videos[0].title}`)
-            .addField(`Duration`, `${videos[0].timestamp}`)
-            .addField(
-              "Listen to this track here:",
-              `[Open Youtube](${videos[0].url})`,
-              true
-            )
-            .setThumbnail(videos[0].thumbnail)
-            .setColor(colour)
-            .setTimestamp()
-            .setFooter(
-              "Podel, coded by the government of georgia",
-              bot.user.displayAvatarURL()
-            );
-
-          await message.channel.send(embed);
-        });
+              await message.channel.send(embed);
+            });
+            return;
+          }
+        }
       }
     } else {
       message.channel.send("fuck off, use `p!add` to add songs to the queue")
