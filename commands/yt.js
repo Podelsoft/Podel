@@ -1,15 +1,14 @@
-
 module.exports.run = async (bot, message, args) => {
-  
-   if (!args.join(' ')) return;
-  
-  const yts = require('yt-search');
- 
-yts( args.join() , function ( err, r ) {
-  const videos = r.videos
 
- message.channel.send( videos[ 0 ].url )
-})  
+  if (!args.join(' ')) return;
+
+  const yts = require('yt-search');
+
+  yts(args.join(), function (err, r) {
+    const videos = r.videos
+
+    message.channel.send(videos[0].url)
+  })
 }
 
 module.exports.help = {

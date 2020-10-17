@@ -18,7 +18,7 @@ module.exports.help = {
   name: "${name.trim().toLowerCase()}"
 }
 `,
-        function(err) {
+        function (err) {
           if (err) throw err;
           // console.log(`added command ${name.trim()}.js | Code: ${scode.trim()} `);
           message.channel.send(`added command **${name.trim()}.js** | **Code:** \n\`\`\`js

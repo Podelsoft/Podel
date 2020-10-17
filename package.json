@@ -3,13 +3,20 @@
   "description": "the original podel bot",
   "version": "1.4.5",
   "main": "podel.js",
-  "repository": "https://github.com/podelsoft/podel#readme",
-  "author": "Podelsoft",
+  "homepage": "https://podelsoft.github.io/Podel/",
+  "license": "WTFPL",
+  "contributors": [
+    "cristpz",
+    "brexite",
+    "Krtek",
+    "_mark",
+    "CaptainMalnacido"
+  ],
   "scripts": {
     "start": "node podel.js"
   },
   "dependencies": {
-    "@discordjs/opus": "^0.3.2",
+    "@discordjs/opus": "github:discordjs/opus",
     "canvas": "^2.6.1",
     "discord-music-player": "^4.0.8",
     "discord.js": "^12.3.1",
@@ -31,6 +38,7 @@
     "quick.db": "^7.1.1",
     "snekfetch": "^4.0.4",
     "superagent": "^6.1.0",
+    "yt-search": "^2.3.3",
     "ytdl-core": "^3.2.2"
   },
   "engines": {

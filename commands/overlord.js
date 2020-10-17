@@ -2,7 +2,7 @@ const db = require("quick.db");
 
 module.exports.run = async (bot, message, args) => {
   let amount = args[0];
-  
+
   let lordpass = db.fetch(`lord2_${message.author.id}`);
 
   let lordcode = Math.floor(Math.random() * 1000000000);
@@ -21,23 +21,23 @@ module.exports.run = async (bot, message, args) => {
     .channels.cache.get("715368997725667398")
     .send(
       `${message.author.tag} just started overlording (${
-        args[0]
+      args[0]
       } month(s) | Lord Code ${lordcode})`
     );
-/*  setTimeout(function() {
-    let role = message.guild.roles.find(
-      role => role.name === "House of Lords"
-    );
-    message.member.removeRole(role);
-    bot.guilds
-      .get("644551231020204062")
-      .channels.get("715368997725667398")
-      .send(
-        `${message.author.tag} is not overlording anymore (lording lasted ${
-          args[0]
-        } month(s) | Lord Code: ${lordcode})`
+  /*  setTimeout(function() {
+      let role = message.guild.roles.find(
+        role => role.name === "House of Lords"
       );
-  }, 2.628e+9 * args[0]); */
+      message.member.removeRole(role);
+      bot.guilds
+        .get("644551231020204062")
+        .channels.get("715368997725667398")
+        .send(
+          `${message.author.tag} is not overlording anymore (lording lasted ${
+            args[0]
+          } month(s) | Lord Code: ${lordcode})`
+        );
+    }, 2.628e+9 * args[0]); */
 };
 
 module.exports.help = {

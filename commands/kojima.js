@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args, member) => {
   const background = await Canvas.loadImage(
     "https://img.pngio.com/shitpostbot-5000-hideo-kojima-png-1570_2048.png"
   );
-  
+
   let kojimoji = bot.emojis.cache.find(emoji => emoji.name === `kojima`);
 
   ctx.strokeRect(0, 0, canvas.width, canvas.height);

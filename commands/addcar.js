@@ -4,39 +4,39 @@ const config = require('../config.json');
 
 module.exports.run = async (bot, message, args) => {
 
- if (message.guild.id !== config.guildID) { return }
+  if (message.guild.id !== config.guildID) { return }
 
- if (message.member.hasPermission("BAN_MEMBERS")) {
- 
- let j = args.join(' ');
+  if (message.member.hasPermission("BAN_MEMBERS")) {
 
-  let a = j.substring(0, j.indexOf("|"));
-  let b = j.split("|")[1];
-  let c = j.split("|")[2];
-  let d = j.split("|")[3];
-  let e = j.split("|")[4];
-  let f = j.split("|")[5];
-  let g = j.split("|")[6];
+    let j = args.join(' ');
 
-//console.log(`obj: ${a.trim()} name: ${b.trim()} | db: ${c.trim()} | emoji: ${d.trim()} | buy: ${e.trim()} | sell: ${f.trim()}`);
+    let a = j.substring(0, j.indexOf("|"));
+    let b = j.split("|")[1];
+    let c = j.split("|")[2];
+    let d = j.split("|")[3];
+    let e = j.split("|")[4];
+    let f = j.split("|")[5];
+    let g = j.split("|")[6];
 
-  json[a.trim()] = {
-     name: b.trim(),
-     db: c.trim(),
-     emoji: d.trim(),
-     buy: e.trim(),
-     sell: f.trim(),
-     tier: g.trim()
-  };
+    //console.log(`obj: ${a.trim()} name: ${b.trim()} | db: ${c.trim()} | emoji: ${d.trim()} | buy: ${e.trim()} | sell: ${f.trim()}`);
 
-  fs.writeFile("../items.json", JSON.stringify(json), err => {
-    if (err) throw err;
-  });  
+    json[a.trim()] = {
+      name: b.trim(),
+      db: c.trim(),
+      emoji: d.trim(),
+      buy: e.trim(),
+      sell: f.trim(),
+      tier: g.trim()
+    };
 
-  message.channel.send(`car successfully added.`);
+    fs.writeFile("../items.json", JSON.stringify(json), err => {
+      if (err) throw err;
+    });
 
- }
-  
+    message.channel.send(`car successfully added.`);
+
+  }
+
 }
 
 module.exports.help = {

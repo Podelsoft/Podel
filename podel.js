@@ -1,8 +1,10 @@
 const Discord = require("discord.js");
 const config = require("./config.json"),
   colour = config.colour;
-const token = require("../secret.json").token;
-const bot = new Discord.Client({disableMentions: "everyone"});
+const secret = require("../secret.json"),
+  token = secret.token,
+  yt = secret.ytapi;
+const bot = new Discord.Client({ disableMentions: "everyone" });
 const fs = require("fs");
 const db = require("quick.db");
 bot.commands = new Discord.Collection();
@@ -10,39 +12,30 @@ bot.commands = new Discord.Collection();
 //bot.on("debug", console.log);
 
 bot.on("error", async error => {
-try {
-  app.webserver.close(); // Express.js instance
-  app.logger("Webserver was halted", "success");
-} catch (e) {
-  app.logger("Can't stop webserver:", "error"); // No server started
-  app.logger(e, "error");
-}
+  try {
+    app.webserver.close(); // Express.js instance
+    app.logger("Webserver was halted", "success");
+  } catch (e) {
+    app.logger("Can't stop webserver:", "error"); // No server started
+    app.logger(e, "error");
+  }
 
-var cmd = "node " + app.config.settings.ROOT_DIR + "podel.js";
+  var cmd = "node " + app.config.settings.ROOT_DIR + "podel.js";
 
-if (app.killed === undefined) {
-  app.killed = true;
+  if (app.killed === undefined) {
+    app.killed = true;
 
-  var exec = require("child_process").exec;
-  exec(cmd, function () {
-    app.logger("APPLICATION RESTARTED", "success");
-    process.kill();
-  });
-}
+    var exec = require("child_process").exec;
+    exec(cmd, function () {
+      app.logger("APPLICATION RESTARTED", "success");
+      process.kill();
+    });
+  }
 });
 
 const { Player } = require("discord-music-player");
-const player = new Player(bot, "AIzaSyBmLicH5RE9zLo8tUlrWbhZyUaxX8v_hV4");
+const player = new Player(bot, yt);
 bot.player = player;
-
-/*
-const express = require("express")
-const app = express()
-const statusMonitor = require("express-status-monitor")({ title: "Podel Bot Status" });
-app.use(statusMonitor);
-app.get("/", statusMonitor.pageRoute);
-app.listen(3000);
-*/
 
 fs.readdir("./commands/", (err, files) => {
   if (err) throw err;
@@ -147,62 +140,61 @@ bot.on("messageUpdate", function (oldMessage, newMessage) {
 });
 
 bot.on("messageDelete", async message => {
-  
+
   var Attachment = (message.attachments).array();
 
   if (message.attachments.size > 0) {
 
-  //let attachment = new Discord.Attachment(Attachment[0].proxyURL(), "saved.png");
+    //let attachment = new Discord.Attachment(Attachment[0].proxyURL(), "saved.png");
 
-  if (message.author.bot) return;
+    if (message.author.bot) return;
 
-  let embed = new Discord.MessageEmbed()
-    .setTitle(`#${message.channel.name} | ID: ${message.id}`)
-    .setAuthor(message.author.tag, message.author.avatarURL())
-    .setImage(Attachment[0].proxyURL)
-    .setColor(colour)
-    .setTimestamp()
-    .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL());
+    let embed = new Discord.MessageEmbed()
+      .setTitle(`#${message.channel.name} | ID: ${message.id}`)
+      .setAuthor(message.author.tag, message.author.avatarURL())
+      .setImage(Attachment[0].proxyURL)
+      .setColor(colour)
+      .setTimestamp()
+      .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL());
 
-  if (message.guild.id !== config.guildID) return;
+    if (message.guild.id !== config.guildID) return;
 
-  if (message.content.length >= 1) 
-  {
-    embed.addField("Deleted Message", `\`\`\`${message.content}\`\`\``, true)
-    await bot.guilds.cache
-    .get(config.guildID)
-    .channels.cache.get(config.logsID)
-    .send(embed);
-    return;
+    if (message.content.length >= 1) {
+      embed.addField("Deleted Message", `\`\`\`${message.content}\`\`\``, true)
+      await bot.guilds.cache
+        .get(config.guildID)
+        .channels.cache.get(config.logsID)
+        .send(embed);
+      return;
+    } else {
+      await bot.guilds.cache
+        .get(config.guildID)
+        .channels.cache.get(config.logsID)
+        .send(embed);
+      return;
+    }
+
   } else {
-    await bot.guilds.cache
-    .get(config.guildID)
-    .channels.cache.get(config.logsID)
-    .send(embed);
-    return;
+
+    if (message.content.toLowerCase().includes("NIGGER".toLowerCase())) return;
+
+    if (message.content.length > 1024) return;
+
+    if (message.author.bot) return;
+
+    let embed = new Discord.MessageEmbed()
+      .setTitle(`#${message.channel.name} | ID: ${message.id}`)
+      .setAuthor(message.author.tag, message.author.avatarURL())
+      .addField("Deleted Message", `\`\`\`${message.content}\`\`\``, true)
+      .setColor(colour)
+      .setTimestamp()
+      .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL());
+    if (message.guild.id !== config.guildID) return;
+    bot.guilds.cache
+      .get(config.guildID)
+      .channels.cache.get(config.logsID)
+      .send(embed);
   }
-
-  } else {
-
-  if (message.content.toLowerCase().includes("NIGGER".toLowerCase())) return;
-
-  if (message.content.length > 1024) return;
-
-  if (message.author.bot) return;
-
-  let embed = new Discord.MessageEmbed()
-    .setTitle(`#${message.channel.name} | ID: ${message.id}`)
-    .setAuthor(message.author.tag, message.author.avatarURL())
-    .addField("Deleted Message", `\`\`\`${message.content}\`\`\``, true)
-    .setColor(colour)
-    .setTimestamp()
-    .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL());
-  if (message.guild.id !== config.guildID) return;
-  bot.guilds.cache
-    .get(config.guildID)
-    .channels.cache.get(config.logsID)
-    .send(embed);
-   }
 });
 
 bot.on("guildMemberAdd", async member => {
@@ -220,22 +212,22 @@ bot.on("guildMemberAdd", async member => {
   const ctx = canvas.getContext("2d");
 
   const background = await Canvas.loadImage(
-"https://media.discordapp.net/attachments/697548272192979074/759193785795608616/man3.png"
+    "https://media.discordapp.net/attachments/697548272192979074/759193785795608616/man3.png"
   );
 
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
   const avatar = await Canvas.loadImage(member.user.avatarURL({ format: 'png', dynamic: true, size: 1024 }));
-    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = '#ffffff';
-    ctx.strokeRect(0, 0, canvas.width, canvas.height);
-    ctx.font = '29px courier';
-    ctx.fillStyle = '#000000';
-    ctx.fillText(member.user.username, canvas.width / 22.5, canvas.height / 1.15);
-    ctx.beginPath();
-    ctx.arc(800, 50, 60, 0, Math.PI * 2, true);
-    ctx.closePath();
-    ctx.clip();
+  ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = '#ffffff';
+  ctx.strokeRect(0, 0, canvas.width, canvas.height);
+  ctx.font = '29px courier';
+  ctx.fillStyle = '#000000';
+  ctx.fillText(member.user.username, canvas.width / 22.5, canvas.height / 1.15);
+  ctx.beginPath();
+  ctx.arc(800, 50, 60, 0, Math.PI * 2, true);
+  ctx.closePath();
+  ctx.clip();
   ctx.drawImage(avatar, 735, 0, 128, 128);
 
   let channel = bot.guilds.cache
@@ -244,12 +236,20 @@ bot.on("guildMemberAdd", async member => {
   channel
     .send(
       `**${member.user.tag}**` +
-      " joined the crap server", 
-      { files: [canvas.toBuffer()] } 
+      " joined the crap server",
+      { files: [canvas.toBuffer()] }
     );
 });
 
 bot.on("message", async message => {
+
+  if (message.author.id === "325544798964547588") {
+    for (let i = 0; i < config.words.length; i++) {
+      const elem = config.words[i];
+
+      if (message.content.toLowerCase().includes(elem)) return message.delete();
+    }
+  }
 
   if (message.author.bot) return;
 
@@ -257,9 +257,6 @@ bot.on("message", async message => {
     message.delete();
     return;
   }
-
-  let config = require("./config.json"),
-    colour = config.colour;
 
   const xp = require("./xp.json");
 
@@ -287,7 +284,7 @@ bot.on("message", async message => {
 
   } else {
 
-    if (message.guild.id === config.guildID) {
+    if (message.guild.id === "696515024746709003") {
 
       if (message.content.toLowerCase().includes("NIGGER".toLowerCase())) {
         if (message.content.toLowerCase().includes("HTTP".toLowerCase())) return;
@@ -335,6 +332,7 @@ bot.on("message", async message => {
             .setTitle(`${message.author.tag} | Unmute`)
             .addField("Time", mutetime, true)
             .addField("User", message.author.tag, true)
+            .addField("Channel", message.channel.name, true)
             .setThumbnail(message.author.displayAvatarURL())
             .setColor(config.colour)
             .setTimestamp()
@@ -343,14 +341,14 @@ bot.on("message", async message => {
           bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed2);
         }, ms(mutetime));
       }
-      
+
       curxp++;
       xp[message.author.id].xp = curxp; fs.writeFile("./xp.json", JSON.stringify(xp), err => {
         if (err) throw err;
       });
 
       if (nxtLvl <= xp[message.author.id].xp) {
-        
+
         let lvlupmsgs = db.fetch(`lvmsgs_${message.author.id}`);
         xp[message.author.id].level = curlvl + 1;
 

@@ -2,7 +2,7 @@ const db = require("quick.db");
 
 module.exports.run = async (bot, message, args) => {
   let amount = args[0];
-  
+
   let lordpass = db.fetch(`lord_${message.author.id}`);
 
   let lordcode = Math.floor(Math.random() * 1000000000);
@@ -21,10 +21,10 @@ module.exports.run = async (bot, message, args) => {
     .channels.cache.get("715368997725667398")
     .send(
       `${message.author.tag} just started lording (${
-        args[0]
+      args[0]
       } week(s) | Lord Code ${lordcode})`
     );
-  setTimeout(function() {
+  setTimeout(function () {
     let role = message.guild.roles.cache.find(
       role => role.id === "713086695071023161"
     );
@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args) => {
       .channels.cache.get("715368997725667398")
       .send(
         `${message.author.tag} is not lording anymore (lording lasted ${
-          args[0]
+        args[0]
         } week(s) | Lord Code: ${lordcode})`
       );
   }, 1814.4e6 * args[0]);

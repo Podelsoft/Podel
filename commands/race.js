@@ -3,7 +3,7 @@ module.exports.run = async (bot, message, args) => {
     const db = require("quick.db");
     const json = require("../items.json");
     const config = require("../config.json"),
-          colour = config.colour;
+        colour = config.colour;
 
     let user = message.mentions.users.first();
 
@@ -30,20 +30,20 @@ module.exports.run = async (bot, message, args) => {
 
     if (car1 === null) return message.channel.send('You haven\'t set your car. If you don\'t have one, buy one from the `p!dealership`.');
     else
-    if (car2 === null) return message.channel.send('That user hasn\'t set their car. If they don\'t have one, they can buy one from the `p!dealership`.');
+        if (car2 === null) return message.channel.send('That user hasn\'t set their car. If they don\'t have one, they can buy one from the `p!dealership`.');
 
     if (check1 <= 0) return db.delete(`car_${message.author.id}`),
-    message.channel.send('You haven\'t set your car. If you don\'t have one, buy one from the `p!dealership`.');
+        message.channel.send('You haven\'t set your car. If you don\'t have one, buy one from the `p!dealership`.');
     else
-    if (check2 <= 0) return db.delete(`car_${user.id}`),
-    message.channel.send('That user hasn\'t set their car. If they don\'t have one, they can buy one from the `p!dealership`.');
-    
+        if (check2 <= 0) return db.delete(`car_${user.id}`),
+            message.channel.send('That user hasn\'t set their car. If they don\'t have one, they can buy one from the `p!dealership`.');
+
     let embedstart = new Discord.MessageEmbed()
-    .setAuthor(`${message.author.tag} | Race Invite`, `${message.author.avatarURL()}`)
-    .setDescription(`Hey ${user}, ${message.author.tag} has invited you to a drag race for **${wager}** quid. (20 seconds until the race start, react with ✅ to accept or ❌ to decline)`)
-    .setColor(colour)
-    .setTimestamp()
-    .setFooter('Podel, do ya thang', bot.user.avatarURL());
+        .setAuthor(`${message.author.tag} | Race Invite`, `${message.author.avatarURL()}`)
+        .setDescription(`Hey ${user}, ${message.author.tag} has invited you to a drag race for **${wager}** quid. (20 seconds until the race start, react with ✅ to accept or ❌ to decline)`)
+        .setColor(colour)
+        .setTimestamp()
+        .setFooter('Podel, do ya thang', bot.user.avatarURL());
 
     async function start() {
 
@@ -52,64 +52,64 @@ module.exports.run = async (bot, message, args) => {
 
         if (!cperc1) return message.channel.send("You need to reset your car. `(no perc)`")
         else
-        if (!cperc2) return message.channel.send("That user needs to reset their car. `(no perc)`");
-    
+            if (!cperc2) return message.channel.send("That user needs to reset their car. `(no perc)`");
+
         let perc1 = parseInt(cperc1);
         let perc2 = parseInt(cperc2);
 
         let gdiff;
         gdiff = perc1 - perc2;
-        
-    message.channel.send(embedstart).then(async (startmsg) => {
 
-    await startmsg.react("✅");
-    await startmsg.react("❌");
-    
-    startmsg.awaitReactions((reaction, user) => user.id === message.mentions.users.first().id && (reaction.emoji.name === "✅" || "❌"), { max: 1, time: 20000 })
-    .then(async (collected) => {
+        message.channel.send(embedstart).then(async (startmsg) => {
 
-    if (collected.first().emoji.name === "✅") {
+            await startmsg.react("✅");
+            await startmsg.react("❌");
 
-    let result = (Math.random() * 200) + gdiff - 100;
+            startmsg.awaitReactions((reaction, user) => user.id === message.mentions.users.first().id && (reaction.emoji.name === "✅" || "❌"), { max: 1, time: 20000 })
+                .then(async (collected) => {
 
-    if (result >= 0) {
-        let emojicar1 = bot.emojis.cache.find(emoji => emoji.name === `${json[car1].emoji}`);
-        let embedc1 = new Discord.MessageEmbed()
-        .setAuthor(`${message.author.tag} Won!`, `${message.author.avatarURL()}`)
-        .setDescription(`+ **£${wager}**`)
-        .setThumbnail(`${emojicar1.url}`)
-        .setColor(colour)
-        .setTimestamp()
-        .setFooter('Podel, do ya thang', bot.user.avatarURL());
-        message.channel.send(embedc1);
-        db.subtract(`balance_${user.id}`, wager);
-        db.add(`balance_${message.author.id}`, wager);
-    } else if (result < 0) {
-        let emojicar2 = bot.emojis.cache.find(emoji => emoji.name === `${json[car2].emoji}`);
-        let embedc2 = new Discord.MessageEmbed()
-        .setAuthor(`${user.tag} Won!`, `${user.avatarURL()}`)
-        .setDescription(`+ **£${wager}**`)
-        .setThumbnail(`${emojicar2.url}`)
-        .setColor(colour)
-        .setTimestamp()
-        .setFooter('Podel, do ya thang', bot.user.avatarURL());
-        message.channel.send(embedc2);
-        db.subtract(`balance_${message.author.id}`, wager);
-        db.add(`balance_${user.id}`, wager);
+                    if (collected.first().emoji.name === "✅") {
+
+                        let result = (Math.random() * 200) + gdiff - 100;
+
+                        if (result >= 0) {
+                            let emojicar1 = bot.emojis.cache.find(emoji => emoji.name === `${json[car1].emoji}`);
+                            let embedc1 = new Discord.MessageEmbed()
+                                .setAuthor(`${message.author.tag} Won!`, `${message.author.avatarURL()}`)
+                                .setDescription(`+ **£${wager}**`)
+                                .setThumbnail(`${emojicar1.url}`)
+                                .setColor(colour)
+                                .setTimestamp()
+                                .setFooter('Podel, do ya thang', bot.user.avatarURL());
+                            message.channel.send(embedc1);
+                            db.subtract(`balance_${user.id}`, wager);
+                            db.add(`balance_${message.author.id}`, wager);
+                        } else if (result < 0) {
+                            let emojicar2 = bot.emojis.cache.find(emoji => emoji.name === `${json[car2].emoji}`);
+                            let embedc2 = new Discord.MessageEmbed()
+                                .setAuthor(`${user.tag} Won!`, `${user.avatarURL()}`)
+                                .setDescription(`+ **£${wager}**`)
+                                .setThumbnail(`${emojicar2.url}`)
+                                .setColor(colour)
+                                .setTimestamp()
+                                .setFooter('Podel, do ya thang', bot.user.avatarURL());
+                            message.channel.send(embedc2);
+                            db.subtract(`balance_${message.author.id}`, wager);
+                            db.add(`balance_${user.id}`, wager);
+                        }
+
+                    } else if (collected.first().emoji.name === "❌") return message.channel.send(`${message.author} rekt ✅`)
+
+                })
+                .catch(() => {
+                    message.channel.send(`Race Stopped: \`Timed Out\``);
+                });
+
+        });
+
     }
 
-   } else if (collected.first().emoji.name === "❌") return message.channel.send(`${message.author} rekt ✅`) 
-
-  })
-  .catch(() => {
-      message.channel.send(`Race Stopped: \`Timed Out\``);
-  });
-
-});
-
-}
-
-start();
+    start();
 };
 
 module.exports.help = {

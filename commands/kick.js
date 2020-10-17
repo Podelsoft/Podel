@@ -4,7 +4,7 @@ const config = require("../config.json"),
   colour = config.colour;
 
 module.exports.run = async (bot, message, args) => {
-  
+
   if (message.guild.id !== config.guildID) { return }
   let j = args.join(" ");
   let reason = j.split(args[0])[1];
@@ -19,45 +19,45 @@ module.exports.run = async (bot, message, args) => {
         message.channel.send(`Are you sure you want to kick **${user.tag}** (yes/no)`);
         const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 10000 });
         collector.on('collect', message => {
-            if (message.content.toLowerCase() == "yes") {
-                member.kick({ reason: "eliminated by podelbot" })
-                .then(async () => {
-                  await user.send(`you've been kicked from Podel Server (Reason:${reason})`)
+          if (message.content.toLowerCase() == "yes") {
+            member.kick({ reason: "eliminated by podelbot" })
+              .then(async () => {
+                await user.send(`you've been kicked from Podel Server (Reason:${reason})`)
                   .catch(async () => {
-                    message.channel.send('couldn\'t send message to user').then(msg => msg.delete({timeout: 5000}));
+                    message.channel.send('couldn\'t send message to user').then(msg => msg.delete({ timeout: 5000 }));
                   });
-                  let embed = new Discord.MessageEmbed()
-                    .setTitle(`${user.tag} | Kick`)
-                    .addField("Reason", reason, true)
-                    .addField("Mod/Admin", message.author.tag, true)
-                    .setThumbnail(user.displayAvatarURL())
-                    .setColor(colour)
-                    .setTimestamp()
-                    .setFooter("Podel, :titalaughing:", bot.user.avatarURL());
+                let embed = new Discord.MessageEmbed()
+                  .setTitle(`${user.tag} | Kick`)
+                  .addField("Reason", reason, true)
+                  .addField("Mod/Admin", message.author.tag, true)
+                  .setThumbnail(user.displayAvatarURL())
+                  .setColor(colour)
+                  .setTimestamp()
+                  .setFooter("Podel, :titalaughing:", bot.user.avatarURL());
                 await message.reply(`Successfully kicked ${user.tag}`);
                 await db.add(`kickCount_${user.id}`, 1);
                 await bot.guilds.cache
-                .get(config.guildID)
-                .channels.cache.get("704356972606259220")
-                .send(embed);  
+                  .get(config.guildID)
+                  .channels.cache.get("704356972606259220")
+                  .send(embed);
               })
               .catch(err => {
                 message.channel.send(err);
               });
-            } 
-            else if (message.content.toLowerCase() == "no") {
-                message.channel.send("cancelled.");
-                return;
-            }
+          }
+          else if (message.content.toLowerCase() == "no") {
+            message.channel.send("cancelled.");
+            return;
+          }
         });
-     }
-    } else {
-        message.reply("That user isn't in this guild!");
       }
     } else {
-      return;
+      message.reply("That user isn't in this guild!");
     }
+  } else {
+    return;
   }
+}
 
 module.exports.help = {
   name: "kick",

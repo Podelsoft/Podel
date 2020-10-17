@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
   const car = db.fetch(`car_${message.author.id}`);
 
   let job = db.fetch(`job_${message.author.id}`);
-    
+
   let scp = 5;
   let tgp = 10;
   let amp = 60;
@@ -107,68 +107,68 @@ module.exports.run = async (bot, message, args) => {
 
     if (job !== null) {
       let jobs = [
-      "Somerfield Cashier",
-      "Tesco Guard",
-      "Aldi Manager",
-      "Chairman"
-    ];
+        "Somerfield Cashier",
+        "Tesco Guard",
+        "Aldi Manager",
+        "Chairman"
+      ];
 
-    let result = Math.floor(Math.random() * jobs.length);
+      let result = Math.floor(Math.random() * jobs.length);
 
-    let earnings = 0;
-    let jobname = 0;
+      let earnings = 0;
+      let jobname = 0;
 
-    if (jobs[result] === "Somerfield Cashier")
-      (earnings = `£${scp}/hour`), (jobname = "Somerfield Cashier");
+      if (jobs[result] === "Somerfield Cashier")
+        (earnings = `£${scp}/hour`), (jobname = "Somerfield Cashier");
 
-    if (jobs[result] === "Tesco Guard")
-      (earnings = `£${tgp}/2 hours`), (jobname = "Tesco Guard");
+      if (jobs[result] === "Tesco Guard")
+        (earnings = `£${tgp}/2 hours`), (jobname = "Tesco Guard");
 
-    if (jobs[result] === "Aldi Manager")
-      (earnings = `£${amp}/12 hours`), (jobname = "Aldi Manager");
+      if (jobs[result] === "Aldi Manager")
+        (earnings = `£${amp}/12 hours`), (jobname = "Aldi Manager");
 
-    if (jobs[result] === "Chairman")
-      (earnings = `£${chp}/day`), (jobname = "Chairman");
-    await db.delete(`job_${message.author.id}`);
+      if (jobs[result] === "Chairman")
+        (earnings = `£${chp}/day`), (jobname = "Chairman");
+      await db.delete(`job_${message.author.id}`);
       await db.push(`job_${message.author.id}`, jobname);
       await message.channel.send(
         `you have been assigned as a ${jobname}, your earnings are ${earnings}, use \`p!work\` to start earning.`
       );
-     await db.set(`lastjob_${message.author.id}`, Date.now());
+      await db.set(`lastjob_${message.author.id}`, Date.now());
 
     } else if (job === null) {
 
-    let jobs = [
-      "Somerfield Cashier",
-      "Tesco Guard",
-      "Aldi Manager",
-      "Chairman"
-    ];
+      let jobs = [
+        "Somerfield Cashier",
+        "Tesco Guard",
+        "Aldi Manager",
+        "Chairman"
+      ];
 
-    let result = Math.floor(Math.random() * jobs.length);
+      let result = Math.floor(Math.random() * jobs.length);
 
-    let earnings = 0;
-    let jobname = 0;
+      let earnings = 0;
+      let jobname = 0;
 
-    if (jobs[result] === "Somerfield Cashier")
-      (earnings = `£${scp}/hour`), (jobname = "Somerfield Cashier");
+      if (jobs[result] === "Somerfield Cashier")
+        (earnings = `£${scp}/hour`), (jobname = "Somerfield Cashier");
 
-    if (jobs[result] === "Tesco Guard")
-      (earnings = `£${tgp}/2 hours`), (jobname = "Tesco Guard");
+      if (jobs[result] === "Tesco Guard")
+        (earnings = `£${tgp}/2 hours`), (jobname = "Tesco Guard");
 
-    if (jobs[result] === "Aldi Manager")
-      (earnings = `£${amp}/12 hours`), (jobname = "Aldi Manager");
+      if (jobs[result] === "Aldi Manager")
+        (earnings = `£${amp}/12 hours`), (jobname = "Aldi Manager");
 
-    if (jobs[result] === "Chairman")
-      (earnings = `£${chp}/day`), (jobname = "Chairman");
+      if (jobs[result] === "Chairman")
+        (earnings = `£${chp}/day`), (jobname = "Chairman");
 
-    async function work() {
-      await db.push(`job_${message.author.id}`, jobname);
-      await message.channel.send(`you have been assigned as a ${jobname}, your earnings are ${earnings}, use \`p!work\` to start earning.`);
-      await db.set(`lastjob_${message.author.id}`, Date.now());
-    }
+      async function work() {
+        await db.push(`job_${message.author.id}`, jobname);
+        await message.channel.send(`you have been assigned as a ${jobname}, your earnings are ${earnings}, use \`p!work\` to start earning.`);
+        await db.set(`lastjob_${message.author.id}`, Date.now());
+      }
 
-    work();
+      work();
     }
   }
 };

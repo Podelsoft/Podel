@@ -1,18 +1,18 @@
 const Discord = require('discord.js');
 const db = require('quick.db');
 let config = require('../config.json'),
-    colour = config.colour;
+  colour = config.colour;
 
 module.exports.run = async (bot, message, args) => {
 
   if (message.guild.id !== config.guildID) return;
-  
+
   if (message.member.hasPermission('KICK_MEMBERS')) {
 
     const channel = bot.guilds.cache.get('696515024746709003').channels.cache.get(`${message.channel.id}`);
-            
+
     let p = args.join(" ");
- 
+
     let reason = p.toString().split(args[0])[1].trim();
 
     let idmsg = "";
@@ -22,13 +22,13 @@ module.exports.run = async (bot, message, args) => {
     await channel.messages.fetch(args[0]).then(msg => idmsg = msg.id);
 
     if (message.attachments.size < 0) {
-    await channel.messages.fetch(args[0]).then(msg => msgcont = msg.content);
+      await channel.messages.fetch(args[0]).then(msg => msgcont = msg.content);
     } else { msgcont = "attachment saved in logs" }
 
     await channel.messages.fetch(args[0]).then(msg => user = msg.author);
 
-//  let user = bot.users.find(user => user.username.toLowerCase().includes(args[0])) || message.mentions.users.first();
-  
+    //  let user = bot.users.find(user => user.username.toLowerCase().includes(args[0])) || message.mentions.users.first();
+
     if (!user) return message.channel.send("user/message not found.");
 
     let embed = new Discord.MessageEmbed()
@@ -41,19 +41,19 @@ module.exports.run = async (bot, message, args) => {
       .setColor(colour)
       .setTimestamp()
       .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL())
-    
-      await (message.delete());
-      
-      await channel.messages.fetch(args[0]).then(msg => msg.delete());    
 
-      await db.add(`warnCount_${user.id}`, 1)
- 
-      await bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed);
-      
-      await user.send(`you've been warned on Podel Server for **${reason}**` + '\n\n`message attached to warn:` ```' + msgcont + '```');      
-      
-    }
-  };
+    await (message.delete());
+
+    await channel.messages.fetch(args[0]).then(msg => msg.delete());
+
+    await db.add(`warnCount_${user.id}`, 1)
+
+    await bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed);
+
+    await user.send(`you've been warned on Podel Server for **${reason}**` + '\n\n`message attached to warn:` ```' + msgcont + '```');
+
+  }
+};
 
 module.exports.help = {
   name: "msgwarn",

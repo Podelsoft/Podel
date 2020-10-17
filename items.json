@@ -5,7 +5,7 @@
     "sell": "10000",
     "db": "lord",
     "emoji": "lordpass"
-  }, 
+  },
   "overlordpass": {
     "name": "1-Month Overlord Pass (overlordpass)",
     "buy": "80000",
@@ -38,16 +38,16 @@
     "grade": "24"
   },
   "astra": {
-   "name": "2006 Opel Astra 1.3L (astra)",
-   "buy": "1000",
-   "sell": "450",
-   "db": "astra",
-   "emoji": "astra",
-   "tier": "1",
-   "max": "205",
-   "acceleration": "8.5",
-   "handling": "meh",
-   "grade": "35"
+    "name": "2006 Opel Astra 1.3L (astra)",
+    "buy": "1000",
+    "sell": "450",
+    "db": "astra",
+    "emoji": "astra",
+    "tier": "1",
+    "max": "205",
+    "acceleration": "8.5",
+    "handling": "meh",
+    "grade": "35"
   },
   "sonata": {
     "name": "2009 Hyundai Sonata (sonata)",
