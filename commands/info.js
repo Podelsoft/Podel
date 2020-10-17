@@ -29,6 +29,7 @@ module.exports.run = async (bot, message, args) => {
     .addField('RAM Used', `${used}MB`)
     .addField('Available RAM', `${available}MB`)
     .addField('Total RAM', `1GB`)
+    .addField('Contributors', `\`\`\`${pack.contributors.join("\n")}\`\`\``)
     .addField('Uptime', format(uptime))
     .setColor(colour)
     .setFooter('Podel, spaghetti code everywhere', bot.user.avatarURL());
