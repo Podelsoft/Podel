@@ -13,9 +13,10 @@ module.exports.run = async (bot, message, args) => {
     if (!isPlaying) {
       let track = await bot.player.play(message.member.voice.channel, args.join(" "));
 
-      if (!track) return message.channel.send("no results <:mitacry2:711047218575966219>");
-
-      else {
+      if (!track) {
+        await bot.player.play(message.member.voice.channel, args.join(" "));
+      } else {
+        console.log(track);
         yts(args.join(), async (err, r) => {
 
           let videos = r.videos;

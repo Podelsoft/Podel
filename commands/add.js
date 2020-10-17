@@ -9,11 +9,10 @@ module.exports.run = async (bot, message, args) => {
   if (message.member.voice.channel) {
 
     let track = await bot.player.addToQueue(message.guild.id, args.join(" "));
-    track = track.song;
 
-    if (!track) return message.channel.send("no results <:mitacry2:711047218575966219>");
-
-    else {
+    if (!track) {
+      await bot.player.addToQueue(message.guild.id, args.join(" "));
+    } else {
       yts(args.join(), async (err, r) => {
 
         let videos = r.videos;
