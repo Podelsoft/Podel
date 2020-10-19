@@ -407,7 +407,7 @@ bot.on("message", async message => {
 
       command2.run(bot, message, args);
     } catch (err) {
-      throw err;
+      console.log(err);
     }
     /*db.set(`lastcmd_${message.author.id}`, Date.now())
     cooldown.add(message.author.id);

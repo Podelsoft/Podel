@@ -60,11 +60,10 @@ module.exports.run = async (bot, message, args) => {
   }
 
   for (var i = 0; i < data.length; i = i + 3) {
-    let usertag = bot.users.cache.get(data[i]);
-    if (usertag === undefined) usertag = `<cannot fetch this user | ${data[i]}>`;
-    else if (usertag !== undefined) usertag = bot.users.cache.get(data[i]).tag;
     if (!bot.users.cache.get(data[i])) { placeNumber = "Too Far"; break; }
-    if (bot.users.cache.get(data[i]).id === user.id) { placeNumber = ending(place); break; } else { };
+    if (bot.users.cache.get(data[i]).id === user.id) { placeNumber = ending(place); break; } else {
+      // TODO: get a job  
+    };
     place++;
   }
 
