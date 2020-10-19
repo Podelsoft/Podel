@@ -5,12 +5,12 @@ let config = require("../config.json"),
 module.exports.run = async (bot, message, args) => {
 
   const embed = new Discord.MessageEmbed()
-    .setTitle("v1.4.5 Changelog | 6/10/2020")
+    .setTitle("v1.5.0 Changelog | 19/10/2020")
     .setDescription(`
-  •	 Fixed/Updated commands: p!race, p!dealership, p!help, p!leaderboard, p!msgmute and p!msgwarn.
-  •  Added command types to all commands (for p!help).
-  •  Status monitor was removed due to terminal pollution, code is still there, feel free to make any pull requests.
-  •  Other minor code fixes.`)
+  •	 Fixed/Updated commands: p!play, p!add, p!info, p!nowplaying, p!stats, p!rank.
+  •  Fixed formatting for all files.
+  •  New Car: the 1985 Lancia Delta S4 "Stradale".
+  •  Added **marked out** code for command cooldowns.`)
     .setColor(colour)
     .setFooter("Podel, are ya coding son?", bot.user.avatarURL());
 

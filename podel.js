@@ -6,7 +6,10 @@ const secret = require("../secret.json"),
   yt = secret.ytapi;
 const bot = new Discord.Client({ disableMentions: "everyone" });
 const fs = require("fs");
-const db = require("quick.db");
+const db = require("quick.db"),
+  ms = require("ms"),
+  mparse = require("parse-ms");
+const cooldown = new Set();
 bot.commands = new Discord.Collection();
 
 //bot.on("debug", console.log);
@@ -388,6 +391,11 @@ bot.on("message", async message => {
   const commandName = args2.shift().toLowerCase();
 
   if (message.content.startsWith(prefix)) {
+    /*let lastcmd = db.fetch(`lastcmd_${message.author.id}`)
+    let tObj = mparse(5000 - (Date.now() - lastcmd));
+    if (cooldown.has(message.author.id)) {
+      message.channel.send(`wait **${tObj.seconds}** sec \`(cooldown)\``);
+    } else {*/
     try {
       const command2 =
         bot.commands.get(commandName) ||
@@ -401,6 +409,13 @@ bot.on("message", async message => {
     } catch (err) {
       throw err;
     }
+    /*db.set(`lastcmd_${message.author.id}`, Date.now())
+    cooldown.add(message.author.id);
+    setTimeout(() => {
+      db.delete(`lastcmd_${message.author.id}`);
+      cooldown.delete(message.author.id);
+    }, 5000);
+  }*/
   }
 
 });

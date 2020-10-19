@@ -1,7 +1,7 @@
 const config = require('../config.json');
 
 module.exports.run = async (bot, message, args) => {
-  if (config.owner.includes(message.author.id)) return;
+  if (!config.owner.includes(message.author.id)) return;
   let j = args.join(" ");
   let name = j.substring(0, j.indexOf("|"));
   let scode = j.split("|")[1];

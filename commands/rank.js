@@ -29,11 +29,51 @@ module.exports.run = async (bot, message, args) => {
 
   const barStr = `${'🟢'.repeat(progressOutOf10)}${'🔴'.repeat(10 - progressOutOf10)}`;
 
+  let file = Object.entries(xp)
+    .map(([key, val]) => ({ id: key, ...val }))
+    .sort((a, b) => b.xp - a.xp);
+  n1 = 0,
+    n2 = 200000,
+    n3 = 1;
+  let result = file.slice(n1, n2);
+  let data = JSON.stringify(result);
+
+  data = data.replace(/[^0-9,]/g, '');
+  data = data.split(',');
+
+  let place = n3;
+  let placeNumber;
+
+  function ending(i) {
+    var j = i % 10,
+      k = i % 100;
+    if (j == 1 && k != 11) {
+      return i + "st";
+    }
+    if (j == 2 && k != 12) {
+      return i + "nd";
+    }
+    if (j == 3 && k != 13) {
+      return i + "rd";
+    }
+    return i + "th";
+  }
+
+  for (var i = 0; i < data.length; i = i + 3) {
+    let usertag = bot.users.cache.get(data[i]);
+    if (usertag === undefined) usertag = `<cannot fetch this user | ${data[i]}>`;
+    else if (usertag !== undefined) usertag = bot.users.cache.get(data[i]).tag;
+    if (!bot.users.cache.get(data[i])) { placeNumber = "Too Far"; break; }
+    if (bot.users.cache.get(data[i]).id === user.id) { placeNumber = ending(place); break; } else { };
+    place++;
+  }
+
   const embed = new Discord.MessageEmbed()
     .setTitle(user.tag + " | Stats")
     .addField("Messages", `${curxp}`)
     .addField("Podel LVL", `${curlvl}${podelemoji}`)
     .addField("Messages Remaining", `${curxp}/${nxtlvl}`)
+    .addField("Place", `**${placeNumber}**`)
     .addField("Progress", `${barStr}`)
     .setColor(colour)
     .setThumbnail(user.displayAvatarURL())

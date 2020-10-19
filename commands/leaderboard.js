@@ -40,6 +40,7 @@ module.exports.run = async (bot, message, args, tools) => {
       .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
       .setThumbnail("https://cdn.glitch.com/5d94d2b3-55ae-4001-86e0-104c8c5e4005%2Fswiss%20banking%20montage%20for%20bot.png?v=1588393805266");
 
+      
     for (var i = 0; i < 29; i = i + 3) {
       let usertag = bot.users.cache.get(data[i]);
       if (usertag === undefined) usertag = `<cannot fetch this user | ${data[i]}>`;
