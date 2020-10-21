@@ -27,9 +27,9 @@ module.exports.run = async (bot, message, args) => {
 
     if (mutetime < 0) return message.channel.send('how is this man.')
 
-    var role = message.guild.roles.cache.find(role => role.name === "Muted");
+    var role = message.guild.roles.cache.find(role => role.id === config.mutedRole);
 
-    if (user.roles.cache.some(role => role.name === "Muted")) return message.channel.send(`that user is already muted.`)
+    if (user.roles.cache.some(role => role.id === config.mutedRole)) return message.channel.send(`that user is already muted.`)
 
     let embed = new Discord.MessageEmbed()
       .setTitle(`${user.user.tag} | Mute`)
@@ -51,10 +51,10 @@ module.exports.run = async (bot, message, args) => {
 
     await user.user.send('you\'ve been muted on Podel Server for **' + mutetime + '** (Reason:' + reason + ')');
 
-    await bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed);
+    await bot.guilds.cache.get(config.guildID).channels.cache.get(config.warningsID).send(embed);
 
     setTimeout(function () {
-      if (!user.roles.cache.some(role => role.name === "Muted")) return;
+      if (!user.roles.cache.some(role => role.id === config.mutedRole)) return;
       let embed2 = new Discord.MessageEmbed()
         .setTitle(`${user.user.tag} | Unmute`)
         .addField('Time', mutetime)
@@ -66,7 +66,7 @@ module.exports.run = async (bot, message, args) => {
         .setFooter('Podel, coded by the government of georgia', bot.user.avatarURL())
       user.roles.remove(role);
       db.delete(`muted_${user.user.id}`);
-      bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed2);
+      bot.guilds.cache.get(config.guildID).channels.cache.get(config.warningsID).send(embed2);
     }, ms(mutetime));
   }
 };

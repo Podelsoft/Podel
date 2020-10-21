@@ -13,9 +13,9 @@ module.exports.run = async (bot, message, args) => {
 
     if (!user) return message.channel.send("user not found.");
 
-    var role = message.guild.roles.cache.find(role => role.name === "Muted");
+    var role = message.guild.roles.cache.find(role => role.id === config.mutedRole);
 
-    if (!user.roles.cache.some(role => role.name === "Muted")) return message.channel.send(`that user is already unmuted.`)
+    if (!user.roles.cache.some(role => role.id === config.mutedRole)) return message.channel.send(`that user is already unmuted.`)
 
     let embed = new Discord.MessageEmbed()
       .setTitle(`${user.user.tag} | Unmute`)
@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args) => {
 
     await (message.delete());
 
-    await bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed);
+    await bot.guilds.cache.get(config.guildID).channels.cache.get(config.warningsID).send(embed);
 
     await user.roles.remove(role);
 

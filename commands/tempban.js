@@ -55,7 +55,7 @@ module.exports.run = async (bot, message, args) => {
 
                 await bot.guilds.cache
                   .get(config.guildID)
-                  .channels.cache.get("704356972606259220")
+                  .channels.cache.get(config.warningsID)
                   .send(embed);
 
                 setTimeout(function () {
@@ -74,7 +74,7 @@ module.exports.run = async (bot, message, args) => {
                   message.guild.members.unban(user.id);
                   bot.guilds.cache
                     .get(config.guildID)
-                    .channels.cache.get("704356972606259220")
+                    .channels.cache.get(config.warningsID)
                     .send(embed2);
                 }, ms(bantime));
               })

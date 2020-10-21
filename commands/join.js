@@ -1,12 +1,13 @@
 const db = require("quick.db");
+const config = require("../config.json");
 
 module.exports.run = async (bot, message, args) => {
 
-  if (message.channel.id !== "708435487525961840") { return };
-  var role = message.guild.roles.cache.find(role => role.name === "New Member");
+  if (message.channel.id !== config.joinChannel) { return };
+  var role = message.guild.roles.cache.find(role => role.name === config.joinRole);
 
   let muted = db.fetch(`muted_${message.author.id}`);
-  var mutedrole = message.guild.roles.cache.find(role => role.name === "Muted");
+  var mutedrole = message.guild.roles.cache.find(role => role.id === config.mutedRole);
 
   if (muted !== null) {
     await message.delete();

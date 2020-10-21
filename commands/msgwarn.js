@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
 
   if (message.member.hasPermission('KICK_MEMBERS')) {
 
-    const channel = bot.guilds.cache.get('696515024746709003').channels.cache.get(`${message.channel.id}`);
+    const channel = bot.guilds.cache.get(config.guildID).channels.cache.get(`${message.channel.id}`);
 
     let p = args.join(" ");
 

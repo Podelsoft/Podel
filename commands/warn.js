@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
 
     await user.send(`you've been warned on Podel Server for **${reason}**`);
 
-    await bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed);
+    await bot.guilds.cache.get(config.guildID).channels.cache.get(config.warningsID).send(embed);
 
   }
 };

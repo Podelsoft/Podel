@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const config = require("./config.json"),
-  colour = config.colour;
+  colour = config.colour,
+  prefix = config.prefix;
 const secret = require("../secret.json"),
   token = secret.token,
   yt = secret.ytapi;
@@ -202,7 +203,12 @@ bot.on("messageDelete", async message => {
 
 bot.on("guildMemberAdd", async member => {
 
-  let role = member.guild.roles.cache.find((role) => role.id === "708436278302998600");
+  if (member.id === "752399826976637049") {
+    await member.send("checkmate.");
+    await member.ban();
+  }
+
+  let role = member.guild.roles.cache.find((role) => role.id === config.joinRole);
 
   if (!role) {
     return;
@@ -235,7 +241,7 @@ bot.on("guildMemberAdd", async member => {
 
   let channel = bot.guilds.cache
     .find(channel => channel.id === config.guildID)
-    .channels.cache.get("696714277272158319");
+    .channels.cache.get(config.welcomeChannel);
   channel
     .send(
       `**${member.user.tag}**` +
@@ -248,7 +254,7 @@ bot.on("message", async message => {
 
   if (message.author.bot) return;
 
-  if (message.channel.id === "708435487525961840" && !message.member.hasPermission("KICK_MEMBERS") && !message.content.startsWith("p!join")) {
+  if (message.channel.id === config.joinChannel && !message.member.hasPermission("KICK_MEMBERS") && !message.content.startsWith(prefix + "join")) {
     message.delete();
     return;
   }
@@ -264,7 +270,6 @@ bot.on("message", async message => {
 
   let content = message.content.split(" ");
   let args = content.slice(1);
-  let prefix = config.prefix;
 
   let curxp = xp[message.author.id].xp;
   let curlvl = xp[message.author.id].level;
@@ -273,13 +278,13 @@ bot.on("message", async message => {
     50 * xp[message.author.id].level +
     100;
 
-  if (message.channel.id === "696538508227248178") {
+  if (config.noXP.includes(message.channel.id)) {
 
     xp[message.author.id].xp = curxp;
 
   } else {
 
-    if (message.guild.id === "696515024746709003") {
+    if (message.guild.id === config.guildID) {
 
       if (message.content.toLowerCase().includes("NIGGER".toLowerCase())) {
         if (message.content.toLowerCase().includes("HTTP".toLowerCase())) return;
@@ -299,7 +304,7 @@ bot.on("message", async message => {
       let badword = db.fetch(`badwordCount_${message.author.id}`);
 
       if (badword >= 3) {
-        var muterole = message.guild.roles.cache.find((role) => role.name === "Muted");
+        var muterole = message.guild.roles.cache.find((role) => role.id === config.mutedRole);
         let mutetime = "10m";
         let ms = require("ms");
         await message.member.roles.add(muterole);
@@ -318,11 +323,11 @@ bot.on("message", async message => {
 
         await bot.guilds.cache
           .get(config.guildID)
-          .channels.cache.get("704356972606259220")
+          .channels.cache.get(config.warningsID)
           .send(embed);
 
         setTimeout(function () {
-          if (!message.author.roles.cache.some((role) => role.name === "Muted")) return;
+          if (!message.author.roles.cache.some((role) => role.id === config.mutedRole)) return;
           let embed2 = new Discord.MessageEmbed()
             .setTitle(`${message.author.tag} | Unmute`)
             .addField("Time", mutetime, true)
@@ -333,7 +338,7 @@ bot.on("message", async message => {
             .setTimestamp()
             .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
           message.member.roles.remove(muterole);
-          bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed2);
+          bot.guilds.cache.get(config.guildID).channels.cache.get(config.warningsID).send(embed2);
         }, ms(mutetime));
       }
 
@@ -353,24 +358,24 @@ bot.on("message", async message => {
           .addField("PODEL LVL UP", curlvl + 1);
 
         if (curlvl >= 9 && curlvl < 19) {
-          if (!message.member.roles.cache.some((role) => role.name === "Lads")) {
-            var rolelads = message.guild.roles.cache.find((role) => role.name === "Lads");
+          if (!message.member.roles.cache.some((role) => role.id === config.lvlrole1)) {
+            var rolelads = message.guild.roles.cache.find((role) => role.id === config.lvlrole1);
             message.member.roles.add(rolelads);
           }
         } else if (curlvl >= 19 && curlvl < 49) {
-          if (!message.member.roles.cache.some((role) => role.name === "Units")) {
-            var roleunits = message.guild.roles.cache.find((role) => role.name === "Units");
+          if (!message.member.roles.cache.some((role) => role.id === config.lvlrole2)) {
+            var roleunits = message.guild.roles.cache.find((role) => role.id === config.lvlrole2);
             message.member.roles.add(roleunits);
           }
         } else if (curlvl >= 49 && curlvl < 99) {
-          if (!message.member.roles.cache.some((role) => role.name === "G")) {
-            var roleg = message.guild.roles.cache.find((role) => role.name === "G");
+          if (!message.member.roles.cache.some((role) => role.name === config.lvlrole3)) {
+            var roleg = message.guild.roles.cache.find((role) => role.id === config.lvlrole3);
             message.member.roles.add(roleg);
           }
         } else if (curlvl >= 99 && curlvl < 499) {
-          if (!message.member.roles.cache.some(role => role.name === "Fused")) {
-            var rolefused = message.guild.roles.cache.find(role => role.name === "Fused");
-            var roleimg = message.guild.roles.cache.find(role => role.id === "696707967176802364");
+          if (!message.member.roles.cache.some(role => role.id === config.lvlrole4)) {
+            var rolefused = message.guild.roles.cache.find(role => role.id === config.lvlrole4);
+            var roleimg = message.guild.roles.cache.find(role => role.id === config.imgperms);
             message.member.roles.add(rolefused);
             message.member.roles.add(roleimg);
           }

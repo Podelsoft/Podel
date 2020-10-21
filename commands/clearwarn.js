@@ -29,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
 
     await (message.delete());
 
-    await bot.guilds.cache.get(config.guildID).channels.cache.get("704356972606259220").send(embed);
+    await bot.guilds.cache.get(config.guildID).channels.cache.get(config.warningsID).send(embed);
 
     await db.delete(`warnCount_${user.user.id}`);
 
