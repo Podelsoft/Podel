@@ -368,7 +368,7 @@ bot.on("message", async message => {
             message.member.roles.add(roleunits);
           }
         } else if (curlvl >= 49 && curlvl < 99) {
-          if (!message.member.roles.cache.some((role) => role.name === config.lvlrole3)) {
+          if (!message.member.roles.cache.some((role) => role.id === config.lvlrole3)) {
             var roleg = message.guild.roles.cache.find((role) => role.id === config.lvlrole3);
             message.member.roles.add(roleg);
           }

@@ -4,7 +4,7 @@ const config = require("../config.json");
 module.exports.run = async (bot, message, args) => {
 
   if (message.channel.id !== config.joinChannel) { return };
-  var role = message.guild.roles.cache.find(role => role.name === config.joinRole);
+  var role = message.guild.roles.cache.find(role => role.id === config.joinRole);
 
   let muted = db.fetch(`muted_${message.author.id}`);
   var mutedrole = message.guild.roles.cache.find(role => role.id === config.mutedRole);
