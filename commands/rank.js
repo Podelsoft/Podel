@@ -1,87 +1,111 @@
-const Discord = require("discord.js");
-let config = require("../config.json"),
-  colour = config.colour;
+const db = require("quick.db"),
+      ms = require("parse-ms");
+const { MessageAttachment } = require("discord.js");
+const Canvas = require("canvas");
+const canvas = Canvas.createCanvas(1080, 1350);
+const ctx = canvas.getContext("2d");
+const { registerFont } = require("canvas");
+registerFont('./discheavy.otf', { family: 'Uni Sans Heavy' });
+
 
 module.exports.run = async (bot, message, args) => {
 
-  let user = bot.users.cache.find(user => user.username.toLowerCase().includes(args.join(' ').toLowerCase())) || message.mentions.users.first();
+  let cooldown = 10000;
 
-  if (!user) user = message.author;
-  if (user.id === bot.user.id) user = message.author;
+  let lastcall = await db.fetch(`rankcmd_${message.author.id}`);
 
-  let podelemoji = bot.emojis.cache.find(emoji => emoji.name === `podel`);
+  if (lastcall !== null && cooldown - (Date.now() - lastcall) > 0) {
+    let timeObj = ms(cooldown - (Date.now() - lastcall));
 
-  var xp = require("../xp.json");
+    message.reply(`wait **${timeObj.seconds}** sec \`(cooldown)\``);
 
-  if (!xp[user.id]) {
-    xp[user.id] = {
-      xp: 0,
-      level: 1
-    };
-  }
+  } else {
 
-  let curxp = xp[user.id].xp;
-  let curlvl = xp[user.id].level;
-  let nxtlvl = 5 * (xp[user.id].level ** 2) + 50 * xp[user.id].level + 100;
+    let user = bot.users.cache.find(user => user.username.toLowerCase().includes(args.join(' ').toLowerCase())) || message.mentions.users.first();
 
-  const progress = (curxp % 1000) / 1000;
-  const progressOutOf10 = Math.round(progress * 10);
+    if (!user) user = message.author;
+    if (user.id === bot.user.id) user = message.author;
 
-  const barStr = `${'🟢'.repeat(progressOutOf10)}${'🔴'.repeat(10 - progressOutOf10)}`;
+    var xp = require("../xp.json");
 
-  let file = Object.entries(xp)
-    .map(([key, val]) => ({ id: key, ...val }))
-    .sort((a, b) => b.xp - a.xp);
-  n1 = 0,
-    n2 = 200000,
-    n3 = 1;
-  let result = file.slice(n1, n2);
-  let data = JSON.stringify(result);
-
-  data = data.replace(/[^0-9,]/g, '');
-  data = data.split(',');
-
-  let place = n3;
-  let placeNumber;
-
-  function ending(i) {
-    var j = i % 10,
-      k = i % 100;
-    if (j == 1 && k != 11) {
-      return i + "st";
+    if (!xp[user.id]) {
+      xp[user.id] = {
+        xp: 0,
+        level: 1
+      };
     }
-    if (j == 2 && k != 12) {
-      return i + "nd";
+
+    let curxp = xp[user.id].xp;
+    let curlvl = xp[user.id].level;
+    let nxtlvl = 5 * (xp[user.id].level ** 2) + 50 * xp[user.id].level + 100;
+
+    let file = Object.entries(xp)
+      .map(([key, val]) => ({ id: key, ...val }))
+      .sort((a, b) => b.xp - a.xp);
+    n1 = 0,
+      n2 = 200000,
+      n3 = 1;
+    let result = file.slice(n1, n2);
+    let data = JSON.stringify(result);
+
+    data = data.replace(/[^0-9,]/g, '');
+    data = data.split(',');
+
+    let place = n3;
+    let placeNumber;
+
+    for (var i = 0; i < data.length; i = i + 3) {
+      if (!bot.users.cache.get(data[i])) { placeNumber = ""; break; }
+      if (bot.users.cache.get(data[i]).id === user.id) { placeNumber = String(place); break; } else {
+        // TODO: get a job  
+      };
+      place++;
     }
-    if (j == 3 && k != 13) {
-      return i + "rd";
+
+    const background = await Canvas.loadImage("https://cdn.discordapp.com/attachments/622424015356559363/768846684452814878/bglvl.png");
+
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+    const avatar = await Canvas.loadImage(user.avatarURL({ format: 'png', dynamic: true, size: 1024 }));
+
+    ctx.fillStyle = "white";
+    ctx.drawImage(avatar, 90, 320, 300, 300);
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = '#ffffff';
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+    // Level
+    ctx.font = '128px Uni Sans Heavy';
+    ctx.fillStyle = '#000000';
+    ctx.fillText(curlvl, 760, 550);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText("LVL", 540, 550);
+
+    // XP
+    ctx.font = '64px Uni Sans Heavy';
+    ctx.fillStyle = '#000000';
+    ctx.fillText(curxp + "/" + nxtlvl, 560, 430);
+
+    // Place
+    ctx.font = '60px Uni Sans Heavy';
+    ctx.fillStyle = '#363636';
+    if (placeNumber.length === 3) {
+      ctx.fillText("#" + placeNumber, 255, 600);
+    } else if (placeNumber.length === 2) {
+      ctx.fillText("#" + placeNumber, 285, 600);
+    } else if (placeNumber.length === 1) {
+      ctx.fillText("#" + placeNumber, 305, 600);
+    } else if (placeNumber.length < 1) {
+      ctx.fillText("", 315, 600)
     }
-    return i + "th";
+
+    // Message
+    const attachment = new MessageAttachment(canvas.toBuffer());
+    message.channel.send(attachment);
+
+    db.set(`rankcmd_${message.author.id}`, Date.now());
   }
-
-  for (var i = 0; i < data.length; i = i + 3) {
-    if (!bot.users.cache.get(data[i])) { placeNumber = "Too Far"; break; }
-    if (bot.users.cache.get(data[i]).id === user.id) { placeNumber = ending(place); break; } else {
-      // TODO: get a job  
-    };
-    place++;
-  }
-
-  const embed = new Discord.MessageEmbed()
-    .setTitle(user.tag + " | Stats")
-    .addField("Messages", `${curxp}`)
-    .addField("Podel LVL", `${curlvl}${podelemoji}`)
-    .addField("Messages Remaining", `${curxp}/${nxtlvl}`)
-    .addField("Place", `**${placeNumber}**`)
-    .addField("Progress", `${barStr}`)
-    .setColor(colour)
-    .setThumbnail(user.displayAvatarURL())
-    .setFooter(
-      "Podel, the kid who types !rank every 15 mins",
-      bot.user.avatarURL()
-    );
-
-  await message.channel.send(embed);
 
 }
 

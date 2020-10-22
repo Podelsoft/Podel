@@ -6,6 +6,8 @@ let config = require("../config.json"),
 module.exports.run = async (bot, message, args) => {
   let podelemoji = bot.emojis.cache.find(emoji => emoji.name === `podel`);
 
+  if (!args[0]) return;
+
   if (message.member.voice.channel) {
 
     let isPlaying = bot.player.isPlaying(message.guild.id);
