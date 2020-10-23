@@ -38,7 +38,7 @@ module.exports.run = async (bot, message, args) => {
                 await db.add(`kickCount_${user.id}`, 1);
                 await bot.guilds.cache
                   .get(config.guildID)
-                  .channels.cache.get(config.logsID)
+                  .channels.cache.get(config.warningsID)
                   .send(embed);
               })
               .catch(err => {
