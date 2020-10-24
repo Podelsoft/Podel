@@ -24,16 +24,14 @@ module.exports.run = async (bot, message, args) => {
         .addField("Output", `\`\`\`${clean(evaled)}\`\`\``)
         .setColor(colour);
 
-      //message.channel.send(embed);
-      console.log(clean(evaled));
+      message.channel.send(embed);
     } catch (err) {
       let embed = new Discord.MessageEmbed()
         .addField("Input", `\`\`\`${args.join(" ")}\`\`\``)
         .addField("Error", `\`\`\`xl\n${clean(err)}\n\`\`\``)
         .setColor(colour);
 
-      //message.channel.send(embed);
-      console.log(err);
+      message.channel.send(embed);
     }
   }
 }

@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
 
     let isPlaying = bot.player.isPlaying(message.guild.id);
 
-    let song = args.join();
+    let song = args.join(" ");
 
     if (!isPlaying) {
       while (true) {

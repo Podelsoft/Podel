@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
 
   if (message.member.voice.channel) {
 
-    let song = args.join();
+    let song = args.join(" ");
 
     if (isPlaying) {
       while (true) {

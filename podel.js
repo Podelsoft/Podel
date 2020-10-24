@@ -203,9 +203,9 @@ bot.on("messageDelete", async message => {
 
 bot.on("guildMemberAdd", async member => {
 
-  if (member.id === "752399826976637049") {
-    await member.send("checkmate.");
-    await member.ban();
+  if (config.autoBan.includes(member.id)) {
+    return member.send(`you've been banned from Podel Server (Reason: autoban)`),
+    member.ban({reason: "autoban (check banlist)"});
   }
 
   let role = member.guild.roles.cache.find((role) => role.id === config.joinRole);
