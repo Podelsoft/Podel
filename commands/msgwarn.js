@@ -21,9 +21,13 @@ module.exports.run = async (bot, message, args) => {
 
     await channel.messages.fetch(args[0]).then(msg => idmsg = msg.id);
 
-    if (message.attachments.size < 0) {
+    var atCheck = (message.attachments).array();
+
+    if (atCheck.length <= 0) {
       await channel.messages.fetch(args[0]).then(msg => msgcont = msg.content);
-    } else { msgcont = "attachment saved in logs" }
+    }
+    
+    if (message.attachments) { msgcont = "attachment saved in logs" }
 
     await channel.messages.fetch(args[0]).then(msg => user = msg.author);
 
