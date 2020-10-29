@@ -1,4 +1,5 @@
-const superagent = require("superagent");
+const { MessageAttachment } = require("discord.js");
+const fs = require("fs");
 
 module.exports.run = async (bot, message, args) => {
     if (!args.join(" ")) return message.channel.send("you must type something in.");
@@ -30,15 +31,26 @@ module.exports.run = async (bot, message, args) => {
         return white.test(x.charAt(0));
     };
 
-    let text = wrap(`${args.join(" ")}`, 120);
-    
-    text = text.replace(/ /g, "%20");
-    text = text.replace(/\s/g, '|');
+    let text = wrap(`${args.join(" ")}`, 100);
 
-    message.channel.send(`http://delaygen.realitaetsverlust.rocks/${text}`);
+    text = text.replace(/ /g, " "),
+    text = text.replace(/(?:\r\n|\r|\n)/g, '|');
+    text = text.replace(/\s/g, " "),
+    text = text.split(`"`).join(`\\"`),
+    text = encodeURI(text);
+
+    let cmd = `curl --data 'request={"target": "Delay", "content": "${text.split(`'`).join(`%27`)}"}'  memefactory.realitaetsverlust.rocks --output delay.jpg`
+
+    var exec = require("child_process").exec;
+    exec(cmd, function () {
+        const attachment = new MessageAttachment("./delay.jpg");
+        message.channel.send(attachment).then(() => {
+            fs.unlinkSync("./delay.jpg");
+        });
+    });
 };
 
 module.exports.help = {
     name: "delay",
     type: "user"
-}
+};

@@ -9,6 +9,21 @@ module.exports.run = async (bot, message, args, tools) => {
   //if (args[0].toLowerCase() !== "balance") return message.channel.send("use p!leaderboard `balance` or p!leaderboard `xp` instead.");
   //if (args[0].toLowerCase() !== "xp") return message.channel.send("use p!leaderboard `balance` or p!leaderboard `xp` instead.");
 
+  function ending(i) {
+    var j = i % 10,
+      k = i % 100;
+    if (j == 1 && k != 11) {
+      return i + "st";
+    }
+    if (j == 2 && k != 12) {
+      return i + "nd";
+    }
+    if (j == 3 && k != 13) {
+      return i + "rd";
+    }
+    return i + "th";
+  }
+
   if (args[0] === "xp") {
 
     let file = Object.entries(xp)
@@ -40,14 +55,15 @@ module.exports.run = async (bot, message, args, tools) => {
       .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
       .setThumbnail("https://cdn.glitch.com/5d94d2b3-55ae-4001-86e0-104c8c5e4005%2Fswiss%20banking%20montage%20for%20bot.png?v=1588393805266");
 
-      
     for (var i = 0; i < 29; i = i + 3) {
-      let usertag = bot.users.cache.get(data[i]);
+      /*
+      let usertag = bot.users.cache.find(user => user.id === data[i]);
       if (usertag === undefined) usertag = `<cannot fetch this user | ${data[i]}>`;
-      else if (usertag !== undefined) usertag = bot.users.cache.get(data[i]).tag;
+      else if (usertag !== undefined) usertag = usertag.tag;
+      */
       embed.addField(
-        "**" + place + ":** `" + usertag + "`",
-        "Level: " + data[i + 2] + "  | XP: " + data[i + 1]
+        `**${ending(place)}**`,
+        `<@${data[i]}> \nLevel: ${data[i + 2]} | XP: ${data[i + 1]}`
       );
       place++;
     }
@@ -70,12 +86,14 @@ module.exports.run = async (bot, message, args, tools) => {
     var i = 0;
     let indexnum = 0;
     for (i in money) {
+      /*
       let usertag = bot.users.cache.get(money[i].ID.split('_')[1]);
       if (usertag === undefined) usertag = `<cannot fetch this user | ${money[i].ID.split('_')[1]}>`;
       else if (usertag !== undefined) usertag = bot.users.cache.get(money[i].ID.split('_')[1]).tag;
+      */
       embed.addField(
-        `**${indexnum + 1}:** \`` + usertag + "`",
-        `Balance: ${money[i].data} :pound:`
+        `**${ending(indexnum + 1)}**`,
+        `<@` + money[i].ID.split('_')[1] + `> \nBalance: ${money[i].data} :pound:`
       );
       indexnum++;
     }

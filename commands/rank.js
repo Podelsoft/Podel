@@ -93,7 +93,7 @@ module.exports.run = async (bot, message, args) => {
     if (placeNumber.length === 3) {
       ctx.fillText("#" + placeNumber, 255, 600);
     } else if (placeNumber.length === 2) {
-      ctx.fillText("#" + placeNumber, 285, 600);
+      ctx.fillText("#" + placeNumber, 280, 600);
     } else if (placeNumber.length === 1) {
       ctx.fillText("#" + placeNumber, 305, 600);
     } else if (placeNumber.length < 1) {
