@@ -1,8 +1,9 @@
-const { MessageAttachment } = require("discord.js");
+const superagent = require("superagent");
 const fs = require("fs");
+const { MessageAttachment } = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-    if (!args.join(" ")) return message.channel.send("you must type something in.");
+    let { body } = await superagent.get("https://api.cristpz.eu/v1/podel");
 
     function wrap(str, maxWidth) {
         var newLineStr = "|"; done = false; res = '';
@@ -31,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
         return white.test(x.charAt(0));
     };
 
-    let text = wrap(`${args.join(" ")}`, 100);
+    let text = wrap(`${body.msg}`, 100);
 
     text = text.replace(/ /g, " "),
         text = text.replace(/(?:\r\n|\r|\n)/g, '|');
@@ -39,18 +40,19 @@ module.exports.run = async (bot, message, args) => {
         text = text.split(`"`).join(`\\"`),
         text = encodeURI(text);
 
-    let cmd = `curl --data 'request={"target": "Delay", "content": "${text.split(`'`).join(`%27`)}"}'  memefactory.realitaetsverlust.rocks --output delay.jpg`
+    let cmd = `curl --data 'request={"target": "Delay", "content": "${text.split(`'`).join(`%27`)}"}'  memefactory.realitaetsverlust.rocks --output podelay.jpg`
 
     var exec = require("child_process").exec;
     exec(cmd, function () {
-        const attachment = new MessageAttachment("./delay.jpg");
+        const attachment = new MessageAttachment("./podelay.jpg");
         message.channel.send(attachment).then(() => {
-            fs.unlinkSync("./delay.jpg");
+            fs.unlinkSync("./podelay.jpg");
         });
     });
 };
 
 module.exports.help = {
-    name: "delay",
+    name: "podelay",
+    aliases: ["pl"],
     type: "user"
 };
