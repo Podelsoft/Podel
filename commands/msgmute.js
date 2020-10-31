@@ -23,13 +23,11 @@ module.exports.run = async (bot, message, args) => {
 
     await channel.messages.fetch(args[0]).then((msg) => idmsg = msg.id);
 
-    var atCheck = (message.attachments).array();
-
-    if (atCheck.length <= 0) {
+    if (message.attachments.size <= 0) {
       await channel.messages.fetch(args[0]).then(msg => msgcont = msg.content);
+    } else {
+      msgcont = "attachment saved in logs";
     }
-    
-    if (message.attachments) { msgcont = "attachment saved in logs" }
 
     await channel.messages.fetch(args[0]).then((msg) => user2 = msg.author);
 
@@ -47,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
 
     if (mutetime < 0) return message.channel.send("how is this man.")
 
-    var role = message.guild.cache.roles.find(role => role.id === config.mutedRole);
+    var role = message.guild.roles.cache.find(role => role.id === config.mutedRole);
 
     if (user.roles.cache.some(role => role.id === config.mutedRole)) return message.channel.send(`that user is already muted.`)
 
@@ -65,7 +63,7 @@ module.exports.run = async (bot, message, args) => {
 
     await (message.delete());
 
-    await channel.fetchMessage(args[0]).then((msg) => msg.delete());
+    await channel.messages.fetch(args[0]).then((msg) => msg.delete());
 
     await user.roles.add(role);
 
