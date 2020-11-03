@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
         var newLineStr = "|"; done = false; res = '';
         while (str.length > maxWidth) {
             found = false;
-            for (i = maxWidth - 1; i >= 0; i--) {
+            for (var i = maxWidth - 1; i >= 0; i--) {
                 if (testWhite(str.charAt(i))) {
                     res = res + [str.slice(0, i), newLineStr].join('');
                     str = str.slice(i + 1);
@@ -34,11 +34,10 @@ module.exports.run = async (bot, message, args) => {
 
     let text = wrap(`${body.msg}`, 100);
 
-    text = text.replace(/ /g, " "),
-        text = text.replace(/(?:\r\n|\r|\n)/g, '|');
+    text = text.replace(/(?:\r\n|\r|\n)/g, '|');
     text = text.replace(/\s/g, " "),
-        text = text.split(`"`).join(`\\"`),
-        text = encodeURI(text);
+    text = text.split(`"`).join(`\\"`),
+    text = encodeURI(text);
 
     let cmd = `curl --data 'request={"target": "Delay", "content": "${text.split(`'`).join(`%27`)}"}'  memefactory.realitaetsverlust.rocks --output podelay.jpg`
 

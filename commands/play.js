@@ -4,6 +4,9 @@ let config = require("../config.json"),
   colour = config.colour;
 
 module.exports.run = async (bot, message, args) => {
+
+  return message.channel.send("temporarily disabled.");
+
   let podelemoji = bot.emojis.cache.find(emoji => emoji.name === `podel`);
 
   if (!args[0]) return;

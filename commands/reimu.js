@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
         var newLineStr = "\n"; done = false; res = '';
         while (str.length > maxWidth) {
             found = false;
-            for (i = maxWidth - 1; i >= 0; i--) {
+            for (var i = maxWidth - 1; i >= 0; i--) {
                 if (testWhite(str.charAt(i))) {
                     res = res + [str.slice(0, i), newLineStr].join('');
                     str = str.slice(i + 1);
