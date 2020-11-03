@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
 
   return message.channel.send("temporarily disabled.");
 
-  let podelemoji = bot.emojis.cache.find(emoji => emoji.name === `podel`);
+  /*let podelemoji = bot.emojis.cache.find(emoji => emoji.name === `podel`);
 
   if (!args[0]) return;
 
@@ -56,7 +56,7 @@ module.exports.run = async (bot, message, args) => {
     }
   } else {
     message.reply("you need to join a voice channel first.");
-  }
+  }*/
 };
 
 module.exports.help = {
