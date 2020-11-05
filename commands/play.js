@@ -46,6 +46,61 @@ module.exports.run = async (bot, message, args) => {
 
               await message.channel.send(embed);
             });
+            bot.player.getQueue(message.guild.id)
+              .on('end', () => {
+                let embedend = new Discord.MessageEmbed()
+                .setTitle(
+                  "#" + message.member.voice.channel.name + " | " + message.author.tag
+                )
+                .addField(`Ran out of songs mate:`, `please consider donating here I really need to pay my second mortgage: [Link](https://www.paypal.me/christopherkarg)`)
+                .setColor(colour)
+                .setTimestamp()
+                .setFooter(
+                  "Podel, coded by the government of georgia",
+                  bot.user.displayAvatarURL()
+                );
+                message.channel.send(embedend);
+              })
+              .on('songChanged', (oldSong, newSong) => {
+                yts(newSong.name, async (err, r) => {
+
+                  let videos = r.videos;
+
+                  let embedchange = new Discord.MessageEmbed()
+                  .setTitle(
+                    "#" + message.member.voice.channel.name + " | " + message.author.tag
+                  )
+                  .addField(`Now Playing ${podelemoji}:`, `${videos[0].title}`)
+                  .addField(`Duration`, `${videos[0].timestamp}`)
+                  .addField(
+                    "Listen to this track here:",
+                    `[Open Youtube](${videos[0].url})`,
+                    true
+                  )
+                  .setThumbnail(videos[0].thumbnail)
+                  .setColor(colour)
+                  .setTimestamp()
+                  .setFooter(
+                    "Podel, coded by the government of georgia",
+                    bot.user.displayAvatarURL()
+                  );
+                message.channel.send(embedchange);
+              });
+            })
+              .on('channelEmpty', () => {
+                let embedempty = new Discord.MessageEmbed()
+                .setTitle(
+                  "#" + message.member.voice.channel.name + " | " + message.author.tag
+                )
+                .addField(`Channel ran out of users mate:`, `please consider donating here I really need to pay my second mortgage: [Link](https://www.paypal.me/christopherkarg)`)
+                .setColor(colour)
+                .setTimestamp()
+                .setFooter(
+                  "Podel, coded by the government of georgia",
+                  bot.user.displayAvatarURL()
+                );
+                message.channel.send(embedempty);
+              });
             return;
           }
         }
