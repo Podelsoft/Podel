@@ -42,8 +42,7 @@
     "snekfetch": "^4.0.4",
     "superagent": "^6.1.0",
     "videoshow": "^0.1.12",
-    "yt-search": "^2.3.3",
-    "ytdl-core": "^3.2.2"
+    "yt-search": "^2.3.3"
   },
   "engines": {
     "node": "12.x"
