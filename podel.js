@@ -38,7 +38,7 @@ bot.on("error", async error => {
 });
 
 const { Player } = require("discord-music-player");
-const player = new Player(bot, yt);
+const player = new Player(bot);
 bot.player = player;
 
 fs.readdir("./commands/", (err, files) => {
