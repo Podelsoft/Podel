@@ -6,8 +6,6 @@ const config = require("../config.json"),
 module.exports.run = async (bot, message, args, tools) => {
 
   if (!args[0]) { return message.channel.send("use p!leaderboard `balance` or p!leaderboard `xp` to get started mate."); }
-  //if (args[0].toLowerCase() !== "balance") return message.channel.send("use p!leaderboard `balance` or p!leaderboard `xp` instead.");
-  //if (args[0].toLowerCase() !== "xp") return message.channel.send("use p!leaderboard `balance` or p!leaderboard `xp` instead.");
 
   if (args[0] === "xp") {
 
@@ -46,8 +44,8 @@ module.exports.run = async (bot, message, args, tools) => {
       if (usertag === undefined) usertag = `<cannot fetch this user | ${data[i]}>`;
       else usertag = usertag.username + "#" + usertag.discriminator
       embed.addField(
-        "**" + place + ":** `" + usertag + "`",
-        "Level: " + data[i + 2] + "  | XP: " + data[i + 1]
+        `**${place}:** \`${usertag}\``,
+        `[Level: ${data[i + 2]}  | XP: ${data[i + 1]}]${`(https://podel.cristpz.eu/leaderboard/xp#${place})`}`
       );
       place++;
     }
@@ -68,14 +66,14 @@ module.exports.run = async (bot, message, args, tools) => {
     let money = db.all().filter((data) => data.ID.startsWith("balance")).sort((a, b) => b.data - a.data);
     money.length = 10;
     var i = 0;
-    let indexnum = 0;
+    let indexnum = 1;
     for (i in money) {
       let usertag = await bot.users.fetch(money[i].ID.split('_')[1]);
       if (usertag === undefined) usertag = `<cannot fetch this user | ${money[i].ID.split('_')[1]}>`;
       else usertag = usertag.username + "#" + usertag.discriminator
       embed.addField(
-        `**${indexnum + 1}:** \`` + usertag + "`",
-        `Balance: ${money[i].data} :pound:`
+        `${`**${indexnum}:** \`` + usertag}\``,
+        `[Balance: ${money[i].data} :pound:](https://podel.cristpz.eu/leaderboard/balance#${indexnum})`
       );
       indexnum++;
     }

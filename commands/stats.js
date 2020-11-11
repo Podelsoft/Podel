@@ -53,21 +53,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("📋 Place", `${placeNumber}`)
     .setColor(colour)
     .setThumbnail(user.avatarURL())
-    .setFooter("Podel, im being held hostage at 40.9015° N, 20.6556° E", bot.user.avatarURL());
-
-  for (var key in json) {
-
-    if (json.hasOwnProperty(key)) {
-
-      let emoji = bot.emojis.cache.find(emoji => emoji.name === `${json[key].emoji}`);
-      let item = db.fetch(`${json[key].db}_${user.id}`);
-
-      if (item >= 1) {
-        embed.addField(`${emoji} ${json[key].name}`, `x${item}`);
-      }
-
-    }
-  }
+    .setFooter("Podel, use p!inventory to check your or someone's inventory", bot.user.avatarURL());
 
   await message.channel.send(embed);
 };

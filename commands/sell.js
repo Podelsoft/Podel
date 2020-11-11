@@ -2,14 +2,14 @@ const db = require('quick.db');
 
 module.exports.run = async (bot, message, args) => {
 
-  let amount = args[1];
-
   let itemname = args[0];
+  let amount = args[1];
 
   const itemlist = require('../items.json');
   const item = itemlist[itemname];
 
-  if (!item) return;
+  if (!amount) amount = 1;
+  if (!item) { return message.channel.send("that item does not exist.") }
 
   let total = item.sell * amount;
   let price = `${total}` * 1;
@@ -22,7 +22,7 @@ module.exports.run = async (bot, message, args) => {
   if (amount < 1) return;
   if (isNaN(amount)) return;
 
-  if (itemtot < amount) return message.channel.send(`you don't have enough ${emoji} (${name}) to sell`);
+  if (itemtot < amount) return message.channel.send(`you don't have enough ${emoji} (${name}) to sell.`);
   db.add(`balance_${message.author.id}`, price);
   db.subtract(`${dbname}_${message.author.id}`, amount);
   message.channel.send(`sold **${amount}** ${emoji} ${name} for £${price}`);

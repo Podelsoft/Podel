@@ -12,6 +12,16 @@ module.exports.run = async (bot, message, args) => {
 
   if (message.member.voice.channel) {
 
+    if (args[1] === "--file") {
+      message.member.voice.channel.join().then(connection =>{
+        const dispatcher = connection.play(args[0]);
+        dispatcher.on("end", () => {
+          message.member.voice.channel.leave();
+          message.channel.send("fucked off :white_check_mark:");
+        });
+      }).catch(err => console.log(err));
+    }
+
     let isPlaying = bot.player.isPlaying(message.guild.id);
 
     let song = args.join(" ");
@@ -52,7 +62,7 @@ module.exports.run = async (bot, message, args) => {
                   .setTitle(
                     "#" + message.member.voice.channel.name + " | " + message.author.tag
                   )
-                  .addField(`Ran out of songs mate:`, `please consider donating here I really need to pay my second mortgage: [Link](https://www.paypal.me/christopherkarg)`)
+                  .addField(`Ran out of songs mate:`, `please consider donating [here](https://www.paypal.me/christopherkarg) I really need to pay my second mortgage`)
                   .setColor(colour)
                   .setTimestamp()
                   .setFooter(
@@ -119,7 +129,7 @@ module.exports.run = async (bot, message, args) => {
                   .setTitle(
                     "#" + message.member.voice.channel.name + " | " + message.author.tag
                   )
-                  .addField(`Channel ran out of users mate:`, `please consider donating here I really need to pay my second mortgage: [Link](https://www.paypal.me/christopherkarg)`)
+                  .addField(`Channel ran out of users mate:`, `please consider donating [here](https://www.paypal.me/christopherkarg) I really need to pay my second mortgage`)
                   .setColor(colour)
                   .setTimestamp()
                   .setFooter(

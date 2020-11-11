@@ -16,10 +16,10 @@ bot.commands = new Discord.Collection();
 
 bot.on("error", async error => {
   try {
-    app.webserver.close(); // Express.js instance
+    app.webserver.close(); 
     app.logger("Webserver was halted", "success");
   } catch (e) {
-    app.logger("Can't stop webserver:", "error"); // No server started
+    app.logger("Can't stop webserver:", "error"); 
     app.logger(e, "error");
   }
 

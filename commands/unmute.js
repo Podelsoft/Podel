@@ -31,6 +31,8 @@ module.exports.run = async (bot, message, args) => {
 
     await user.roles.remove(role);
 
+    await user.user.send("you\'re now **unmuted** on Podel Server");
+
     await db.delete(`muted_${user.user.id}`);
 
   }

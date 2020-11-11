@@ -13,6 +13,20 @@
     "db": "lord2",
     "emoji": "lordpass"
   },
+  "basiclb": {
+    "name": "Tier 1 Car Lootbox (basiclb)",
+    "buy": "800",
+    "sell": "400",
+    "db": "basiclb",
+    "emoji": "basiclb"
+  },
+  "betterlb": {
+    "name": "Tier 2 Car Lootbox (betterlb)",
+    "buy": "3000",
+    "sell": "1000",
+    "db": "betterlb",
+    "emoji": "betterlb"
+  },
   "ptcruiser": {
     "name": "2009 Chrysler PT Cruiser (ptcruiser)",
     "buy": "700",
@@ -23,7 +37,8 @@
     "max": "190",
     "acceleration": "11.1",
     "handling": "shit",
-    "grade": "18"
+    "grade": "18",
+    "lb": "4"
   },
   "aztek": {
     "name": "2004 Pontiac Aztek (aztek)",
@@ -35,7 +50,8 @@
     "max": "240",
     "acceleration": "8.5",
     "handling": "shit",
-    "grade": "24"
+    "grade": "24",
+    "lb": "3"
   },
   "astra": {
     "name": "2006 Opel Astra 1.3L (astra)",
@@ -47,7 +63,8 @@
     "max": "205",
     "acceleration": "8.5",
     "handling": "meh",
-    "grade": "35"
+    "grade": "35",
+    "lb": "3"
   },
   "sonata": {
     "name": "2009 Hyundai Sonata (sonata)",
@@ -59,7 +76,8 @@
     "max": "253",
     "acceleration": "7.1",
     "handling": "ok",
-    "grade": "39"
+    "grade": "39",
+    "lb": "2"
   },
   "murano": {
     "name": "2007 Nissan Murano (murano)",
@@ -71,7 +89,8 @@
     "max": "200",
     "acceleration": "8.4",
     "handling": "ok",
-    "grade": "49"
+    "grade": "49",
+    "lb": "1"
   },
   "accent": {
     "name": "2009 Hyundai Accent (accent)",
@@ -83,7 +102,8 @@
     "max": "177",
     "acceleration": "11.3",
     "handling": "good",
-    "grade": "54"
+    "grade": "54",
+    "lb": "1"
   },
   "rondo": {
     "name": "2007 Kia Rondo EX Wagon (rondo)",
@@ -95,19 +115,21 @@
     "max": "182",
     "acceleration": "8.9",
     "handling": "good",
-    "grade": "58"
+    "grade": "58",
+    "lb": "4"
   },
   "rabbit": {
     "name": "2009 Volkswagen Rabbit (rabbit)",
     "buy": "3150",
     "sell": "2100",
     "db": "rabbit",
-    "emoji": "vwrabbit",
+    "emoji": "rabbit",
     "tier": "2",
     "max": "220",
     "acceleration": "7.5",
     "handling": "meh",
-    "grade": "57"
+    "grade": "57",
+    "lb": "4"
   },
   "lacrosse": {
     "name": "2007 Buick LaCrosse (lacrosse)",
@@ -119,19 +141,21 @@
     "max": "229",
     "acceleration": "6.1",
     "handling": "good",
-    "grade": "59"
+    "grade": "59",
+    "lb": "4"
   },
   "xd": {
     "name": "2009 Scion xD (xd)",
     "buy": "4000",
     "sell": "1950",
     "db": "xd",
-    "emoji": "scionxd",
+    "emoji": "xd",
     "tier": "2",
     "max": "193",
     "acceleration": "8.3",
     "handling": "ok",
-    "grade": "60"
+    "grade": "60",
+    "lb": "4"
   },
   "m3": {
     "name": "2007 BMW 3 Series (m3)",
@@ -143,7 +167,8 @@
     "max": "250",
     "acceleration": "4.9",
     "handling": "ok",
-    "grade": "62"
+    "grade": "62",
+    "lb": "4"
   },
   "mx5": {
     "name": "1993 Mazda MX-5 Miata (mx5)",
@@ -155,7 +180,8 @@
     "max": "195",
     "acceleration": "8.8",
     "handling": "meh",
-    "grade": "63"
+    "grade": "63",
+    "lb": "3"
   },
   "malibu": {
     "name": "2009 Chevrolet Malibu (malibu)",
@@ -167,7 +193,8 @@
     "max": "212",
     "acceleration": "9",
     "handling": "good",
-    "grade": "64"
+    "grade": "64",
+    "lb": "3"
   },
   "tribute": {
     "name": "2009 Mazda Tribute (tribute)",
@@ -179,7 +206,8 @@
     "max": "184",
     "acceleration": "9.4",
     "handling": "good",
-    "grade": "64"
+    "grade": "64",
+    "lb": "2"
   },
   "sx4": {
     "name": "2008 Suzuki SX4 Wagon (sx4)",
@@ -191,7 +219,8 @@
     "max": "192",
     "acceleration": "8.4",
     "handling": "great",
-    "grade": "67"
+    "grade": "67",
+    "lb": "1"
   },
   "solstice": {
     "name": "2008 Pontiac Solstice (solstice)",
@@ -203,14 +232,15 @@
     "max": "229",
     "acceleration": "5.4",
     "handling": "great",
-    "grade": "70"
+    "grade": "70",
+    "lb": "1"
   },
   "cobalt": {
     "name": "2008 Chevrolet Cobalt SS (cobalt)",
     "buy": "20000",
     "sell": "9500",
     "db": "cobalt",
-    "emoji": "chev",
+    "emoji": "cobalt",
     "tier": "3",
     "max": "258",
     "acceleration": "5.7",

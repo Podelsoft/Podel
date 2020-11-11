@@ -6,8 +6,7 @@ module.exports.run = async (bot, message, args) => {
 
   let botsonly = message.guild.members.cache.filter(member => member.user.bot).size;
   let usersonly = message.guild.memberCount - botsonly;
-  let guild1 = message.guild;
-  let guildowner = message.guild.member(guild1.owner) ? guild1.owner.toString() : guild1.owner.user.tag;
+  let guildowner = await message.guild.members.fetch(message.guild.ownerID);
 
   let region = {
     "brazil": ":flag_br: Brazil",
