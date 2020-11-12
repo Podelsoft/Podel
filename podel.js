@@ -16,10 +16,10 @@ bot.commands = new Discord.Collection();
 
 bot.on("error", async error => {
   try {
-    app.webserver.close(); 
+    app.webserver.close();
     app.logger("Webserver was halted", "success");
   } catch (e) {
-    app.logger("Can't stop webserver:", "error"); 
+    app.logger("Can't stop webserver:", "error");
     app.logger(e, "error");
   }
 
@@ -65,6 +65,34 @@ bot.on("ready", async () => {
 
   console.log(bot.user.username + " is online.");
 
+  setInterval(() => {
+    function getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min) + min);
+    }
+
+    let msexrand = getRandomInt(1000, 2500);
+    let jobbrand = getRandomInt(3000, 5000);
+    let tbsmrand = getRandomInt(5000, 7000);
+    let fumorand = getRandomInt(9000, 20000);
+    let sexorand = getRandomInt(18000, 30000);
+
+    db.set(`MSEX_buy`, msexrand);
+    db.set(`MSEX_sell`, msexrand);
+
+    db.set(`JOBB_buy`, jobbrand);
+    db.set(`JOBB_sell`, jobbrand);
+
+    db.set(`TBSM_buy`, tbsmrand);
+    db.set(`TBSM_sell`, tbsmrand);
+
+    db.set(`FUMO_buy`, fumorand);
+    db.set(`FUMO_sell`, fumorand);
+
+    db.set(`SEXO_buy`, sexorand);
+    db.set(`SEXO_sell`, sexorand);
+  }, 1.8e6);
 });
 
 bot.on("guildBanRemove", function (guild, user) {
@@ -204,7 +232,7 @@ bot.on("guildMemberAdd", async member => {
 
   if (config.autoBan.includes(member.id)) {
     return member.send(`you've been banned from Podel Server (Reason: autoban)`),
-    member.ban({reason: "autoban (check banlist)"});
+      member.ban({ reason: "autoban (check banlist)" });
   }
 
   let role = member.guild.roles.cache.find((role) => role.id === config.joinRole);

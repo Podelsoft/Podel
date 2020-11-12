@@ -1,0 +1,22 @@
+{
+    "msex": {
+        "name": "Middlesex Water Co.",
+        "sname": "MSEX"
+    },
+    "jobb": {
+        "name": "Jobcentre Plus",
+        "sname": "JOBB"
+    },
+    "tbsm": {
+        "name": "The Big Smike",
+        "sname": "TBSM"
+    },
+    "fumo": {
+        "name": "Touhou Project Fumo Fumo",
+        "sname": "FUMO"
+    },
+    "sexo": {
+        "name": "SEX enterprises",
+        "sname": "SEXO"
+    }
+}
