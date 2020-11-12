@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
         let q = args[1];
         let amount = args[2];
 
-        const company = json[q];
+        const company = json[q.toLowerCase()];
 
         if (!amount) amount = 1;
         if (!company) { return message.channel.send("that company does not exist.") }
@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args) => {
         let q = args[1];
         let amount = args[2];
 
-        const company = json[q];
+        const company = json[q.toLowerCase()];
 
         if (!amount) amount = 1;
         if (!company) { return message.channel.send("that company does not exist.") }
