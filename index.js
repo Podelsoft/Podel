@@ -28,7 +28,6 @@ app.get("/leaderboard/balance", async (req, res) => {
     let usertag = await bot.users.fetch(money[i].ID.split('_')[1]);
     let userpfp = await bot.users.fetch(money[i].ID.split('_')[1]);
     if (usertag === undefined) usertag = `<cannot fetch this user | ${money[i].ID.split('_')[1]}>`;
-    else usertag = usertag;
     userpfp = userpfp.avatarURL({ format: "png", dynamic: true, size: 256 });
     if (usertag.username.length > 20) usertag = `${usertag.username.slice(0, 10)}...#${usertag.discriminator}`;
     else usertag = `${usertag.username}#${usertag.discriminator}`;
@@ -99,7 +98,6 @@ app.get("/leaderboard/xp", async (req, res) => {
     let usertag = await bot.users.fetch(data[i]);
     let userpfp = await bot.users.fetch(data[i]);
     if (usertag === undefined) usertag = `<cannot fetch this user | ${data[i]}>`;
-    else usertag = usertag;
     userpfp = userpfp.avatarURL({ format: "png", dynamic: true, size: 256 });
     if (usertag.username.length > 20) usertag = `${usertag.username.slice(0, 10)}...#${usertag.discriminator}`;
     else usertag = `${usertag.username}#${usertag.discriminator}`;

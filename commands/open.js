@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
         let num = Math.floor(Math.random() * 100) + 1;
 
         if (num > 90) {
-            var index = Object.keys(itemlist);
+            let index = Object.keys(itemlist);
             while (true) {
                 let randomItem = index[Math.floor(Math.random() * index.length)];
                 if (itemlist[randomItem].tier === "1" && itemlist[randomItem].lb === "2") {
@@ -39,7 +39,7 @@ module.exports.run = async (bot, message, args) => {
                 }
             }
         } else if (num >= 40 && num < 90) {
-            var index = Object.keys(itemlist);
+            let index = Object.keys(itemlist);
             while (true) {
                 let randomItem = index[Math.floor(Math.random() * index.length)];
                 if (itemlist[randomItem].tier === "1" && itemlist[randomItem].lb === "4") {
@@ -55,7 +55,7 @@ module.exports.run = async (bot, message, args) => {
                 }
             }
         } else if (num >= 10 && num < 40) {
-            var index = Object.keys(itemlist);
+            let index = Object.keys(itemlist);
             while (true) {
                 let randomItem = index[Math.floor(Math.random() * index.length)];
                 if (itemlist[randomItem].tier === "1" && itemlist[randomItem].lb === "3") {
@@ -71,7 +71,7 @@ module.exports.run = async (bot, message, args) => {
                 }
             }
         } else if (num >= 1 && num < 10) {
-            var index = Object.keys(itemlist);
+            let index = Object.keys(itemlist);
             while (true) {
                 let randomItem = index[Math.floor(Math.random() * index.length)];
                 if (itemlist[randomItem].tier === "1" && itemlist[randomItem].lb === "1") {
@@ -94,7 +94,7 @@ module.exports.run = async (bot, message, args) => {
         let num = Math.floor(Math.random() * 100) + 1;
 
         if (num > 90) {
-            var index = Object.keys(itemlist);
+            let index = Object.keys(itemlist);
             while (true) {
                 let randomItem = index[Math.floor(Math.random() * index.length)];
                 if (itemlist[randomItem].tier === "2" && itemlist[randomItem].lb === "2") {
@@ -110,7 +110,7 @@ module.exports.run = async (bot, message, args) => {
                 }
             }
         } else if (num >= 40 && num < 90) {
-            var index = Object.keys(itemlist);
+            let index = Object.keys(itemlist);
             while (true) {
                 let randomItem = index[Math.floor(Math.random() * index.length)];
                 if (itemlist[randomItem].tier === "2" && itemlist[randomItem].lb === "4") {
@@ -126,7 +126,7 @@ module.exports.run = async (bot, message, args) => {
                 }
             }
         } else if (num >= 10 && num < 40) {
-            var index = Object.keys(itemlist);
+            let index = Object.keys(itemlist);
             while (true) {
                 let randomItem = index[Math.floor(Math.random() * index.length)];
                 if (itemlist[randomItem].tier === "2" && itemlist[randomItem].lb === "3") {
@@ -142,7 +142,7 @@ module.exports.run = async (bot, message, args) => {
                 }
             }
         } else if (num >= 1 && num < 10) {
-            var index = Object.keys(itemlist);
+            let index = Object.keys(itemlist);
             while (true) {
                 let randomItem = index[Math.floor(Math.random() * index.length)];
                 if (itemlist[randomItem].tier === "2" && itemlist[randomItem].lb === "1") {

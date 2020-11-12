@@ -18,6 +18,7 @@ module.exports.run = async (bot, message, args) => {
             }
         } else if (args[0] === "remove") {
             let res = [];
+            let i = 0;
             for (i in config.autoBan) {
                 if (config.autoBan[i] === args[1]) {
                     delete config.autoBan[i];
@@ -30,6 +31,7 @@ module.exports.run = async (bot, message, args) => {
             if (!res.join("")) return message.channel.send("that user ID is not on the banlist.");
             else message.channel.send(res.join(""))
         } else if (args[0] === "list") {
+            let i = 0;
             for (i in config.autoBan) {
                 let user = await bot.users.fetch(config.autoBan[i]);
                 if (user) message.channel.send(`${user.id} | ${user.username}#${user.discriminator}`);
