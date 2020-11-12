@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 const db = require("quick.db");
 let config = require("../config.json"),
   colour = config.colour;
-const json = require("../items.json");
 
 module.exports.run = async (bot, message, args) => {
   let user = bot.users.cache.find(user => user.username.toLowerCase().includes(args.join(' ').toLowerCase())) || message.mentions.users.first();
