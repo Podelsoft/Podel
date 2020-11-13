@@ -65,6 +65,23 @@ bot.on("ready", async () => {
 
   console.log(bot.user.username + " is online.");
 
+  /*
+  setInterval(() => {
+    db.subtract(`MSEX_increase`, 10);
+    db.subtract(`JOBB_increase`, 30);
+    db.subtract(`TBSM_increase`, 50);
+    db.subtract(`FUMO_increase`, 90);
+    db.subtract(`SEXO_increase`, 180);
+
+    db.subtract(`MSEX_decrease`, 10);
+    db.subtract(`JOBB_decrease`, 30);
+    db.subtract(`TBSM_decrease`, 50);
+    db.subtract(`FUMO_decrease`, 90);
+    db.subtract(`SEXO_decrease`, 180);
+
+    db.set(`stocks_time2`, Date.now());
+  }, 10000);
+
   setInterval(() => {
     function getRandomInt(min, max) {
       min = Math.ceil(min);
@@ -92,8 +109,11 @@ bot.on("ready", async () => {
 
     db.set(`SEXO_buy`, sexorand);
     db.set(`SEXO_sell`, sexorand);
-  }, 1.8e6);
+
+    db.set(`stocks_time`, Date.now());
+  }, 10000);*/
 });
+
 
 bot.on("guildBanRemove", function (guild, user) {
   let embed2 = new Discord.MessageEmbed()
