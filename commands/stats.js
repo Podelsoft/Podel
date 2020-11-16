@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const db = require("quick.db");
+const json = require("../items.json");
 let config = require("../config.json"),
   colour = config.colour;
 
@@ -46,6 +47,8 @@ module.exports.run = async (bot, message, args) => {
     indexnum++;
   }
 
+  const car = db.fetch(`car_${message.author.id}`);
+
   const embed = new Discord.MessageEmbed()
     .setTitle(user.tag + " | Stats")
     .addField("💷 Balance", `£${bal}`)
@@ -54,7 +57,10 @@ module.exports.run = async (bot, message, args) => {
     .setThumbnail(user.avatarURL())
     .setFooter("Podel, use p!inventory to check your or someone's inventory", bot.user.avatarURL());
 
-  await message.channel.send(embed);
+    if (car) {
+      embed.addField("🚗 Main Car", json[car].name);
+      message.channel.send(embed);
+    } else message.channel.send(embed);
 };
 
 module.exports.help = {

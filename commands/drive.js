@@ -4,6 +4,7 @@ const json = require("../items.json");
 
 module.exports.run = async (bot, message, args, tools) => {
   const car = db.fetch(`car_${message.author.id}`);
+  const marlb = db.fetch(`marlboro_${message.author.id}`);
 
   if (car === null) return message.channel.send('You haven\'t set your car. If you don\'t have one, buy one from the `p!dealership`.');
 
@@ -23,6 +24,10 @@ module.exports.run = async (bot, message, args, tools) => {
       if (json[car].tier === '4') mult = 8
       else
         if (json[car].tier === '5') mult = 100
+
+  if (marlb) mult = mult * 2,
+    smike = ` (doubled multiplier, smiked a pack of marlboro 20s)`;
+  else smike = "";
 
   let routes = [
     '1',
@@ -91,7 +96,8 @@ module.exports.run = async (bot, message, args, tools) => {
       `you've already driven in podel city mate, please wait ${timeObj.hours}h ${timeObj.minutes}m until your next refuel`
     );
   } else {
-    await message.channel.send(`${rname}, £${rprize} have been added to your stats cheers`);
+    if (marlb) db.subtract(`marlboro_${message.author.id}`, 1);
+    await message.channel.send(`${rname}${smike}, £${rprize} have been added to your stats cheers`);
 
     await db.set(`dailydrive_${message.author.id}`, Date.now());
     await db.add(`balance_${message.author.id}`, rprize);

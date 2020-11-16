@@ -1,17 +1,10 @@
 {
-  "lordpass": {
-    "name": "1-Week Lord Pass (lordpass)",
-    "buy": "20000",
-    "sell": "10000",
-    "db": "lord",
-    "emoji": "lordpass"
-  },
-  "overlordpass": {
-    "name": "1-Month Overlord Pass (overlordpass)",
-    "buy": "80000",
-    "sell": "45000",
-    "db": "lord2",
-    "emoji": "lordpass"
+  "marlboro": {
+    "name": "Marlboro 20s Pack (marlboro)",
+    "buy": "100",
+    "sell": "50",
+    "db": "marlboro",
+    "emoji": "marlboro"
   },
   "basiclb": {
     "name": "Tier 1 Car Lootbox (basiclb)",
@@ -26,6 +19,20 @@
     "sell": "1000",
     "db": "betterlb",
     "emoji": "betterlb"
+  },
+  "lordpass": {
+    "name": "1-Week Lord Pass (lordpass)",
+    "buy": "20000",
+    "sell": "10000",
+    "db": "lord",
+    "emoji": "lordpass"
+  },
+  "overlordpass": {
+    "name": "1-Month Overlord Pass (overlordpass)",
+    "buy": "80000",
+    "sell": "45000",
+    "db": "lord2",
+    "emoji": "lordpass"
   },
   "ptcruiser": {
     "name": "2009 Chrysler PT Cruiser (ptcruiser)",
