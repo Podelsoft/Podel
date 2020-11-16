@@ -27,19 +27,6 @@ module.exports.run = async (bot, message, args) => {
         }
     }
 
-    for (var key in json2) {
-
-        if (json2.hasOwnProperty(key)) {
-
-            let item = db.fetch(`${json2[key].sname}_${user.id}`);
-
-            if (item >= 1) {
-                inv.push(`\n[ ${json2[key].sname} stock **x${item}** ]`);
-            }
-
-        }
-    }
-
     let res = inv.join("");
 
     if (res.length < 1) res = "`got mugged 10 minutes ago`"
