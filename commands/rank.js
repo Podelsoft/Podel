@@ -1,5 +1,6 @@
+const superagent = require("superagent");
 const db = require("quick.db"),
-      ms = require("parse-ms");
+  ms = require("parse-ms");
 const { MessageAttachment } = require("discord.js");
 const Canvas = require("canvas");
 const canvas = Canvas.createCanvas(1080, 1350);
@@ -20,6 +21,8 @@ module.exports.run = async (bot, message, args) => {
     message.reply(`wait **${timeObj.seconds}** sec \`(cooldown)\``);
 
   } else {
+
+    let { body } = await superagent.get("https://api.cristpz.eu/v1/podel");
 
     let user = bot.users.cache.find(user => user.username.toLowerCase().includes(args.join(' ').toLowerCase())) || message.mentions.users.first();
 
@@ -62,7 +65,7 @@ module.exports.run = async (bot, message, args) => {
       place++;
     }
 
-    const background = await Canvas.loadImage("https://cdn.discordapp.com/attachments/622424015356559363/768846684452814878/bglvl.png");
+    const background = await Canvas.loadImage("https://media.discordapp.net/attachments/622424015356559363/779659045845467146/bglvl2.png?width=1080&height=1350");
 
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
@@ -86,6 +89,11 @@ module.exports.run = async (bot, message, args) => {
     ctx.font = '64px Uni Sans Heavy';
     ctx.fillStyle = '#000000';
     ctx.fillText(curxp + "/" + nxtlvl, 560, 430);
+
+    // Quote
+    ctx.font = '56px Uni Sans Heavy';
+    ctx.fillStyle = '#000000';
+    ctx.fillText(body.msg, 80, 820);
 
     // Place
     ctx.font = '60px Uni Sans Heavy';

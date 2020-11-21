@@ -16,6 +16,7 @@ module.exports.run = async (bot, message, args) => {
 
   let embed = new Discord.MessageEmbed()
     .setTitle(`Podel City Dealership (you have £${bal})`)
+    .setThumbnail("https://cdn.discordapp.com/attachments/622424015356559363/778610916542775326/unknown.png")
     .setColor(colour)
     .setTimestamp()
     .setFooter('Podel, wheela deela', bot.user.avatarURL())
@@ -59,6 +60,7 @@ module.exports.run = async (bot, message, args) => {
           let embed1 = new Discord.MessageEmbed()
             .setTitle(`Podel City Dealership (you have £${bal})`)
             .setDescription(p.slice(0, 124))
+            .setThumbnail("https://cdn.discordapp.com/attachments/622424015356559363/778610916542775326/unknown.png")
             .setColor(colour)
             .setTimestamp()
             .setFooter('Podel, wheela deela', bot.user.avatarURL());
@@ -66,6 +68,7 @@ module.exports.run = async (bot, message, args) => {
           let embed2 = new Discord.MessageEmbed()
             .setTitle(`Podel City Dealership (you have £${bal})`)
             .setDescription(p.slice(125, 335))
+            .setThumbnail("https://cdn.discordapp.com/attachments/622424015356559363/778610916542775326/unknown.png")
             .setColor(colour)
             .setTimestamp()
             .setFooter('Podel, wheela deela', bot.user.avatarURL());
@@ -73,6 +76,7 @@ module.exports.run = async (bot, message, args) => {
           let embed3 = new Discord.MessageEmbed()
             .setTitle(`Podel City Dealership (you have £${bal})`)
             .setDescription(p.slice(336, 455))
+            .setThumbnail("https://cdn.discordapp.com/attachments/622424015356559363/778610916542775326/unknown.png")
             .setColor(colour)
             .setTimestamp()
             .setFooter('Podel, wheela deela', bot.user.avatarURL());
@@ -80,6 +84,7 @@ module.exports.run = async (bot, message, args) => {
           let embed4 = new Discord.MessageEmbed()
             .setTitle(`Podel City Dealership (you have £${bal})`)
             .setDescription(p.slice(455, 504))
+            .setThumbnail("https://cdn.discordapp.com/attachments/622424015356559363/778610916542775326/unknown.png")
             .setColor(colour)
             .setTimestamp()
             .setFooter('Podel, wheela deela', bot.user.avatarURL());
@@ -87,6 +92,7 @@ module.exports.run = async (bot, message, args) => {
           let embed5 = new Discord.MessageEmbed()
             .setTitle(`Podel City Dealership (you have £${bal})`)
             .setDescription(p.slice(504, 534))
+            .setThumbnail("https://cdn.discordapp.com/attachments/622424015356559363/778610916542775326/unknown.png")
             .setColor(colour)
             .setTimestamp()
             .setFooter('Podel, wheela deela', bot.user.avatarURL());
