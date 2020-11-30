@@ -47,7 +47,7 @@ module.exports.run = async (bot, message, args) => {
     indexnum++;
   }
 
-  const car = db.fetch(`car_${message.author.id}`);
+  const car = db.fetch(`car_${user.id}`);
 
   const embed = new Discord.MessageEmbed()
     .setTitle(user.tag + " | Stats")

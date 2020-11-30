@@ -16,6 +16,10 @@ app.get("/style.css", function (req, res) {
   res.sendFile(__dirname + "/website/src/back/style.css");
 });
 
+app.get("/leaderboard", function (req, res) {
+  res.sendFile(path.join(__dirname + "/website/src/front/leaderboard.html"));
+});
+
 app.get("/leaderboard/balance", async (req, res) => {
   const db = require("quick.db");
 

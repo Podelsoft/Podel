@@ -63,3 +63,25 @@ hr {
     clear: both;
     display: table;
 }
+
+body, html {
+    height: 100%;
+}
+  
+.bgimg-1 {
+    background-image: url("https://media.discordapp.net/attachments/622424015356559363/779695754267721728/xplb.png?width=979&height=288");
+    height: 60%;
+}
+
+.bgimg-2 {
+    background-image: url("https://media.discordapp.net/attachments/622424015356559363/779695794033917972/balancelb.png?width=979&height=288");
+    height: 60%;
+}
+
+.bgimg-1, .bgimg-2 {
+    position: relative;
+    opacity: 0.65;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
