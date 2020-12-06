@@ -145,7 +145,39 @@ module.exports.run = async (bot, message, args) => {
           }
         }
       } else {
-        message.channel.send("fuck off, use `p!add` to add songs to the queue")
+        while (true) {
+          let track = await bot.player.addToQueue(message.guild.id, song);
+          if (track) {
+            if (track.song) {
+              yts(song, async (err, r) => {
+  
+                let videos = r.videos;
+  
+                let embed = new Discord.MessageEmbed()
+                  .setTitle(
+                    "#" + message.member.voice.channel.name + " | " + message.author.tag
+                  )
+                  .addField(`Added to Queue ${podelemoji}:`, `${videos[0].title}`)
+                  .addField(`Duration`, `${videos[0].timestamp}`)
+                  .addField(
+                    "Listen to this track here:",
+                    `[Open Youtube](${videos[0].url})`,
+                    true
+                  )
+                  .setThumbnail(videos[0].thumbnail)
+                  .setColor(colour)
+                  .setTimestamp()
+                  .setFooter(
+                    "Podel, coded by the government of georgia",
+                    bot.user.displayAvatarURL()
+                  );
+  
+                await message.channel.send(embed);
+              });
+              return;
+            }
+          }
+        }
       }
     }
   } else {

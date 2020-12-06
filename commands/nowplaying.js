@@ -34,15 +34,14 @@ module.exports.run = async (bot, message, args) => {
 
       let track = await bot.player.nowPlaying(message.guild.id);
 
-      let time = ms(bot.player.getQueue(message.guild.id).dispatcher.streamTime);
+      let prog = bot.player.createProgressBar(message.guild.id, 8);
 
       let embed = new Discord.MessageEmbed()
         .setTitle(
           "#" + message.member.voice.channel.name + " | " + message.author.tag
         )
         .addField(`Now Playing ${podelemoji}:`, `${track.name}`)
-        .addField(`Duration`, `${track.duration}`)
-        .addField(`Timestamp`, time)
+        .addField(`Progress`, prog)
         .addField(
           "Listen to this track here:",
           `[Open Youtube](${track.url})`,
