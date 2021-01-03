@@ -64,54 +64,6 @@ bot.on("ready", async () => {
   );
 
   console.log(bot.user.username + " is online.");
-
-  /*
-  setInterval(() => {
-    db.subtract(`MSEX_increase`, 10);
-    db.subtract(`JOBB_increase`, 30);
-    db.subtract(`TBSM_increase`, 50);
-    db.subtract(`FUMO_increase`, 90);
-    db.subtract(`SEXO_increase`, 180);
-
-    db.subtract(`MSEX_decrease`, 10);
-    db.subtract(`JOBB_decrease`, 30);
-    db.subtract(`TBSM_decrease`, 50);
-    db.subtract(`FUMO_decrease`, 90);
-    db.subtract(`SEXO_decrease`, 180);
-
-    db.set(`stocks_time2`, Date.now());
-  }, 10000);
-
-  setInterval(() => {
-    function getRandomInt(min, max) {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min) + min);
-    }
-
-    let msexrand = getRandomInt(1000, 2500);
-    let jobbrand = getRandomInt(3000, 5000);
-    let tbsmrand = getRandomInt(5000, 7000);
-    let fumorand = getRandomInt(9000, 20000);
-    let sexorand = getRandomInt(18000, 30000);
-
-    db.set(`MSEX_buy`, msexrand);
-    db.set(`MSEX_sell`, msexrand);
-
-    db.set(`JOBB_buy`, jobbrand);
-    db.set(`JOBB_sell`, jobbrand);
-
-    db.set(`TBSM_buy`, tbsmrand);
-    db.set(`TBSM_sell`, tbsmrand);
-
-    db.set(`FUMO_buy`, fumorand);
-    db.set(`FUMO_sell`, fumorand);
-
-    db.set(`SEXO_buy`, sexorand);
-    db.set(`SEXO_sell`, sexorand);
-
-    db.set(`stocks_time`, Date.now());
-  }, 10000);*/
 });
 
 
@@ -255,14 +207,6 @@ bot.on("guildMemberAdd", async member => {
       member.ban({ reason: "autoban (check banlist)" });
   }
 
-  let role = member.guild.roles.cache.find((role) => role.id === config.joinRole);
-
-  if (!role) {
-    return;
-  } else {
-    member.roles.add(role);
-  }
-
   const Canvas = require("canvas");
   const canvas = Canvas.createCanvas(875, 210);
   const ctx = canvas.getContext("2d");
@@ -301,10 +245,7 @@ bot.on("message", async message => {
 
   if (message.author.bot) return;
 
-  if (message.channel.id === config.joinChannel && !message.member.hasPermission("KICK_MEMBERS") && !message.content.startsWith(prefix + "join")) {
-    message.delete();
-    return;
-  }
+  if (message.guild === null) return;
 
   const xp = require("./xp.json");
 

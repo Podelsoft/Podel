@@ -73,7 +73,7 @@ module.exports.run = async (bot, message, args, tools) => {
       else usertag = usertag.username + "#" + usertag.discriminator
       embed.addField(
         `${`**${indexnum}:** \`` + usertag}\``,
-        `[Balance: ${money[i].data} :pound:](https://podel.cristpz.eu/leaderboard/balance#${indexnum})`
+        `[Balance: ${money[i].data}](https://podel.cristpz.eu/leaderboard/balance#${indexnum}) :pound:`
       );
       indexnum++;
     }

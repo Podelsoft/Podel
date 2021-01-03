@@ -4,7 +4,7 @@ module.exports.run = async (bot, message, args) => {
 
   let balance = db.fetch(`balance_${message.author.id}`);
 
-  let itemname = args[0];
+  let itemname = args[0].toLowerCase();
   let amount = args[1];
 
   const itemlist = require('../items.json');
