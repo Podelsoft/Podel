@@ -65,7 +65,7 @@ module.exports.run = async (bot, message, args, tools) => {
       rname = "you drove over 15 people, you'd get a 10 second sentence but your mate bailed you out and gave you money to eat or something",
         rprize = Math.floor(Math.random() * 30) + 20 * mult;
     } else if (routes[result] === '4') {
-      rname = "you had a proper rumble with some chav on your way to tesco and someone betted that you'd lose but you win",
+      rname = "you had a proper rumble with some chav on your way to tesco and someone betted that you'd lose but you won",
         rprize = Math.floor(Math.random() * 40) + 30 * mult;
     } else if (routes[result] === '5') {
       rname = "you quickscoped some man and stole his wallet while cruising podel city",

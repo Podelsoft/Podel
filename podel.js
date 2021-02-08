@@ -201,10 +201,13 @@ bot.on("messageDelete", async message => {
 });
 
 bot.on("guildMemberAdd", async member => {
-
+if (member.guild.id === "696515024746709003") {
   if (config.autoBan.includes(member.id)) {
     return member.send(`you've been banned from Podel Server (Reason: autoban)`),
       member.ban({ reason: "autoban (check banlist)" });
+  } else if (member.id === "456161212103786496") {
+    let role = member.guild.roles.cache.find((role) => role.id === "708436278302998600");
+      member.roles.add(role);
   }
 
   const Canvas = require("canvas");
@@ -239,6 +242,7 @@ bot.on("guildMemberAdd", async member => {
       " joined the crap server",
       { files: [canvas.toBuffer()] }
     );
+} else return;
 });
 
 bot.on("message", async message => {
