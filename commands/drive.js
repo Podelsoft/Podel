@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args, tools) => {
     if (lastdrive !== null && c > 0) {
         let timeObj = ms(c);
 
-        return message.reply(`you've already driven in podel city mate, please wait ${timeObj.hours}h ${timeObj.minutes}m until your next refuel`);
+        return message.reply(`you've already driven in podel city mate, please wait ${timeObj.hours}h ${timeObj.minutes}m until your next refuel.`);
     } else {
         const car = db.fetch(`car_${message.author.id}`);
         const mb = db.fetch(`marlboro_${message.author.id}`);
@@ -36,7 +36,7 @@ module.exports.run = async (bot, message, args, tools) => {
 
         let prize = res * 10 * mult;
 
-        message.channel.send(`£${prize} have been added to your stats cheers`);
+        message.channel.send(`£${prize} have been added to your stats cheers.`);
         db.set(`dailydrive_${message.author.id}`, Date.now());
         await db.add(`balance_${message.author.id}`, prize);
     }
