@@ -1,7 +1,7 @@
 {
   "name": "podel",
   "description": "the original podel bot",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "main": "podel.js",
   "homepage": "https://podelsoft.github.io/Podel/",
   "license": "WTFPL",

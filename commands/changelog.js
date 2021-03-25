@@ -5,13 +5,12 @@ let config = require("../config.json"),
 module.exports.run = async (bot, message, args) => {
 
   const embed = new Discord.MessageEmbed()
-    .setTitle("v1.8.2 Changelog | 3/1/2021")
+    .setTitle("v1.8.3 Changelog | 25/3/2021")
     .setDescription(`
-    - Minor code fixes (\`p!leaderboard\` (visual), \`p!buy\`, \`p!sell\`)
-    - Added \`p!kodelay\` (\`p!podelay\` but with quotes from \`p!koke\`)`)
+    - Minor change (\`p!daily\`)
+    - Major re-write (\`p!drive\`)`)
     .setColor(colour)
     .setFooter("Podel, are ya coding son?", bot.user.avatarURL());
-
   message.channel.send(embed);
 
 }
