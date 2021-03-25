@@ -10,7 +10,8 @@
     "brexite",
     "Krtek",
     "_mark",
-    "CaptainMalnacido"
+    "CaptainMalnacido",
+    "iodine"
   ],
   "scripts": {
     "start": "node podel.js"
