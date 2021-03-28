@@ -201,48 +201,48 @@ bot.on("messageDelete", async message => {
 });
 
 bot.on("guildMemberAdd", async member => {
-if (member.guild.id === "696515024746709003") {
-  if (config.autoBan.includes(member.id)) {
-    return member.send(`you've been banned from Podel Server (Reason: autoban)`),
-      member.ban({ reason: "autoban (check banlist)" });
-  } else if (member.id === "456161212103786496") {
-    let role = member.guild.roles.cache.find((role) => role.id === "708436278302998600");
+  if (member.guild.id === "696515024746709003") {
+    if (config.autoBan.includes(member.id)) {
+      return member.send(`you've been banned from Podel Server (Reason: autoban)`),
+        member.ban({ reason: "autoban (check banlist)" });
+    } else if (member.id === "456161212103786496") {
+      let role = member.guild.roles.cache.find((role) => role.id === "708436278302998600");
       member.roles.add(role);
-  }
+    }
 
-  const Canvas = require("canvas");
-  const canvas = Canvas.createCanvas(875, 210);
-  const ctx = canvas.getContext("2d");
+    const Canvas = require("canvas");
+    const canvas = Canvas.createCanvas(875, 210);
+    const ctx = canvas.getContext("2d");
 
-  const background = await Canvas.loadImage(
-    "https://media.discordapp.net/attachments/697548272192979074/759193785795608616/man3.png"
-  );
-
-  ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
-  const avatar = await Canvas.loadImage(member.user.avatarURL({ format: 'png', dynamic: true, size: 1024 }));
-  ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-  ctx.strokeStyle = '#ffffff';
-  ctx.strokeRect(0, 0, canvas.width, canvas.height);
-  ctx.font = '29px courier';
-  ctx.fillStyle = '#000000';
-  ctx.fillText(member.user.username, canvas.width / 22.5, canvas.height / 1.15);
-  ctx.beginPath();
-  ctx.arc(800, 50, 60, 0, Math.PI * 2, true);
-  ctx.closePath();
-  ctx.clip();
-  ctx.drawImage(avatar, 735, 0, 128, 128);
-
-  let channel = bot.guilds.cache
-    .find(channel => channel.id === config.guildID)
-    .channels.cache.get(config.welcomeChannel);
-  channel
-    .send(
-      `**${member.user.tag}**` +
-      " joined the crap server",
-      { files: [canvas.toBuffer()] }
+    const background = await Canvas.loadImage(
+      "https://media.discordapp.net/attachments/697548272192979074/759193785795608616/man3.png"
     );
-} else return;
+
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+    const avatar = await Canvas.loadImage(member.user.avatarURL({ format: 'png', dynamic: true, size: 1024 }));
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = '#ffffff';
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+    ctx.font = '29px courier';
+    ctx.fillStyle = '#000000';
+    ctx.fillText(member.user.username, canvas.width / 22.5, canvas.height / 1.15);
+    ctx.beginPath();
+    ctx.arc(800, 50, 60, 0, Math.PI * 2, true);
+    ctx.closePath();
+    ctx.clip();
+    ctx.drawImage(avatar, 735, 0, 128, 128);
+
+    let channel = bot.guilds.cache
+      .find(channel => channel.id === config.guildID)
+      .channels.cache.get(config.welcomeChannel);
+    channel
+      .send(
+        `**${member.user.tag}**` +
+        " joined the crap server",
+        { files: [canvas.toBuffer()] }
+      );
+  } else return;
 });
 
 bot.on("message", async message => {
@@ -251,30 +251,23 @@ bot.on("message", async message => {
 
   if (message.guild === null) return;
 
-  const xp = require("./xp.json");
+  const curxp = db.fetch(`${message.author.id}_xp`);
+  const curlvl = db.fetch(`${message.author.id}_level`);
 
-  if (!xp[message.author.id]) {
-    xp[message.author.id] = {
-      xp: 0,
-      level: 1
-    };
+  if (curxp === null) {
+    db.set(`${message.author.id}_xp`, 0);
+    db.set(`${message.author.id}_level`, 1);
   }
 
   let content = message.content.split(" ");
   let args = content.slice(1);
 
-  let curxp = xp[message.author.id].xp;
-  let curlvl = xp[message.author.id].level;
   let nxtLvl =
-    5 * (xp[message.author.id].level ** 2) +
-    50 * xp[message.author.id].level +
+    5 * (curlvl ** 2) +
+    50 * curlvl +
     100;
 
-  if (config.noXP.includes(message.channel.id)) {
-
-    xp[message.author.id].xp = curxp;
-
-  } else {
+  if (!config.noXP.includes(message.channel.id)) {
 
     if (message.guild.id === config.guildID) {
 
@@ -334,15 +327,12 @@ bot.on("message", async message => {
         }, ms(mutetime));
       }
 
-      curxp++;
-      xp[message.author.id].xp = curxp; fs.writeFile("./xp.json", JSON.stringify(xp), err => {
-        if (err) throw err;
-      });
+      db.add(`${message.author.id}_xp`, 1);
 
-      if (nxtLvl <= xp[message.author.id].xp) {
+      if (nxtLvl <= curxp) {
 
         let lvlupmsgs = db.fetch(`lvmsgs_${message.author.id}`);
-        xp[message.author.id].level = curlvl + 1;
+        db.add(`${message.author.id}_level`, 1);
 
         let lvlup = new Discord.MessageEmbed()
           .setTitle(message.author.tag)

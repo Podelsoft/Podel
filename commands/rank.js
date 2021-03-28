@@ -29,41 +29,13 @@ module.exports.run = async (bot, message, args) => {
     if (!user) user = message.author;
     if (user.id === bot.user.id) user = message.author;
 
-    var xp = require("../xp.json");
+    let curxp = db.fetch(`${user.id}_xp`);
+    let curlvl = db.fetch(`${user.id}_level`);
 
-    if (!xp[user.id]) {
-      xp[user.id] = {
-        xp: 0,
-        level: 1
-      };
-    }
-
-    let curxp = xp[user.id].xp;
-    let curlvl = xp[user.id].level;
-    let nxtlvl = 5 * (xp[user.id].level ** 2) + 50 * xp[user.id].level + 100;
-
-    let file = Object.entries(xp)
-      .map(([key, val]) => ({ id: key, ...val }))
-      .sort((a, b) => b.xp - a.xp);
-    n1 = 0,
-      n2 = 200000,
-      n3 = 1;
-    let result = file.slice(n1, n2);
-    let data = JSON.stringify(result);
-
-    data = data.replace(/[^0-9,]/g, '');
-    data = data.split(',');
-
-    let place = n3;
-    let placeNumber;
-
-    for (var i = 0; i < data.length; i = i + 3) {
-      if (!bot.users.cache.get(data[i])) { placeNumber = ""; break; }
-      if (bot.users.cache.get(data[i]).id === user.id) { placeNumber = String(place); break; } else {
-        // TODO: get a job  
-      };
-      place++;
-    }
+    let nxtlvl =
+      5 * (curlvl ** 2) +
+      50 * curlvl +
+      100;
 
     const background = await Canvas.loadImage("https://media.discordapp.net/attachments/622424015356559363/779659045845467146/bglvl2.png?width=1080&height=1350");
 
@@ -94,19 +66,6 @@ module.exports.run = async (bot, message, args) => {
     ctx.font = '56px Uni Sans Heavy';
     ctx.fillStyle = '#000000';
     ctx.fillText(body.msg, 80, 820);
-
-    // Place
-    ctx.font = '60px Uni Sans Heavy';
-    ctx.fillStyle = '#363636';
-    if (placeNumber.length === 3) {
-      ctx.fillText("#" + placeNumber, 255, 600);
-    } else if (placeNumber.length === 2) {
-      ctx.fillText("#" + placeNumber, 280, 600);
-    } else if (placeNumber.length === 1) {
-      ctx.fillText("#" + placeNumber, 305, 600);
-    } else if (placeNumber.length < 1) {
-      ctx.fillText("", 315, 600)
-    }
 
     // Message
     const attachment = new MessageAttachment(canvas.toBuffer());

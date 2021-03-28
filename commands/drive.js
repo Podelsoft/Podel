@@ -50,7 +50,7 @@ module.exports.run = async (bot, message, args, tools) => {
             "you crashed at your local morrisons, drove inside, fell off a cliff at the back of the store and survived but your insurance covered everything"
         ]
 
-        let prize = Math.floor(res * (10 * Math.random()) * mult);
+        let prize = Math.floor(res * (10 * Math.random() + 1) * mult);
 
         message.channel.send(`${list[res-1]}${mbmsg}, £${prize} have been added to your stats cheers`);
         db.set(`dailydrive_${message.author.id}`, Date.now());

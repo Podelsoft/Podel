@@ -3,7 +3,7 @@ const bot = new Discord.Client({ disableMentions: "everyone" });
 const secret = require("../secret.json"),
   token = secret.token;
 const express = require("express");
-const xp = require("./xp.json");
+const db = require("quick.db");
 
 const app = express();
 const path = require('path');
@@ -21,7 +21,6 @@ app.get("/leaderboard", function (req, res) {
 });
 
 app.get("/leaderboard/balance", async (req, res) => {
-  const db = require("quick.db");
 
   let money = db.all().filter((data) => data.ID.startsWith("balance")).sort((a, b) => b.data - a.data);
   money.length = 25;
@@ -81,31 +80,21 @@ app.get("/leaderboard/balance", async (req, res) => {
 });
 
 app.get("/leaderboard/xp", async (req, res) => {
-  let file = Object.entries(xp)
-    .map(([key, val]) => ({ id: key, ...val }))
-    .sort((a, b) => b.xp - a.xp);
 
-  let n1 = 0,
-    n2 = 25,
-    n3 = 1;
-
-  let result = file.slice(n1, n2);
-  let data = JSON.stringify(result);
-
-  data = data.replace(/[^0-9,]/g, '');
-  data = data.split(',');
-
-  var place = n3;
-
+  let xp = db.all().filter((data) => data.ID.endsWith("xp")).sort((a, b) => b.data - a.data);
+  xp.length = 25;
   let list = [];
-  for (var i = 0; i < data.length; i = i + 3) {
-    let usertag = await bot.users.fetch(data[i]);
-    let userpfp = await bot.users.fetch(data[i]);
-    if (usertag === undefined) usertag = `<cannot fetch this user | ${data[i]}>`;
+  var i = 0;
+  let place = 1;
+  for (i in xp) {
+    let usertag = await bot.users.fetch(xp[i].ID.split('_')[0]);
+    let userpfp = await bot.users.fetch(xp[i].ID.split('_')[0]);
+    if (usertag === undefined) usertag = `<cannot fetch this user | ${xp[i].ID.split('_')[0]}>`;
     userpfp = userpfp.avatarURL({ format: "png", dynamic: true, size: 256 });
     if (usertag.username.length > 20) usertag = `${usertag.username.slice(0, 10)}...#${usertag.discriminator}`;
     else usertag = `${usertag.username}#${usertag.discriminator}`;
-    list.push(`<div id="${place}" class="column" style="float:left;width:20%;padding:10px;"><h1>${place}:</h1><p><img src="${userpfp}" width="100" height="100" border="2px">&nbsp&nbsp<p style="display:grid"><b>${usertag}</b> LVL: ${data[i + 2]} | XP: ${data[i + 1]}</p></p></div>`);
+    let lvl = db.fetch(`${xp[i].ID.split('_')[0]}_level`);
+    list.push(`<div id="${place}" class="column" style="float:left;width:20%;padding:10px;"><h1>${place}:</h1><p><img src="${userpfp}" width="100" height="100" border="2px">&nbsp&nbsp<p style="display:grid"><b>${usertag}</b> LVL: ${lvl} | XP: ${xp[i].data}</p></p></div>`);
     place++;
   }
 

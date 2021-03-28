@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const xp = require("../xp.json");
+const db = require("quick.db");
 const config = require("../config.json"),
   colour = config.colour;
 
@@ -9,27 +9,7 @@ module.exports.run = async (bot, message, args, tools) => {
 
   if (args[0] === "xp") {
 
-    let file = Object.entries(xp)
-      .map(([key, val]) => ({ id: key, ...val }))
-      .sort((a, b) => b.xp - a.xp);
-
-    let n2 = args[1] * 10;
-    let n3 = n2 - 9;
-    let n1 = n2 - 10;
-
-    if (!args[1] || isNaN(args[1])) {
-      n1 = 0,
-        n2 = 10,
-        n3 = 1;
-    }
-
-    let result = file.slice(n1, n2);
-    let data = JSON.stringify(result);
-
-    data = data.replace(/[^0-9,]/g, '');
-    data = data.split(',');
-
-    var place = n3;
+    var place = 1;
 
     let embed = new Discord.MessageEmbed()
       .setAuthor("Podel XP Leaderboard", message.guild.iconURL())
@@ -38,14 +18,17 @@ module.exports.run = async (bot, message, args, tools) => {
       .setFooter("Podel, coded by the government of georgia", bot.user.avatarURL())
       .setThumbnail("https://cdn.glitch.com/5d94d2b3-55ae-4001-86e0-104c8c5e4005%2Fswiss%20banking%20montage%20for%20bot.png?v=1588393805266");
 
-      
-    for (var i = 0; i < 29; i = i + 3) {
-      let usertag = await bot.users.fetch(data[i]);
-      if (usertag === undefined) usertag = `<cannot fetch this user | ${data[i]}>`;
+    let xp = db.all().filter((data) => data.ID.endsWith("xp")).sort((a, b) => b.data - a.data);
+    xp.length = 10;
+    var i = 0;
+    for (i in xp) {
+      let usertag = await bot.users.fetch(xp[i].ID.split('_')[0]);
+      if (usertag === undefined) usertag = `<cannot fetch this user | ${xp[i].ID.split('_')[0]}>`;
       else usertag = usertag.username + "#" + usertag.discriminator
+      let level = db.fetch(`${xp[i].ID.split('_')[0]}_level`);
       embed.addField(
-        `**${place}:** \`${usertag}\``,
-        `[Level: ${data[i + 2]}  | XP: ${data[i + 1]}]${`(https://podel.cristpz.eu/leaderboard/xp#${place})`}`
+        `${`**${place}:** \`` + usertag}\``,
+        `[Level: ${level}  | XP: ${xp[i].data}]${`(https://podel.cristpz.eu/leaderboard/xp#${place})`}`
       );
       place++;
     }
@@ -53,8 +36,6 @@ module.exports.run = async (bot, message, args, tools) => {
     message.channel.send(embed);
 
   } else if (args[0].toLowerCase() === "balance") {
-
-    const db = require("quick.db");
 
     const embed = new Discord.MessageEmbed()
       .setAuthor(`Podel Balance Leaderboard`, message.guild.iconURL())
