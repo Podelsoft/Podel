@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
     let user = message.mentions.users.first();
 
     if (!user) return message.channel.send("you need to mention a user to race with first.");
-    if (user.id === message.author.id) return message.channel.send("you can't race yourself.");
+    if (user.id === message.author.id) return message.channel.send("you can't race yourself you crap idiot.");
 
     let wager = args[1];
 

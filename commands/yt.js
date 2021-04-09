@@ -8,11 +8,11 @@ module.exports.run = async (bot, message, args) => {
     const videos = r.videos
 
     message.channel.send(videos[0].url)
-  })
-}
+  });
+};
 
 module.exports.help = {
   name: "yt",
   aliases: ['youtube', 'searchyt'],
   type: "user"
-}
+};
