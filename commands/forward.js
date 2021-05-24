@@ -17,8 +17,10 @@ module.exports.run = async (bot, message, args) => {
       await bot.player.seek(message.guild.id, time).catch(err => {
         return message.channel.send(error.message);
       });
+ 
+      if (!isNaN(args[0])) args[0] = args[0] + "ms";
 
-      message.channel.send(`Moving ${args[0]} (${track.name})`);
+      message.channel.send(`Moving to ${args[0]} (${track.name})`);
     }
   } else {
     message.reply("you need to join a voice channel first.");

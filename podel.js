@@ -378,11 +378,7 @@ bot.on("message", async message => {
   const commandName = args2.shift().toLowerCase();
 
   if (message.content.startsWith(prefix)) {
-    /*let lastcmd = db.fetch(`lastcmd_${message.author.id}`)
-    let tObj = mparse(5000 - (Date.now() - lastcmd));
-    if (cooldown.has(message.author.id)) {
-      message.channel.send(`wait **${tObj.seconds}** sec \`(cooldown)\``);
-    } else {*/
+    if (config.noCMD.includes(message.channel.id) && !message.member.hasPermission('MANAGE_MESSAGES')) return;
     try {
       const command2 =
         bot.commands.get(commandName) ||
@@ -396,13 +392,6 @@ bot.on("message", async message => {
     } catch (err) {
       console.log(err);
     }
-    /*db.set(`lastcmd_${message.author.id}`, Date.now())
-    cooldown.add(message.author.id);
-    setTimeout(() => {
-      db.delete(`lastcmd_${message.author.id}`);
-      cooldown.delete(message.author.id);
-    }, 5000);
-  }*/
   }
 
 });
