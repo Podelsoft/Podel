@@ -5,12 +5,16 @@ const config = require('../config.json'),
 
 module.exports.run = async (bot, message, args, tools) => {
 
+  let inRace = db.fetch(`inRace_${message.author.id}`);
+
+  if (inRace !== null) return message.channel.send("cannot do that while racing someone");
+
   if (!message.mentions.members.first()) return message.channel.send(`mention someone first`);
 
   let targetMember = message.mentions.members.first(),
     amount = parseInt(args[1]);
 
-  if (targetMember.bot) return message.reply(`you can't give money to bots`);
+  if (targetMember.user.bot) return message.reply(`you can't give money to bots`);
 
   if ((amount % 1) != 0) return;
   if (amount < 1) return;

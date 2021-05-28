@@ -285,7 +285,7 @@
       "multiplier": 4
     },
     "slr": {
-      "name": "2010 Mercedes-Benz SLR McLaren",
+      "name": "2010 Mercedes-Benz SLR McLaren (slr)",
       "buy": "25000",
       "sell": "11000",
       "db": "slr",
@@ -324,7 +324,7 @@
       "multiplier": 4
     },
     "delta": {
-      "name": "1985 Lancia Delta S4 \"Stradale\"",
+      "name": "1985 Lancia Delta S4 \"Stradale\" (delta)",
       "buy": "80000",
       "sell": "55000",
       "db": "delta",

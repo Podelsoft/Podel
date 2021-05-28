@@ -45,12 +45,11 @@ module.exports.run = async (bot, message, args, tools) => {
       .setThumbnail("https://scitechdaily.com/images/Economic-Crash.jpg");
 
     let money = db.all().filter((data) => data.ID.startsWith("balance")).sort((a, b) => b.data - a.data);
-    money.length = 12;
+    money.length = 10;
     var i = 0;
     let indexnum = 1;
     for (i in money) {
-      if (indexnum > 10) return;
-      if (!config.noBLB.includes(money[i].ID.split('_')[1])) {
+//      if (!config.noBLB.includes(money[i].ID.split('_')[1])) {
       let usertag = await bot.users.fetch(money[i].ID.split('_')[1]);
       if (usertag === undefined) usertag = `<cannot fetch this user | ${money[i].ID.split('_')[1]}>`;
       else usertag = usertag.username + "#" + usertag.discriminator
@@ -59,7 +58,7 @@ module.exports.run = async (bot, message, args, tools) => {
         `[Balance: ${money[i].data}](https://podel.cristpz.eu/leaderboard/balance#${indexnum}) :pound:`
       );
       indexnum++;
-     }
+//     }
     }
 
     message.channel.send(embed);

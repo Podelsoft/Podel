@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
     let bal1 = db.fetch(`balance_${message.author.id}`);
     let bal2 = db.fetch(`balance_${user.id}`);
 
-    if (!wager) return message.channel.send("you need to place a valid wager.");
+    if (!wager || wager === null) return message.channel.send("you need to place a valid wager.");
     if (isNaN(wager)) return message.channel.send("you need to place a valid wager.");
     if (wager <= 0) return message.channel.send("you need to place a valid wager.");
     if ((wager % 1) !== 0) return message.channel.send("you need to place a valid wager.");
@@ -46,6 +46,9 @@ module.exports.run = async (bot, message, args) => {
         .setFooter('Podel, do ya thang', bot.user.avatarURL());
 
     async function start() {
+
+        db.set(`inRace_${message.author.id}`, true);
+        db.set(`inRace_${user.id}`, true);
 
         let cperc1 = db.fetch(`perc_${message.author.id}`);
         let cperc2 = db.fetch(`perc_${user.id}`)
@@ -84,6 +87,8 @@ module.exports.run = async (bot, message, args) => {
                             message.channel.send(embedc1);
                             db.subtract(`balance_${user.id}`, wager);
                             db.add(`balance_${message.author.id}`, wager);
+                            db.delete(`inRace_${message.author.id}`);
+                            db.delete(`inRace_${user.id}`);
                         } else if (result < 0) {
                             let emojicar2 = bot.emojis.cache.find(emoji => emoji.name === `${json[car2].emoji}`);
                             let embedc2 = new Discord.MessageEmbed()
@@ -96,6 +101,8 @@ module.exports.run = async (bot, message, args) => {
                             message.channel.send(embedc2);
                             db.subtract(`balance_${message.author.id}`, wager);
                             db.add(`balance_${user.id}`, wager);
+                            db.delete(`inRace_${message.author.id}`);
+                            db.delete(`inRace_${user.id}`);
                         }
 
                     } else if (collected.first().emoji.name === "❌") return message.channel.send(`${message.author} rekt ✅`)

@@ -59,8 +59,8 @@ bot.login(token);
 
 bot.on("ready", async () => {
   bot.user.setActivity(
-    "Fight at Dawat restaurant in Southall, West London UK.",
-    { url: "https://www.youtube.com/watch?v=YKMfsJqpyWo", type: "STREAMING" }
+    "HOW TO WATCH FAMILY GUY ALL EPISODE FOR FREE!!! | 2021 NEW GLITCH",
+    { url: "https://www.youtube.com/watch?v=amRow1pdZs4", type: "STREAMING" }
   );
 
   console.log(bot.user.username + " is online.");
@@ -378,6 +378,7 @@ bot.on("message", async message => {
   const commandName = args2.shift().toLowerCase();
 
   if (message.content.startsWith(prefix)) {
+    if (Date.now() - message.member.user.createdAt < 1000*60*60*24*30) return;
     if (config.noCMD.includes(message.channel.id) && !message.member.hasPermission('MANAGE_MESSAGES')) return;
     try {
       const command2 =
