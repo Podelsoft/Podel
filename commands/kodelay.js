@@ -1,4 +1,3 @@
-const superagent = require("superagent");
 const fs = require("fs");
 const { MessageAttachment } = require("discord.js");
 
@@ -124,6 +123,7 @@ module.exports.run = async (bot, message, args) => {
         "wha"
     ];
 
+    let found;
     let result = Math.floor(Math.random() * koke.length);
     function wrap(str, maxWidth) {
         var newLineStr = "|"; done = false; res = '';

@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
     let bal1 = db.fetch(`balance_${message.author.id}`);
     let bal2 = db.fetch(`balance_${user.id}`);
 
-    if (!wager || wager === null) return message.channel.send("you need to place a valid wager.");
+    if (!wager) return message.channel.send("you need to place a valid wager.");
     if (isNaN(wager)) return message.channel.send("you need to place a valid wager.");
     if (wager <= 0) return message.channel.send("you need to place a valid wager.");
     if ((wager % 1) !== 0) return message.channel.send("you need to place a valid wager.");
